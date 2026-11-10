@@ -154,8 +154,10 @@ function initializeNetworkPuzzle() {
     L: [570, 450]
   };
 
-  // Twenty connections.
-  // Exactly A and L have odd degree.
+  // 22 connections.
+// Exactly A and C have odd degree.
+// An Eulerian trail exists.
+   
   const edgePairs = [
   ["A", "B"],
   ["B", "C"],
@@ -181,8 +183,9 @@ function initializeNetworkPuzzle() {
   ["H", "L"],
   ["L", "K"],
   ["K", "G"],
-
-  ["A", "C"]
+   
+  ["A", "C"],
+  ["E", "H"]
 ];
 
   const edges = edgePairs.map(([a, b], id) => ({
