@@ -369,3 +369,101 @@ select:focus {
     height: 650px;
   }
 }
+/* =========================================
+   PAGE 4 — NETWORK PUZZLE
+   ========================================= */
+
+.network-activity {
+  padding: 1rem;
+  min-height: 420px;
+}
+
+#network-puzzle {
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  overflow: visible;
+}
+
+.network-edge {
+  stroke: #444444;
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke 0.2s ease;
+}
+
+.network-edge.used {
+  stroke: #B8860B;
+  stroke-width: 7;
+}
+
+.network-vertex {
+  cursor: pointer;
+  outline: none;
+}
+
+.network-vertex circle {
+  fill: #FFD54F;
+  stroke: #000000;
+  stroke-width: 2;
+  transition: fill 0.2s ease;
+}
+
+.network-vertex text {
+  font-size: 15px;
+  font-weight: 700;
+  fill: #000000;
+  pointer-events: none;
+}
+
+.network-vertex.current circle {
+  fill: #000000;
+  stroke: #B8860B;
+  stroke-width: 4;
+}
+
+.network-vertex.current text {
+  fill: #FFFFFF;
+}
+
+.network-vertex:focus-visible circle {
+  stroke: #000000;
+  stroke-width: 5;
+}
+
+.network-status {
+  background: #FFF9E8;
+  border-left: 4px solid #B8860B;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+}
+
+.network-status p {
+  margin: 0.3rem 0;
+}
+
+.network-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.network-hint {
+  background: #FFF9E8;
+  border: 1px solid #E8D89A;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+@media (max-width: 600px) {
+  .network-activity {
+    min-height: 250px;
+    padding: 0.5rem;
+  }
+
+  .network-controls button {
+    flex: 1;
+  }
+}
