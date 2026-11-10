@@ -189,6 +189,7 @@ const pages = [
         <li>Select a connected point to travel along a line.</li>
         <li>Continue until you have travelled along every connection.</li>
         <li>You may revisit points, but you cannot reuse connections.</li>
+        <li> Note: Lines that cross without a marked point are not connected at that crossing.</li>
       </ol>
 
       <p>
