@@ -163,12 +163,76 @@ const pages = [
   // REMAINING PAGES
 
   {
-    id: 4,
-    type: "learn",
-    label: "Learning Moment 2",
-    title: "Look Again",
-    content: `<p>Coming soon: Discovering vertices and edges.</p>`
-  },
+  id: 4,
+  type: "learn",
+  label: "Learning Moment 2",
+  title: "An Interactive Experience: Now with Structure",
+
+  content: `
+    <p>
+      Consider the network below. Each line represents a connection
+      between two points.
+    </p>
+
+    <div class="activity-card">
+      <h2>Your Challenge</h2>
+
+      <p>
+        <strong>
+          Can you travel along every connection exactly once,
+          without retracing any connection?
+        </strong>
+      </p>
+
+      <ol>
+        <li>Select a point to begin.</li>
+        <li>Select a connected point to travel along a line.</li>
+        <li>Continue until you have travelled along every connection.</li>
+        <li>You may revisit points, but you cannot reuse connections.</li>
+      </ol>
+
+      <p>
+        Your goal is to find a route that uses every connection
+        exactly once.
+      </p>
+    </div>
+
+    <div class="graph-activity network-activity">
+      <svg
+        id="network-puzzle"
+        viewBox="0 0 700 480"
+        role="group"
+        aria-label="Interactive network puzzle with twelve points"
+      ></svg>
+    </div>
+
+    <div class="network-status" role="status" aria-live="polite">
+      <p id="network-message">
+        Select any point to begin.
+      </p>
+
+      <p id="network-progress">
+        Connections travelled: 0 / 20
+      </p>
+    </div>
+
+    <div class="network-controls">
+      <button type="button" id="network-undo" class="secondary">
+        Undo
+      </button>
+
+      <button type="button" id="network-reset" class="secondary">
+        Reset
+      </button>
+
+      <button type="button" id="network-hint">
+        Hint
+      </button>
+    </div>
+
+    <p id="network-hint-text" class="network-hint" hidden></p>
+  `
+},
 
   {
     id: 5,
