@@ -212,7 +212,7 @@ const pages = [
       </p>
 
       <p id="network-progress">
-        Connections travelled: 0 / 21
+        Connections travelled: 0 / 22
       </p>
     </div>
 
