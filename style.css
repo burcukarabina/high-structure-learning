@@ -467,3 +467,116 @@ select:focus {
     flex: 1;
   }
 }
+
+/* =========================================
+   LIVE WORD CLOUDS
+   UW-INSPIRED DESIGN
+   ========================================= */
+
+.word-cloud-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.word-cloud-activity {
+  min-width: 0;
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  border-top: 5px solid #FFD54F;
+  border-radius: 12px;
+}
+
+.word-cloud-activity h2 {
+  font-size: 1.5rem;
+  margin-top: 0;
+}
+
+.word-cloud-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.word-cloud-form label {
+  font-weight: 600;
+}
+
+.word-cloud-form input {
+  width: 100%;
+}
+
+.word-cloud-form button {
+  align-self: flex-start;
+}
+
+.word-cloud-display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  gap: 0.75rem 1rem;
+
+  min-height: 260px;
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+
+  background: #FFF9E8;
+  border-radius: 10px;
+}
+
+.word-cloud-word {
+  display: inline-block;
+  color: #222222;
+  font-weight: 700;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.word-cloud-word:nth-child(3n) {
+  color: #755600;
+}
+
+.word-cloud-word:nth-child(4n) {
+  color: #555555;
+}
+
+.word-cloud-empty {
+  color: #555555;
+  font-style: italic;
+}
+
+.word-cloud-status {
+  min-height: 1.5rem;
+  font-size: 0.9rem;
+  color: #444444;
+}
+
+.word-cloud-count {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #555555;
+  margin-top: 1rem;
+}
+
+/* Mobile layout */
+
+@media (max-width: 700px) {
+
+  .word-cloud-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .word-cloud-activity {
+    padding: 1rem;
+  }
+
+  .word-cloud-display {
+    min-height: 200px;
+  }
+
+}
