@@ -223,24 +223,40 @@ const pages = [
       <h2>Your Challenge</h2>
 
       <p>
-        <strong>
-          Can you travel along every connection exactly once,
-          without retracing any connection?
-        </strong>
-      </p>
+  <strong>Your Challenge:</strong>
+  Can you travel along every connection exactly once,
+  without retracing any connection?
+</p>
 
-      <ol>
-        <li>Select a point to begin.</li>
-        <li>Select a connected point to travel along a line.</li>
-        <li>Continue until you have travelled along every connection.</li>
-        <li>You may revisit points, but you cannot reuse connections.</li>
-        <li> Note: Lines that cross without a marked point are not connected at that crossing.</li>
-      </ol>
+<ol>
+  <li>
+    <strong>Choose a starting point.</strong>
+    Click any letter to begin.
+  </li>
+  <li>
+    <strong>Make your first move.</strong>
+    Click a connected letter to travel along the line between them.
+  </li>
+  <li>
+    <strong>Continue your route.</strong>
+    Click connected letters until you have travelled along every connection.
+  </li>
+  <li>
+    <strong>Remember:</strong>
+    You may visit the same letter more than once,
+    but you cannot travel along the same line twice.
+  </li>
+  <li>
+    <strong>Watch for crossings:</strong>
+    Lines that cross without a marked point are not connected
+    at that crossing.
+  </li>
+</ol>
 
-      <p>
-        Your goal is to find a route that uses every connection
-        exactly once.
-      </p>
+<p>
+  <strong>Your goal:</strong>
+  Find a route that uses every connection exactly once.
+</p>
     </div>
 
     <div class="graph-activity network-activity">
