@@ -55,6 +55,10 @@ function renderPage() {
       : "Continue →";
 
   // Initialize page-specific interactions
+   if (page.id === 1 && window.initializeWordClouds) {
+  window.initializeWordClouds();
+}
+   
   if (page.id === 2) {
     initializeDrawing();
   }
