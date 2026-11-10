@@ -281,7 +281,8 @@ function initializeNetworkPuzzle() {
     progress.textContent =
       `Connections travelled: ${usedEdges.size} / ${edges.length}`;
 
-    undoButton.disabled = path.length === 0;
+    undoButton.disabled =
+  currentVertex === null && path.length === 0;
   }
 
   function selectVertex(name) {
