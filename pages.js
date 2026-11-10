@@ -14,59 +14,104 @@ const pages = [
     title: "High Expectations with High Structure",
 
     content: `
-      <p class="intro-text">
-        Before we begin, let's hear from you.
-      </p>
+  <p class="intro-text">
+    Before we begin, let's hear from you.
+  </p>
 
-      <div class="activity-card">
-        <h2>What do these ideas mean to you?</h2>
+  <p>
+    Share a word or short phrase for each question.
+    Watch the responses develop into live word clouds.
+  </p>
 
-        <p>
-          <strong>High Expectations:</strong>
-          What comes to mind?
-        </p>
+  <div class="word-cloud-grid">
 
-        <p>
-          <strong>High Structure:</strong>
-          What comes to mind?
-        </p>
+    <!-- HIGH EXPECTATIONS -->
 
-        <p>
-          Submit a word or short phrase for each question
-          using the activity below.
-        </p>
+    <section
+      class="word-cloud-activity"
+      data-question="expectations"
+    >
+
+      <h2>High Expectations</h2>
+
+      <p>What does high expectations mean to you?</p>
+
+      <form class="word-cloud-form">
+
+        <label for="expectations-input">
+          Your word or short phrase
+        </label>
+
+        <input
+          id="expectations-input"
+          class="word-cloud-input"
+          type="text"
+          maxlength="60"
+          required
+          placeholder="Enter your response"
+        >
+
+        <button type="submit">
+          Submit
+        </button>
+
+      </form>
+
+      <p class="word-cloud-status" role="status"></p>
+
+      <div class="word-cloud-display"
+           aria-label="High expectations word cloud">
       </div>
 
-      <div class="vevox-grid">
+      <p class="word-cloud-count">0 responses</p>
 
-  <div class="vevox-section">
-    <h3>High Expectations</h3>
+    </section>
 
-    <div class="vevox-container">
-      <iframe
-        src="https://vevox.app/#/m/451727944"
-        title="Vevox: High Expectations"
-        loading="lazy"
-        allow="fullscreen">
-      </iframe>
-    </div>
+
+    <!-- HIGH STRUCTURE -->
+
+    <section
+      class="word-cloud-activity"
+      data-question="structure"
+    >
+
+      <h2>High Structure</h2>
+
+      <p>What does high structure mean to you?</p>
+
+      <form class="word-cloud-form">
+
+        <label for="structure-input">
+          Your word or short phrase
+        </label>
+
+        <input
+          id="structure-input"
+          class="word-cloud-input"
+          type="text"
+          maxlength="60"
+          required
+          placeholder="Enter your response"
+        >
+
+        <button type="submit">
+          Submit
+        </button>
+
+      </form>
+
+      <p class="word-cloud-status" role="status"></p>
+
+      <div class="word-cloud-display"
+           aria-label="High structure word cloud">
+      </div>
+
+      <p class="word-cloud-count">0 responses</p>
+
+    </section>
+
   </div>
-
-  <div class="vevox-section">
-    <h3>High Structure</h3>
-
-    <div class="vevox-container">
-      <iframe
-        src="https://vevox.app/#/m/444291341"
-        title="Vevox: High Structure"
-        loading="lazy"
-        allow="fullscreen">
-      </iframe>
-    </div>
-  </div>
-
-</div>
-    `
+`
   },
 
   // PAGE 2
