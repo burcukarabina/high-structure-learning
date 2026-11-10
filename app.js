@@ -350,7 +350,10 @@ function initializeNetworkPuzzle() {
 
       message.textContent = hasNextMove
         ? `You are now at point ${name}.`
-        : "No unused connections remain from this point. Try undoing a move.";
+        : `You have reached a dead end at point ${name}.
+There are still ${edges.length - usedEdges.size}
+connections remaining. Try undoing a move
+or restarting with a different strategy.`;
     }
 
     updateDisplay();
