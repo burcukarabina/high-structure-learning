@@ -37,13 +37,35 @@ const pages = [
         </p>
       </div>
 
-      <div class="vevox-container">
-        <iframe
-          src="https://vevox.app/#/m/451727944"
-          title="Vevox live word cloud activity"
-          allow="fullscreen">
-        </iframe>
-      </div>
+      <div class="vevox-grid">
+
+  <div class="vevox-section">
+    <h3>High Expectations</h3>
+
+    <div class="vevox-container">
+      <iframe
+        src="https://vevox.app/#/m/451727944"
+        title="Vevox: High Expectations"
+        loading="lazy"
+        allow="fullscreen">
+      </iframe>
+    </div>
+  </div>
+
+  <div class="vevox-section">
+    <h3>High Structure</h3>
+
+    <div class="vevox-container">
+      <iframe
+        src="https://vevox.app/#/m/444291341"
+        title="Vevox: High Structure"
+        loading="lazy"
+        allow="fullscreen">
+      </iframe>
+    </div>
+  </div>
+
+</div>
     `
   },
 
