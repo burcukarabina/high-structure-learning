@@ -1,1 +1,267 @@
+/* =========================================
+   HIGH EXPECTATIONS WITH HIGH STRUCTURE
+   University of Waterloo-inspired palette
+   ========================================= */
 
+:root {
+  /* UW-inspired colours */
+  --uw-black: #000000;
+  --uw-gold: #FFD54F;
+  --uw-yellow: #FFEA3D;
+  --uw-dark-gold: #B8860B;
+
+  /* Neutral colours */
+  --background: #F7F7F5;
+  --surface: #FFFFFF;
+  --text: #222222;
+  --text-muted: #555555;
+  --border: #DDDDDD;
+
+  /* Learning modes */
+  --learn-background: #FFFFFF;
+  --zoom-background: #FFF9E8;
+
+  /* Layout */
+  --content-width: 900px;
+  --radius: 12px;
+}
+
+/* Base styles */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  color: var(--text);
+  line-height: 1.65;
+}
+
+h1, h2, h3 {
+  color: var(--uw-black);
+  line-height: 1.25;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* Main textbook container */
+
+.textbook {
+  max-width: var(--content-width);
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border-top: 6px solid var(--uw-gold);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+/* Page heading */
+
+.page-label {
+  display: inline-block;
+  padding: 0.35rem 0.8rem;
+  background: var(--uw-gold);
+  color: var(--uw-black);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+/* Learning modes */
+
+.page-learn {
+  background: var(--learn-background);
+}
+
+.page-zoom {
+  background: var(--zoom-background);
+  border-left: 5px solid var(--uw-dark-gold);
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+/* Progress indicator */
+
+.progress-container {
+  margin-bottom: 1.5rem;
+}
+
+.progress-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: #E5E5E5;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--uw-dark-gold);
+  transition: width 0.3s ease;
+}
+
+/* Activity cards */
+
+.activity-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--uw-gold);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+/* Reflection cards */
+
+.reflection-card {
+  background: var(--zoom-background);
+  border: 1px solid #E8D89A;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+/* Buttons */
+
+button,
+.button {
+  display: inline-block;
+  background: var(--uw-black);
+  color: #FFFFFF;
+  border: 2px solid var(--uw-black);
+  border-radius: 6px;
+  padding: 0.8rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+button:hover,
+.button:hover {
+  background: #333333;
+}
+
+button:focus-visible,
+.button:focus-visible {
+  outline: 3px solid var(--uw-dark-gold);
+  outline-offset: 3px;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Navigation */
+
+.page-navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.page-navigation .secondary {
+  background: #FFFFFF;
+  color: var(--uw-black);
+}
+
+.page-navigation .secondary:hover {
+  background: #F2F2F2;
+}
+
+/* Interactive questions */
+
+.question-box {
+  background: #FAFAFA;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 0.85rem;
+  border: 1px solid #888888;
+  border-radius: 6px;
+  font: inherit;
+  background: #FFFFFF;
+  color: var(--text);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 3px solid var(--uw-gold);
+  outline-offset: 2px;
+}
+
+/* Vevox embed */
+
+.vevox-container {
+  width: 100%;
+  height: 650px;
+  margin: 2rem 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+
+.vevox-container iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .textbook {
+    margin: 0;
+    padding: 1.25rem;
+    border-radius: 0;
+  }
+
+  .page-navigation {
+    flex-direction: column;
+  }
+
+  .page-navigation button {
+    width: 100%;
+  }
+
+  .vevox-container {
+    height: 750px;
+  }
+}
