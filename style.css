@@ -265,3 +265,75 @@ select:focus {
     height: 750px;
   }
 }
+
+/* =========================================
+   INTERACTIVE GRAPH ACTIVITY
+   ========================================= */
+
+.graph-activity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  padding: 2rem;
+  margin: 2rem 0;
+
+  min-height: 400px;
+}
+
+#drawing-puzzle {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+}
+
+/* Graph edges */
+
+.graph-edges line {
+  stroke: #222222;
+  stroke-width: 5;
+  stroke-linecap: round;
+
+  cursor: pointer;
+
+  transition:
+    stroke 0.2s ease,
+    stroke-width 0.2s ease;
+}
+
+.graph-edges line:hover {
+  stroke: #B8860B;
+  stroke-width: 8;
+}
+
+.graph-edges line.selected {
+  stroke: #B8860B;
+  stroke-width: 8;
+}
+
+/* Vertices */
+
+.graph-vertices circle {
+  fill: #FFD54F;
+  stroke: #000000;
+  stroke-width: 2;
+  pointer-events: none;
+}
+
+/* Reflection */
+
+.reflection-prompt {
+  margin-top: 1.5rem;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .graph-activity {
+    padding: 1rem;
+    min-height: 300px;
+  }
+}
