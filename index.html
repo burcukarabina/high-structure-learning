@@ -1,1 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>High Expectations with High Structure</title>
+
+  <meta name="description"
+        content="An interactive learning experience exploring high expectations, high structure, and digital instructional design.">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="textbook">
+
+    <!-- Progress indicator -->
+    <div class="progress-container">
+      <div class="progress-text" id="progress-text">
+        Page 1 of 12
+      </div>
+
+      <div class="progress-track"
+           role="progressbar"
+           aria-label="Textbook progress"
+           aria-valuemin="0"
+           aria-valuemax="100"
+           aria-valuenow="8">
+        <div class="progress-fill"
+             id="progress-fill"
+             style="width: 8.33%;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Page content -->
+    <article id="page-content" class="page-learn">
+
+      <span class="page-label">Opening Reflection</span>
+
+      <h1>High Expectations with High Structure</h1>
+
+      <p class="intro-text">
+        Before we begin, let's hear from you.
+      </p>
+
+      <div class="activity-card">
+
+        <h2>What do these ideas mean to you?</h2>
+
+        <p>
+          <strong>High Expectations:</strong>
+          What comes to mind?
+        </p>
+
+        <p>
+          <strong>High Structure:</strong>
+          What comes to mind?
+        </p>
+
+        <p>
+          Submit a word or short phrase for each question
+          using the activity below.
+        </p>
+
+      </div>
+
+      <!-- Vevox -->
+      <div class="vevox-container">
+        <iframe
+          src="https://vevox.app/#/m/451727944"
+          title="Vevox live word cloud activity"
+          loading="lazy"
+          allow="fullscreen">
+        </iframe>
+      </div>
+
+    </article>
+
+    <!-- Navigation -->
+    <nav class="page-navigation" aria-label="Textbook navigation">
+
+      <button id="prev-btn"
+              class="secondary"
+              type="button"
+              disabled>
+        ← Previous
+      </button>
+
+      <button id="next-btn"
+              type="button">
+        Continue →
+      </button>
+
+    </nav>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="pages.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
