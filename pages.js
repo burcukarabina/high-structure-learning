@@ -885,169 +885,116 @@ const pages = [
       <h2>Apply the Concepts</h2>
 
       <p>
-        Study the graph below. Use what you learned
-        on the previous page to answer the questions.
-      </p>
+  Study the graph below and use what you have learned
+  to answer the five questions.
+</p>
 
-      <div class="transfer-graph">
+<p>
+  Check your answers and use the feedback to revise them.
+  Select <strong>Try Again</strong> for a new graph.
+</p>
 
-        <svg
-          viewBox="0 0 420 290"
-          role="img"
-          aria-label="Graph with five vertices A, B, C, D, E.
-          Edges connect A to B, A to C, B to C,
-          B to D, C to D, and D to E."
-        >
+<div class="transfer-graph">
 
-          <g class="definition-edges">
+  <svg
+    id="transfer-graph-svg"
+    viewBox="0 0 420 290"
+    role="img"
+    aria-label="Graph for the near-transfer activity"
+  ></svg>
 
-            <line x1="70" y1="145" x2="170" y2="55"/>
-            <line x1="70" y1="145" x2="170" y2="235"/>
-            <line x1="170" y1="55" x2="170" y2="235"/>
-            <line x1="170" y1="55" x2="300" y2="85"/>
-            <line x1="170" y1="235" x2="300" y2="85"/>
-            <line x1="300" y1="85" x2="350" y2="215"/>
+</div>
 
-          </g>
+<div id="transfer-questions" class="transfer-questions">
 
-          <g class="definition-vertices">
+  <div class="transfer-question">
+    <label for="transfer-vertices">
+      <strong>1.</strong>
+      How many vertices does the graph contain?
+    </label>
 
-            <circle cx="70" cy="145" r="13"/>
-            <circle cx="170" cy="55" r="13"/>
-            <circle cx="170" cy="235" r="13"/>
-            <circle cx="300" cy="85" r="13"/>
-            <circle cx="350" cy="215" r="13"/>
+    <input type="number" id="transfer-vertices" min="0">
 
-          </g>
+    <p id="feedback-vertices" class="question-feedback"></p>
+  </div>
 
-          <g class="transfer-graph-labels">
+  <div class="transfer-question">
+    <label for="transfer-edges">
+      <strong>2.</strong>
+      How many edges does the graph contain?
+    </label>
 
-            <text x="43" y="150">A</text>
-            <text x="164" y="30">B</text>
-            <text x="164" y="270">C</text>
-            <text x="315" y="75">D</text>
-            <text x="366" y="220">E</text>
+    <input type="number" id="transfer-edges" min="0">
 
-          </g>
+    <p id="feedback-edges" class="question-feedback"></p>
+  </div>
 
-        </svg>
+  <div class="transfer-question">
+    <label for="transfer-degree">
+      <strong>3.</strong>
+      What is the degree of vertex
+      <span id="transfer-degree-vertex">D</span>?
+    </label>
 
-      </div>
+    <input type="number" id="transfer-degree" min="0">
 
-      <div id="transfer-questions" class="transfer-questions">
+    <p id="feedback-degree" class="question-feedback"></p>
+  </div>
 
-        <div class="transfer-question">
+  <div class="transfer-question">
+    <label for="transfer-walk">
+      <strong>4.</strong>
+      Is
+      <strong id="transfer-route-walk"></strong>
+      a valid walk?
+    </label>
 
-          <label for="transfer-vertices">
-            <strong>1.</strong>
-            How many vertices does the graph have?
-          </label>
+    <select id="transfer-walk">
+      <option value="">Choose an answer</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
 
-          <input
-            type="number"
-            id="transfer-vertices"
-            min="0"
-            inputmode="numeric"
-          >
+    <p id="feedback-walk" class="question-feedback"></p>
+  </div>
 
-          <p id="feedback-vertices" class="question-feedback"></p>
+  <div class="transfer-question">
+    <label for="transfer-trail">
+      <strong>5.</strong>
+      Is
+      <strong id="transfer-route-trail"></strong>
+      a trail?
+    </label>
 
-        </div>
+    <select id="transfer-trail">
+      <option value="">Choose an answer</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
 
+    <p id="feedback-trail" class="question-feedback"></p>
+  </div>
 
-        <div class="transfer-question">
+</div>
 
-          <label for="transfer-edges">
-            <strong>2.</strong>
-            How many edges does the graph have?
-          </label>
+<div class="near-transfer-controls">
 
-          <input
-            type="number"
-            id="transfer-edges"
-            min="0"
-            inputmode="numeric"
-          >
+  <button type="button" id="transfer-check">
+    Check My Answers
+  </button>
 
-          <p id="feedback-edges" class="question-feedback"></p>
+  <button type="button" id="transfer-reset" class="secondary">
+    Try Again
+  </button>
 
-        </div>
+</div>
 
-
-        <div class="transfer-question">
-
-          <label for="transfer-degree">
-            <strong>3.</strong>
-            What is the degree of vertex D?
-          </label>
-
-          <input
-            type="number"
-            id="transfer-degree"
-            min="0"
-            inputmode="numeric"
-          >
-
-          <p id="feedback-degree" class="question-feedback"></p>
-
-        </div>
-
-
-        <div class="transfer-question">
-
-          <label for="transfer-walk">
-            <strong>4.</strong>
-            Is A → B → C → B a valid walk?
-          </label>
-
-          <select id="transfer-walk">
-            <option value="">Choose an answer</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-
-          <p id="feedback-walk" class="question-feedback"></p>
-
-        </div>
-
-
-        <div class="transfer-question">
-
-          <label for="transfer-trail">
-            <strong>5.</strong>
-            Is A → B → C → B a trail?
-          </label>
-
-          <select id="transfer-trail">
-            <option value="">Choose an answer</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-
-          <p id="feedback-trail" class="question-feedback"></p>
-
-        </div>
-
-      </div>
-
-      <div class="near-transfer-controls">
-
-        <button type="button" id="transfer-check">
-          Check My Answers
-        </button>
-
-        <button type="button" id="transfer-reset" class="secondary">
-          Try Again
-        </button>
-
-      </div>
-
-      <p
-        id="transfer-overall-feedback"
-        class="near-transfer-feedback"
-        role="status"
-        aria-live="polite"
-      ></p>
+<p
+  id="transfer-overall-feedback"
+  class="near-transfer-feedback"
+  role="status"
+  aria-live="polite"
+></p>
 
     </section>
 
