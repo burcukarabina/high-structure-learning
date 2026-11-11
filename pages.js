@@ -181,7 +181,7 @@ const pages = [
   {
     id: 2,
     type: "learn",
-    label: "Learning Moment 1",
+    label: "Learning Moment",
     title: "An Interactive Experience",
 
     content: `
@@ -217,7 +217,7 @@ const pages = [
   {
     id: 3,
     type: "zoom",
-    label: "Zoom Out 1",
+    label: "Zoom Out",
     title: "What Just Happened?",
 
     content: `
