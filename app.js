@@ -34,15 +34,18 @@ const flashcard = document.querySelector(".strategy-flashcard");
 
 if (flashcard) {
   flashcard.addEventListener("click", () => {
-    const front = flashcard.querySelector(".flashcard-front");
-    const back = flashcard.querySelector(".flashcard-back");
 
-    const isRevealed = flashcard.getAttribute("aria-expanded") === "true";
+    const isFlipped = flashcard.classList.toggle("is-flipped");
 
-    front.hidden = !isRevealed;
-    back.hidden = isRevealed;
+    flashcard.setAttribute("aria-pressed", String(isFlipped));
 
-    flashcard.setAttribute("aria-expanded", String(!isRevealed));
+    flashcard.setAttribute(
+      "aria-label",
+      isFlipped
+        ? "Return to the reflection question"
+        : "Reveal the learning strategy"
+    );
+
   });
 };
   // Update progress
