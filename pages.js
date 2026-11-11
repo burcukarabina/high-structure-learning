@@ -107,17 +107,19 @@ const pages = [
 
       <p class="word-cloud-count">0 responses</p>
 
-    </section>
-    <section class="strategy-reflection">
-  <h2>Zoom Out: What Did We Just Learn About Learning?</h2>
+        </section>
 
-  <p>
-    Before moving on, consider the learning strategy
-    behind this activity.
-  </p>
-  </div>
+  </div> <!-- End of word-cloud-grid -->
 
-  <div class="flashcard-scene">
+  <section class="strategy-reflection">
+    <h2>Zoom Out: What Did We Just Learn About Learning?</h2>
+
+    <p>
+      Before moving on, consider the learning strategy
+      behind this activity.
+    </p>
+
+    <div class="flashcard-scene">
   <button
     type="button"
     class="strategy-flashcard"
@@ -166,12 +168,11 @@ const pages = [
         </span>
       </span>
 
-    </span>
+       </span>
   </button>
-</div>
-</section>
+    </div> <!-- End of flashcard-scene -->
 
-  </div>
+  </section> <!-- End of strategy-reflection -->
 `
   },
 
