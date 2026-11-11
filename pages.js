@@ -418,8 +418,7 @@ const pages = [
     </div>
 
     <p id="network-hint-text" class="network-hint" hidden></p>
-  `
-     <section class="strategy-reflection">
+       <section class="strategy-reflection">
 
   <h2>Zoom Out: What Did We Just Learn About Learning?</h2>
 
@@ -495,6 +494,7 @@ const pages = [
   </div>
 
 </section>
+  `
 },
 
   {
