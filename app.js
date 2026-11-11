@@ -960,60 +960,307 @@ function initializeNearTransfer() {
   renderMatching();
 
 
-  // =======================================
+    // =======================================
   // ACTIVITY 2: APPLY TO A NEW GRAPH
   // =======================================
 
-  const transferQuestions = [
+  const graphPool = [
     {
-      input: "transfer-vertices",
-      feedback: "feedback-vertices",
-      answer: "5",
-      correct: "Correct. The graph contains five vertices.",
-      incorrect: "Count the labeled points A through E."
+      vertices: {
+        A: [70, 145], B: [170, 55], C: [170, 235],
+        D: [300, 85], E: [350, 215]
+      },
+      edges: [
+        ["A","B"], ["A","C"], ["B","C"],
+        ["B","D"], ["C","D"], ["D","E"]
+      ],
+      degreeVertex: "D",
+      route: ["A","B","C","B"]
     },
     {
-      input: "transfer-edges",
-      feedback: "feedback-edges",
-      answer: "6",
-      correct: "Correct. There are six connections.",
-      incorrect: "Count each line connecting two vertices."
+      vertices: {
+        A: [70, 70], B: [210, 50], C: [350, 70],
+        D: [350, 220], E: [210, 240], F: [70, 220]
+      },
+      edges: [
+        ["A","B"], ["B","C"], ["C","D"],
+        ["D","E"], ["E","F"], ["F","A"],
+        ["B","E"]
+      ],
+      degreeVertex: "B",
+      route: ["A","B","E","D"]
     },
     {
-      input: "transfer-degree",
-      feedback: "feedback-degree",
-      answer: "3",
-      correct: "Correct. Three edges meet at D.",
-      incorrect: "Count only the edges that meet at vertex D."
+      vertices: {
+        A: [70, 145], B: [180, 55], C: [300, 55],
+        D: [350, 145], E: [300, 235], F: [180, 235]
+      },
+      edges: [
+        ["A","B"], ["B","C"], ["C","D"],
+        ["D","E"], ["E","F"], ["F","A"],
+        ["B","F"], ["C","E"]
+      ],
+      degreeVertex: "F",
+      route: ["A","B","C","E"]
     },
     {
-      input: "transfer-walk",
-      feedback: "feedback-walk",
-      answer: "yes",
-      correct: "Correct. Every consecutive pair is connected, and a walk may repeat edges.",
-      incorrect: "A walk allows both vertices and edges to be repeated."
+      vertices: {
+        A: [70, 145], B: [170, 55], C: [300, 55],
+        D: [350, 145], E: [300, 235], F: [170, 235]
+      },
+      edges: [
+        ["A","B"], ["A","F"], ["B","C"],
+        ["C","D"], ["D","E"], ["E","F"],
+        ["B","F"]
+      ],
+      degreeVertex: "A",
+      route: ["A","B","D","E"]
     },
     {
-      input: "transfer-trail",
-      feedback: "feedback-trail",
-      answer: "no",
-      correct: "Correct. The edge BC is used twice, so this is not a trail.",
-      incorrect: "A trail cannot repeat an edge. Check the moves B → C and C → B."
+      vertices: {
+        A: [70, 145], B: [160, 55], C: [270, 55],
+        D: [350, 145], E: [270, 235], F: [160, 235]
+      },
+      edges: [
+        ["A","B"], ["B","C"], ["C","D"],
+        ["D","E"], ["E","F"], ["F","A"],
+        ["A","C"], ["C","E"]
+      ],
+      degreeVertex: "C",
+      route: ["A","C","E","D"]
+    },
+    {
+      vertices: {
+        A: [70, 80], B: [210, 50], C: [350, 80],
+        D: [350, 220], E: [210, 250], F: [70, 220]
+      },
+      edges: [
+        ["A","B"], ["B","C"], ["C","D"],
+        ["D","E"], ["E","F"], ["F","A"],
+        ["A","E"], ["B","D"]
+      ],
+      degreeVertex: "E",
+      route: ["A","E","D","B"]
+    },
+    {
+      vertices: {
+        A: [70, 145], B: [170, 55], C: [300, 55],
+        D: [350, 145], E: [300, 235], F: [170, 235],
+        G: [210, 145]
+      },
+      edges: [
+        ["A","B"], ["B","C"], ["C","D"],
+        ["D","E"], ["E","F"], ["F","A"],
+        ["B","G"], ["G","E"], ["G","F"]
+      ],
+      degreeVertex: "G",
+      route: ["B","G","F","A"]
+    },
+    {
+      vertices: {
+        A: [70, 70], B: [210, 50], C: [350, 70],
+        D: [350, 220], E: [210, 240], F: [70, 220]
+      },
+      edges: [
+        ["A","B"], ["B","C"], ["C","D"],
+        ["D","E"], ["E","F"], ["F","A"],
+        ["A","D"], ["B","E"]
+      ],
+      degreeVertex: "D",
+      route: ["A","D","E","B"]
     }
   ];
 
+  const svg = document.getElementById("transfer-graph-svg");
   const transferCheck = document.getElementById("transfer-check");
   const transferReset = document.getElementById("transfer-reset");
-  const transferOverallFeedback =
+  const overallFeedback =
     document.getElementById("transfer-overall-feedback");
 
+  const SVG_NS = "http://www.w3.org/2000/svg";
+
+  let remainingGraphs = [];
+  let currentGraph = null;
+
+  function edgeExists(graph, a, b) {
+    return graph.edges.some(([u, v]) =>
+      (u === a && v === b) ||
+      (u === b && v === a)
+    );
+  }
+
+  function degreeOf(graph, vertex) {
+    return graph.edges.filter(([a, b]) =>
+      a === vertex || b === vertex
+    ).length;
+  }
+
+  function isWalk(graph, route) {
+    for (let i = 0; i < route.length - 1; i++) {
+      if (!edgeExists(graph, route[i], route[i + 1])) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function isTrail(graph, route) {
+    if (!isWalk(graph, route)) return false;
+
+    const used = new Set();
+
+    for (let i = 0; i < route.length - 1; i++) {
+      const edge = [route[i], route[i + 1]].sort().join("-");
+
+      if (used.has(edge)) return false;
+      used.add(edge);
+    }
+
+    return true;
+  }
+
+  function makeSvgElement(tag, attributes = {}) {
+    const element = document.createElementNS(SVG_NS, tag);
+
+    Object.entries(attributes).forEach(([key, value]) => {
+      element.setAttribute(key, value);
+    });
+
+    return element;
+  }
+
+  function drawGraph(graph) {
+    svg.innerHTML = "";
+
+    const edgesGroup = makeSvgElement("g", {
+      class: "definition-edges"
+    });
+
+    graph.edges.forEach(([a, b]) => {
+      const [x1, y1] = graph.vertices[a];
+      const [x2, y2] = graph.vertices[b];
+
+      edgesGroup.appendChild(makeSvgElement("line", {
+        x1, y1, x2, y2
+      }));
+    });
+
+    svg.appendChild(edgesGroup);
+
+    const verticesGroup = makeSvgElement("g", {
+      class: "definition-vertices"
+    });
+
+    const labelsGroup = makeSvgElement("g", {
+      class: "transfer-graph-labels"
+    });
+
+    Object.entries(graph.vertices).forEach(([name, [x, y]]) => {
+      verticesGroup.appendChild(makeSvgElement("circle", {
+        cx: x,
+        cy: y,
+        r: 13
+      }));
+
+      const label = makeSvgElement("text", {
+        x,
+        y: y - 22,
+        "text-anchor": "middle"
+      });
+
+      label.textContent = name;
+      labelsGroup.appendChild(label);
+    });
+
+    svg.appendChild(verticesGroup);
+    svg.appendChild(labelsGroup);
+
+    svg.setAttribute(
+      "aria-label",
+      `Graph with ${Object.keys(graph.vertices).length} vertices ` +
+      `and ${graph.edges.length} edges. ` +
+      graph.edges.map(([a, b]) => `${a} to ${b}`).join(", ") + "."
+    );
+  }
+
+  function clearTransferAnswers() {
+    [
+      "vertices", "edges", "degree", "walk", "trail"
+    ].forEach(key => {
+      const input = document.getElementById(`transfer-${key}`);
+      const feedback = document.getElementById(`feedback-${key}`);
+
+      input.value = "";
+      input.classList.remove("answer-correct", "answer-incorrect");
+      feedback.textContent = "";
+    });
+
+    overallFeedback.textContent = "";
+  }
+
+  function loadGraph() {
+    if (remainingGraphs.length === 0) {
+      remainingGraphs = graphPool.map((_, index) => index);
+
+      // Avoid repeating the immediately previous graph.
+      if (currentGraph) {
+        const previousIndex = graphPool.indexOf(currentGraph);
+        const position = remainingGraphs.indexOf(previousIndex);
+
+        if (position !== -1) {
+          remainingGraphs.splice(position, 1);
+          remainingGraphs.push(previousIndex);
+        }
+      }
+    }
+
+    const nextIndex = Math.floor(Math.random() * remainingGraphs.length);
+    const graphIndex = remainingGraphs.splice(nextIndex, 1)[0];
+
+    currentGraph = graphPool[graphIndex];
+
+    drawGraph(currentGraph);
+
+    const routeText = currentGraph.route.join(" → ");
+
+    document.getElementById("transfer-degree-vertex").textContent =
+      currentGraph.degreeVertex;
+
+    document.getElementById("transfer-route-walk").textContent =
+      routeText;
+
+    document.getElementById("transfer-route-trail").textContent =
+      routeText;
+
+    clearTransferAnswers();
+  }
+
   transferCheck.addEventListener("click", () => {
+    const graph = currentGraph;
+
+    const answers = {
+      vertices: String(Object.keys(graph.vertices).length),
+      edges: String(graph.edges.length),
+      degree: String(degreeOf(graph, graph.degreeVertex)),
+      walk: isWalk(graph, graph.route) ? "yes" : "no",
+      trail: isTrail(graph, graph.route) ? "yes" : "no"
+    };
+
+    const feedbackMessages = {
+      vertices: "Count the labeled points in the graph.",
+      edges: "Count each connection between two vertices.",
+      degree: `Count the edges meeting at vertex ${graph.degreeVertex}.`,
+      walk: "Check whether every consecutive pair of vertices is connected.",
+      trail: "A trail must be a valid walk and cannot repeat an edge."
+    };
+
     let correct = 0;
     let answered = 0;
 
-    transferQuestions.forEach(question => {
-      const input = document.getElementById(question.input);
-      const feedback = document.getElementById(question.feedback);
+    Object.entries(answers).forEach(([key, answer]) => {
+      const input = document.getElementById(`transfer-${key}`);
+      const feedback = document.getElementById(`feedback-${key}`);
+
       const value = input.value.trim().toLowerCase();
 
       input.classList.remove("answer-correct", "answer-incorrect");
@@ -1025,40 +1272,32 @@ function initializeNearTransfer() {
 
       answered++;
 
-      if (value === question.answer) {
+      if (value === answer) {
         correct++;
-        feedback.textContent = question.correct;
         input.classList.add("answer-correct");
+        feedback.textContent = "Correct.";
       } else {
-        feedback.textContent = question.incorrect;
         input.classList.add("answer-incorrect");
+        feedback.textContent =
+          `Not quite. ${feedbackMessages[key]}`;
       }
     });
 
-    if (correct === transferQuestions.length) {
-      transferOverallFeedback.textContent =
-        "Well done! You applied all five concepts correctly.";
-    } else if (answered < transferQuestions.length) {
-      transferOverallFeedback.textContent =
-        `You have ${transferQuestions.length - answered} unanswered question(s).`;
+    if (correct === 5) {
+      overallFeedback.textContent =
+        "Excellent! You've applied all five concepts correctly. " +
+        "Select Try Again to practice with a new graph.";
+    } else if (answered < 5) {
+      overallFeedback.textContent =
+        `You have ${5 - answered} unanswered question(s).`;
     } else {
-      transferOverallFeedback.textContent =
-        `${correct} of ${transferQuestions.length} correct. ` +
-        "Use the feedback and try again.";
+      overallFeedback.textContent =
+        `${correct} of 5 correct. Use the feedback to revise your answers.`;
     }
   });
 
-  transferReset.addEventListener("click", () => {
-    transferQuestions.forEach(question => {
-      const input = document.getElementById(question.input);
-      const feedback = document.getElementById(question.feedback);
+  transferReset.addEventListener("click", loadGraph);
 
-      input.value = "";
-      input.classList.remove("answer-correct", "answer-incorrect");
-      feedback.textContent = "";
-    });
-
-    transferOverallFeedback.textContent = "";
-  });
+  loadGraph();
 }
 renderPage();
