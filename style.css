@@ -1593,3 +1593,286 @@ select:focus {
     grid-template-columns: 1fr;
   }
 }
+/* =========================================
+   PAGE 8 — REORGANIZED LAYOUT
+   ========================================= */
+
+.contrast-goals,
+.contrast-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.contrast-goal-card {
+  background: #fff;
+  border: 2px solid #d4a017;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.contrast-goal-label {
+  display: block;
+  color: #795a00;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.contrast-goal-card h3 {
+  margin: 0.5rem 0 1rem;
+}
+
+.contrast-term {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 0.8rem;
+  background: #f9edc7;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.contrast-comparison-card {
+  background: #fafafa;
+  border: 1px solid #dedede;
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+
+.contrast-comparison-card h3 {
+  margin-top: 0;
+  border-bottom: 2px solid #d4a017;
+  padding-bottom: 0.75rem;
+}
+
+.contrast-comparison-card p {
+  padding: 0.7rem 0;
+  margin: 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.contrast-comparison-card p:last-child {
+  border-bottom: none;
+}
+
+.contrast-prompt {
+  background: #faf6e9;
+  border-left: 4px solid #d4a017;
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  border-radius: 6px;
+}
+
+.contrast-prompt p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================
+   THEOREM REVEAL
+   ========================================= */
+
+.theorem-reveal-area {
+  position: relative;
+  margin-top: 1.5rem;
+}
+
+.theorem-card {
+  animation: theorem-appear 650ms ease-out both;
+}
+
+.theorem-eyebrow {
+  display: block;
+  color: #795a00;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+.theorem-statement {
+  font-size: 1.2rem;
+  line-height: 1.7;
+}
+
+.contrast-return {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: #f6f6f6;
+  border-left: 4px solid #222;
+  border-radius: 6px;
+  animation: theorem-appear 650ms ease-out both;
+}
+
+@keyframes theorem-appear {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* =========================================
+   GOLD CELEBRATION
+   ========================================= */
+
+.contrast-celebration {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.contrast-particle {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  animation: contrast-burst 900ms ease-out forwards;
+}
+
+@keyframes contrast-burst {
+  from {
+    opacity: 1;
+    transform: rotate(var(--angle)) translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform:
+      rotate(var(--angle))
+      translateX(var(--distance));
+  }
+}
+
+
+/* =========================================
+   PAGE 8 — FLASHCARD FIX
+   ========================================= */
+
+#page-content:has(#contrast-graphs)
+.strategy-flashcard {
+  display: block;
+  position: relative;
+  width: 100%;
+  min-height: 220px;
+  padding: 0;
+  border: 2px solid #d4a017;
+  border-radius: 14px;
+  background: #faf6e9;
+  color: #222;
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+#page-content:has(#contrast-graphs)
+.strategy-flashcard .flashcard-front,
+#page-content:has(#contrast-graphs)
+.strategy-flashcard .flashcard-back {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1.5rem;
+  transition: opacity 350ms ease, transform 350ms ease;
+}
+
+#page-content:has(#contrast-graphs)
+.strategy-flashcard .flashcard-front {
+  opacity: 1;
+  transform: rotateY(0);
+  visibility: visible;
+}
+
+#page-content:has(#contrast-graphs)
+.strategy-flashcard .flashcard-back {
+  opacity: 0;
+  transform: rotateY(-90deg);
+  visibility: hidden;
+}
+
+#page-content:has(#contrast-graphs)
+.strategy-flashcard.is-flipped .flashcard-front {
+  opacity: 0;
+  transform: rotateY(90deg);
+  visibility: hidden;
+}
+
+#page-content:has(#contrast-graphs)
+.strategy-flashcard.is-flipped .flashcard-back {
+  opacity: 1;
+  transform: rotateY(0);
+  visibility: visible;
+}
+
+#page-content:has(#contrast-graphs)
+.strategy-flashcard .flashcard-label {
+  color: #795a00;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+#page-content:has(#contrast-graphs)
+.strategy-flashcard strong {
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+#page-content:has(#contrast-graphs)
+.strategy-flashcard .flashcard-hint {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+#page-content:has(#contrast-graphs)
+.strategy-flashcard:focus-visible {
+  outline: 3px solid #795a00;
+  outline-offset: 4px;
+}
+
+
+/* =========================================
+   RESPONSIVE AND ACCESSIBILITY
+   ========================================= */
+
+@media (max-width: 650px) {
+  .contrast-goals,
+  .contrast-comparison {
+    grid-template-columns: 1fr;
+  }
+
+  #page-content:has(#contrast-graphs)
+  .strategy-flashcard {
+    min-height: 300px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theorem-card,
+  .contrast-return,
+  .contrast-particle {
+    animation: none;
+  }
+
+  #page-content:has(#contrast-graphs)
+  .strategy-flashcard .flashcard-front,
+  #page-content:has(#contrast-graphs)
+  .strategy-flashcard .flashcard-back {
+    transition: none;
+    transform: none;
+  }
+}
