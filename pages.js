@@ -421,6 +421,82 @@ const pages = [
 
     <p id="network-hint-text" class="network-hint" hidden></p>
   `
+     <section class="strategy-reflection">
+
+  <h2>Zoom Out: What Did We Just Learn About Learning?</h2>
+
+  <p>
+    Think about how this challenge differed from
+    the earlier interactive experience.
+  </p>
+
+  <div class="flashcard-scene">
+
+    <button
+      type="button"
+      class="strategy-flashcard"
+      aria-pressed="false"
+      aria-label="Reveal the learning strategy"
+    >
+
+      <span class="flashcard-inner">
+
+        <!-- FRONT -->
+        <span class="flashcard-face flashcard-front">
+
+          <span class="flashcard-label">REFLECT</span>
+
+          <span class="flashcard-question">
+            What helped you approach this challenging task,
+            even before you knew how to solve it?
+          </span>
+
+          <span class="flashcard-hint">
+            Click to flip the card.
+          </span>
+
+        </span>
+
+        <!-- BACK -->
+        <span class="flashcard-face flashcard-back">
+
+          <span class="flashcard-label">
+            LEARNING STRATEGY
+          </span>
+
+          <strong>High Expectations, High Structure</strong>
+
+          <span>
+            The task remained intellectually challenging,
+            but clear instructions, a defined goal,
+            progress indicators, and opportunities for
+            feedback helped make the challenge manageable.
+          </span>
+
+          <span class="flashcard-application">
+
+            <strong>Apply it in your teaching:</strong>
+
+            Keep the intellectual challenge high while
+            providing clear expectations, purposeful steps,
+            and timely feedback. Structure should support
+            students' thinking, not replace it.
+
+          </span>
+
+          <span class="flashcard-hint">
+            Click to flip back.
+          </span>
+
+        </span>
+
+      </span>
+
+    </button>
+
+  </div>
+
+</section>
 },
 
   {
