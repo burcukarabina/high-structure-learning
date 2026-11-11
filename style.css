@@ -988,3 +988,133 @@ select:focus {
     width: 100%;
   }
 }
+
+/* =========================================
+   PAGE 6 — DRAG-AND-DROP MATCHING
+   ========================================= */
+
+.sorting-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-top: 1.5rem;
+}
+
+.sorting-column > h3 {
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+}
+
+.sorting-bank {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.25rem;
+  min-height: 250px;
+  background: #ffebaa;
+  border: 2px solid #343434;
+  border-radius: 14px;
+}
+
+.sorting-item {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #343434;
+  border-radius: 10px;
+  background: #fff;
+  color: #222;
+  font: inherit;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: center;
+  cursor: grab;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.08);
+}
+
+.sorting-item:hover {
+  background: #fffdf3;
+}
+
+.sorting-item:active {
+  cursor: grabbing;
+}
+
+.sorting-item.is-selected {
+  outline: 3px solid #b38b00;
+  outline-offset: 2px;
+  background: #fff8d6;
+}
+
+.sorting-item.is-dragging {
+  opacity: 0.5;
+}
+
+.sorting-buckets {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.sorting-bucket {
+  padding: 1rem;
+  background: #fff3cb;
+  border: 2px solid #343434;
+  border-radius: 12px;
+}
+
+.sorting-bucket h4 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.sorting-dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90px;
+  padding: 0.6rem;
+  background: #fff;
+  border: 2px dashed #444;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background-color 0.15s ease,
+              border-color 0.15s ease;
+}
+
+.sorting-dropzone.is-dragover {
+  background: #fff2bd;
+  border-color: #997100;
+}
+
+.sorting-dropzone .sorting-item {
+  margin: 0;
+}
+
+.sorting-dropzone:focus-visible,
+.sorting-item:focus-visible {
+  outline: 3px solid #9b7300;
+  outline-offset: 3px;
+}
+
+.sorting-bucket.answer-correct {
+  border-color: #31734b !important;
+  background: #eff8f1 !important;
+}
+
+.sorting-bucket.answer-incorrect {
+  border-color: #a96b1f !important;
+  background: #fff4df !important;
+}
+
+@media (max-width: 760px) {
+  .sorting-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .sorting-bank {
+    min-height: 160px;
+  }
+}
