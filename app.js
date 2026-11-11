@@ -1328,29 +1328,167 @@ function initializeDeliveryChallenge() {
   // DELIVERY NETWORK
   // =========================================
 
-  const vertices = {
-    A: [75, 150],
-    B: [160, 55],
-    C: [300, 55],
-    D: [355, 150],
-    E: [300, 260],
-    F: [160, 260]
-  };
+  // =========================================
+// DELIVERY NETWORK POOL
+// =========================================
 
-  const edges = [
-    ["A", "B"],
-    ["B", "C"],
-    ["C", "D"],
-    ["D", "E"],
-    ["E", "F"],
-    ["F", "A"],
-    ["A", "C"],
-    ["B", "E"],
-    ["C", "E"],
-    ["B", "F"]
-  ];
+const graphPool = [
 
-  const vertexNames = Object.keys(vertices);
+  // Network 1
+  {
+    vertices: {
+      A: [75, 150],
+      B: [160, 55],
+      C: [300, 55],
+      D: [355, 150],
+      E: [300, 260],
+      F: [160, 260]
+    },
+    edges: [
+      ["A", "B"], ["B", "C"], ["C", "D"],
+      ["D", "E"], ["E", "F"], ["F", "A"],
+      ["A", "C"], ["B", "E"], ["C", "E"],
+      ["B", "F"]
+    ]
+  },
+
+  // Network 2
+  {
+    vertices: {
+      A: [75, 150],
+      B: [175, 60],
+      C: [320, 80],
+      D: [350, 225],
+      E: [210, 260],
+      F: [105, 250]
+    },
+    edges: [
+      ["A", "B"], ["B", "C"], ["C", "D"],
+      ["D", "E"], ["E", "F"], ["F", "A"],
+      ["A", "E"], ["B", "D"], ["C", "E"]
+    ]
+  },
+
+  // Network 3
+  {
+    vertices: {
+      A: [65, 150],
+      B: [170, 45],
+      C: [325, 45],
+      D: [370, 150],
+      E: [325, 265],
+      F: [170, 265]
+    },
+    edges: [
+      ["A", "B"], ["B", "C"], ["C", "D"],
+      ["D", "E"], ["E", "F"], ["F", "A"],
+      ["A", "D"], ["B", "E"], ["C", "F"]
+    ]
+  },
+
+  // Network 4
+  {
+    vertices: {
+      A: [75, 155],
+      B: [175, 55],
+      C: [320, 55],
+      D: [355, 155],
+      E: [320, 255],
+      F: [175, 255]
+    },
+    edges: [
+      ["A", "B"], ["B", "C"], ["C", "D"],
+      ["D", "E"], ["E", "F"], ["F", "A"],
+      ["A", "C"], ["B", "E"], ["C", "E"],
+      ["D", "F"]
+    ]
+  },
+
+  // Network 5
+  {
+    vertices: {
+      A: [80, 75],
+      B: [210, 45],
+      C: [350, 75],
+      D: [350, 230],
+      E: [210, 265],
+      F: [80, 230]
+    },
+    edges: [
+      ["A", "B"], ["B", "C"], ["C", "D"],
+      ["D", "E"], ["E", "F"], ["F", "A"],
+      ["A", "D"], ["B", "E"], ["C", "F"],
+      ["A", "E"]
+    ]
+  },
+
+  // Network 6
+  {
+    vertices: {
+      A: [70, 150],
+      B: [175, 55],
+      C: [310, 55],
+      D: [370, 150],
+      E: [310, 260],
+      F: [175, 260]
+    },
+    edges: [
+      ["A", "B"], ["B", "C"], ["C", "D"],
+      ["D", "E"], ["E", "F"], ["F", "A"],
+      ["A", "E"], ["B", "D"], ["C", "F"],
+      ["B", "E"]
+    ]
+  },
+
+  // Network 7
+  {
+    vertices: {
+      A: [75, 150],
+      B: [160, 55],
+      C: [300, 55],
+      D: [355, 150],
+      E: [300, 260],
+      F: [160, 260]
+    },
+    edges: [
+      ["A", "B"], ["B", "C"], ["C", "D"],
+      ["D", "E"], ["E", "F"], ["F", "A"],
+      ["A", "D"], ["B", "E"], ["C", "F"],
+      ["A", "C"], ["D", "F"]
+    ]
+  },
+
+  // Network 8
+  {
+    vertices: {
+      A: [70, 155],
+      B: [175, 45],
+      C: [325, 65],
+      D: [365, 165],
+      E: [310, 265],
+      F: [165, 260]
+    },
+    edges: [
+      ["A", "B"], ["B", "C"], ["C", "D"],
+      ["D", "E"], ["E", "F"], ["F", "A"],
+      ["A", "E"], ["B", "D"], ["C", "E"],
+      ["B", "F"]
+    ]
+  }
+
+];
+
+let remainingGraphs = [];
+let currentGraph = null;
+
+let vertices = {};
+let edges = [];
+let vertexNames = [];
+
+let route = ["A"];
+
+const vertexElements = new Map();
+const edgeElements = [];
 
   let route = ["A"];
 
@@ -1387,7 +1525,12 @@ function initializeDeliveryChallenge() {
     );
 
   }
+function drawNetwork() {
 
+  svg.innerHTML = "";
+
+  vertexElements.clear();
+  edgeElements.length = 0;
 
   // =========================================
   // DRAW EDGES
@@ -1463,7 +1606,53 @@ function initializeDeliveryChallenge() {
     vertexElements.set(name, group);
 
   });
+}
+   function loadNewNetwork() {
 
+  // Refill the pool after all eight networks
+  // have been used.
+  if (remainingGraphs.length === 0) {
+    remainingGraphs = graphPool.map((_, index) => index);
+  }
+
+  // Select a network without repeating the
+  // immediately preceding network.
+  let available = remainingGraphs;
+
+  if (currentGraph && remainingGraphs.length > 1) {
+
+    const previousIndex = graphPool.indexOf(currentGraph);
+
+    available = remainingGraphs.filter(
+      index => index !== previousIndex
+    );
+
+  }
+
+  const randomIndex = Math.floor(Math.random() * available.length);
+
+  const selectedIndex = available[randomIndex];
+
+  remainingGraphs = remainingGraphs.filter(
+    index => index !== selectedIndex
+  );
+
+  currentGraph = graphPool[selectedIndex];
+
+  vertices = currentGraph.vertices;
+  edges = currentGraph.edges;
+  vertexNames = Object.keys(vertices);
+
+  route = ["A"];
+
+  drawNetwork();
+
+  feedback.textContent =
+    "New delivery network! Start at A and visit every location exactly once before returning.";
+
+  updateDisplay();
+
+}
 
   // =========================================
   // SELECT LOCATION
@@ -1625,20 +1814,11 @@ function initializeDeliveryChallenge() {
   // RESET
   // =========================================
 
-  resetButton.addEventListener("click", () => {
-
-    route = ["A"];
-
-    feedback.textContent =
-      "Select a location connected to A.";
-
-    updateDisplay();
-
-  });
+resetButton.addEventListener("click", loadNewNetwork);
 
 
   // Initialize
-  updateDisplay();
+ loadNewNetwork();
 
 }
 renderPage();
