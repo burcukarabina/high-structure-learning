@@ -582,18 +582,21 @@ select:focus {
 }
 /* =========================================
    LEARNING STRATEGY FLASHCARD
-   3D FLIP EFFECT
+   RESPONSIVE 3D FLIP
    ========================================= */
 
 .strategy-reflection {
   width: 100%;
-  max-width: 100%;
+  max-width: none;
   box-sizing: border-box;
 
-  margin-top: 3rem;
-  padding-top: 1.5rem;
+  margin: 3rem 0 0;
+  padding: 1.5rem 0 0;
 
   border-top: 2px solid #e5e5e5;
+
+  /* Prevent inherited grid constraints */
+  grid-column: 1 / -1;
 }
 
 .strategy-reflection h2 {
@@ -601,26 +604,23 @@ select:focus {
   margin-bottom: 0.75rem;
 }
 
-/* Perspective container */
-
 .flashcard-scene {
   width: 100%;
-  max-width: 100%;
+  max-width: none;
   margin-top: 1.25rem;
 
   perspective: 1200px;
 }
-
-/* Clickable card */
 
 .strategy-flashcard {
   display: block;
   position: relative;
 
   width: 100%;
-  height: 340px;
-  padding: 0;
+  min-height: 340px;
+  height: auto;
 
+  padding: 0;
   border: none;
   border-radius: 14px;
   background: transparent;
@@ -632,14 +632,14 @@ select:focus {
   cursor: pointer;
 }
 
-/* Rotating inner card */
+/* Rotating element */
 
 .flashcard-inner {
-  display: block;
+  display: grid;
   position: relative;
 
   width: 100%;
-  height: 100%;
+  min-height: 340px;
 
   transform-style: preserve-3d;
   transition: transform 0.7s ease;
@@ -649,11 +649,10 @@ select:focus {
   transform: rotateY(180deg);
 }
 
-/* Both card faces */
+/* Both faces occupy the same grid cell */
 
 .flashcard-face {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1;
 
   display: flex;
   flex-direction: column;
@@ -669,7 +668,8 @@ select:focus {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 
-  overflow: auto;
+  /* No internal scrolling */
+  overflow: visible;
 }
 
 /* Front */
@@ -717,23 +717,19 @@ select:focus {
   color: #555;
 }
 
-/* Keyboard accessibility */
+/* Accessibility */
 
 .strategy-flashcard:focus-visible {
   outline: 3px solid #222;
   outline-offset: 4px;
 }
 
-/* Responsive layout */
+/* Mobile */
 
 @media (max-width: 700px) {
 
-  .strategy-flashcard {
-    height: 420px;
-  }
-
   .flashcard-face {
-    padding: 1.25rem;
+    padding: 1.5rem;
   }
 
   .flashcard-question {
@@ -746,7 +742,7 @@ select:focus {
 
 }
 
-/* Respect reduced-motion preferences */
+/* Reduced motion */
 
 @media (prefers-reduced-motion: reduce) {
 
