@@ -666,7 +666,7 @@ or restarting with a different strategy.`;
 function initializeNearTransfer() {
 
   // =======================================
-  // ACTIVITY 1: MATCH THE DEFINITIONS
+  // ACTIVITY 1: SORTING DEFINITIONS
   // =======================================
 
   const definitions = [
@@ -696,19 +696,14 @@ function initializeNearTransfer() {
     }
   ];
 
-  const matchingContainer =
-    document.getElementById("matching-questions");
+  const bank = document.getElementById("definition-bank");
+  const buckets = document.getElementById("term-buckets");
+  const matchingFeedback = document.getElementById("matching-feedback");
+  const matchingCheck = document.getElementById("matching-check");
+  const matchingReset = document.getElementById("matching-reset");
 
-  const matchingFeedback =
-    document.getElementById("matching-feedback");
+  let selectedCard = null;
 
-  const matchingCheck =
-    document.getElementById("matching-check");
-
-  const matchingReset =
-    document.getElementById("matching-reset");
-
-  // Shuffle an array without changing the original
   function shuffle(items) {
     const result = [...items];
 
@@ -720,103 +715,247 @@ function initializeNearTransfer() {
     return result;
   }
 
+  function clearFeedback() {
+    matchingFeedback.textContent = "";
+
+    document.querySelectorAll(
+      "#definition-bank .sorting-item, #term-buckets .sorting-item"
+    ).forEach(card => {
+      card.classList.remove("answer-correct", "answer-incorrect");
+    });
+
+    document.querySelectorAll(
+      "#term-buckets .sorting-bucket"
+    ).forEach(bucket => {
+      bucket.classList.remove("answer-correct", "answer-incorrect");
+    });
+  }
+
+  function deselectCard() {
+    if (selectedCard) {
+      selectedCard.classList.remove("is-selected");
+      selectedCard.setAttribute("aria-pressed", "false");
+    }
+
+    selectedCard = null;
+  }
+
+  function selectCard(card) {
+    if (selectedCard === card) {
+      deselectCard();
+      return;
+    }
+
+    deselectCard();
+
+    selectedCard = card;
+    card.classList.add("is-selected");
+    card.setAttribute("aria-pressed", "true");
+  }
+
+  function moveCard(card, destination) {
+    if (!card || !destination) return;
+
+    const existingCard = destination.querySelector(".sorting-item");
+
+    // Each bucket holds one definition.
+    // Return an existing card to the bank before replacing it.
+    if (existingCard && existingCard !== card) {
+      bank.appendChild(existingCard);
+    }
+
+    destination.appendChild(card);
+
+    deselectCard();
+    clearFeedback();
+  }
+
+  function createCard(item) {
+    const card = document.createElement("button");
+
+    card.type = "button";
+    card.className = "sorting-item";
+    card.draggable = true;
+
+    card.dataset.term = item.term;
+    card.textContent = item.definition;
+
+    card.setAttribute("aria-pressed", "false");
+    card.setAttribute(
+      "aria-label",
+      `${item.definition}. Select this card, then select a graph theory term.`
+    );
+
+    // Click or keyboard selection
+    card.addEventListener("click", event => {
+      event.stopPropagation();
+      selectCard(card);
+    });
+
+    // Drag-and-drop
+    card.addEventListener("dragstart", event => {
+      event.dataTransfer.setData("text/plain", item.term);
+      event.dataTransfer.effectAllowed = "move";
+      card.classList.add("is-dragging");
+    });
+
+    card.addEventListener("dragend", () => {
+      card.classList.remove("is-dragging");
+    });
+
+    return card;
+  }
+
+  function createBucket(term) {
+    const bucket = document.createElement("div");
+    bucket.className = "sorting-bucket";
+
+    const heading = document.createElement("h4");
+    heading.textContent = term;
+
+    const dropzone = document.createElement("div");
+    dropzone.className = "sorting-dropzone";
+    dropzone.dataset.term = term;
+
+    dropzone.setAttribute("role", "button");
+    dropzone.setAttribute("tabindex", "0");
+    dropzone.setAttribute(
+      "aria-label",
+      `Place selected definition in ${term}`
+    );
+
+    function activateDropzone() {
+      if (selectedCard) {
+        moveCard(selectedCard, dropzone);
+      }
+    }
+
+    dropzone.addEventListener("click", activateDropzone);
+
+    dropzone.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        activateDropzone();
+      }
+    });
+
+    dropzone.addEventListener("dragover", event => {
+      event.preventDefault();
+      dropzone.classList.add("is-dragover");
+      event.dataTransfer.dropEffect = "move";
+    });
+
+    dropzone.addEventListener("dragleave", () => {
+      dropzone.classList.remove("is-dragover");
+    });
+
+    dropzone.addEventListener("drop", event => {
+      event.preventDefault();
+      dropzone.classList.remove("is-dragover");
+
+      const draggedTerm = event.dataTransfer.getData("text/plain");
+
+      const card = [...document.querySelectorAll(".sorting-item")]
+        .find(item => item.dataset.term === draggedTerm);
+
+      if (card) {
+        moveCard(card, dropzone);
+      }
+    });
+
+    bucket.appendChild(heading);
+    bucket.appendChild(dropzone);
+
+    return bucket;
+  }
+
   function renderMatching() {
+    selectedCard = null;
 
-    const shuffledDefinitions = shuffle(definitions);
-    const shuffledTerms = shuffle(definitions.map(item => item.term));
+    bank.innerHTML = "";
+    buckets.innerHTML = "";
 
-    matchingContainer.innerHTML = "";
+    shuffle(definitions).forEach(item => {
+      bank.appendChild(createCard(item));
+    });
 
-    shuffledDefinitions.forEach((item, index) => {
-
-      const row = document.createElement("div");
-      row.className = "matching-row";
-
-      const label = document.createElement("label");
-      label.htmlFor = `matching-${index}`;
-      label.textContent = `${index + 1}. ${item.definition}`;
-
-      const select = document.createElement("select");
-      select.id = `matching-${index}`;
-      select.dataset.answer = item.term;
-
-      const placeholder = document.createElement("option");
-      placeholder.value = "";
-      placeholder.textContent = "Choose a term";
-      select.appendChild(placeholder);
-
-      shuffledTerms.forEach(term => {
-        const option = document.createElement("option");
-        option.value = term;
-        option.textContent = term;
-        select.appendChild(option);
-      });
-
-      const feedback = document.createElement("p");
-      feedback.className = "question-feedback";
-      feedback.setAttribute("aria-live", "polite");
-
-      row.appendChild(label);
-      row.appendChild(select);
-      row.appendChild(feedback);
-
-      matchingContainer.appendChild(row);
-
+    definitions.forEach(item => {
+      buckets.appendChild(createBucket(item.term));
     });
 
     matchingFeedback.textContent = "";
-
   }
 
   matchingCheck.addEventListener("click", () => {
-
-    const rows = matchingContainer.querySelectorAll(".matching-row");
+    const allBuckets = buckets.querySelectorAll(".sorting-bucket");
 
     let correct = 0;
-    let answered = 0;
+    let placed = 0;
 
-    rows.forEach(row => {
+    allBuckets.forEach(bucket => {
+      const dropzone = bucket.querySelector(".sorting-dropzone");
+      const card = dropzone.querySelector(".sorting-item");
 
-      const select = row.querySelector("select");
-      const feedback = row.querySelector(".question-feedback");
+      bucket.classList.remove("answer-correct", "answer-incorrect");
 
-      const answer = select.dataset.answer;
-      const value = select.value;
+      if (!card) return;
 
-      row.classList.remove("answer-correct", "answer-incorrect");
+      placed++;
 
-      if (!value) {
-        feedback.textContent = "Choose a term.";
-        return;
-      }
-
-      answered++;
-
-      if (value === answer) {
+      if (card.dataset.term === dropzone.dataset.term) {
         correct++;
-        feedback.textContent = "Correct.";
-        row.classList.add("answer-correct");
+        bucket.classList.add("answer-correct");
       } else {
-        feedback.textContent = "Not quite. Review the definition and try again.";
-        row.classList.add("answer-incorrect");
+        bucket.classList.add("answer-incorrect");
       }
-
     });
 
     if (correct === definitions.length) {
       matchingFeedback.textContent =
-        "Excellent! You matched all six concepts correctly.";
-    } else if (answered < definitions.length) {
+        "Excellent! You matched all six definitions correctly.";
+    } else if (placed < definitions.length) {
       matchingFeedback.textContent =
-        `You have ${definitions.length - answered} unanswered definition(s).`;
+        `You have placed ${placed} of ${definitions.length} definitions. ` +
+        "Complete the remaining matches and check again.";
     } else {
       matchingFeedback.textContent =
-        `${correct} of ${definitions.length} correct. Revise your matches and check again.`;
+        `${correct} of ${definitions.length} correct. ` +
+        "Review the highlighted matches and try again.";
     }
-
   });
 
   matchingReset.addEventListener("click", renderMatching);
+
+  // Allow cards to be returned to the bank.
+  bank.addEventListener("dragover", event => {
+    event.preventDefault();
+  });
+
+  bank.addEventListener("drop", event => {
+    event.preventDefault();
+
+    const draggedTerm = event.dataTransfer.getData("text/plain");
+
+    const card = [...document.querySelectorAll(".sorting-item")]
+      .find(item => item.dataset.term === draggedTerm);
+
+    if (card) {
+      bank.appendChild(card);
+      deselectCard();
+      clearFeedback();
+    }
+  });
+
+  bank.addEventListener("click", event => {
+    if (event.target.closest(".sorting-item")) return;
+
+    if (selectedCard) {
+      const card = selectedCard;
+      bank.appendChild(card);
+      deselectCard();
+      clearFeedback();
+    }
+  });
 
   renderMatching();
 
@@ -863,25 +1002,18 @@ function initializeNearTransfer() {
     }
   ];
 
-  const transferCheck =
-    document.getElementById("transfer-check");
-
-  const transferReset =
-    document.getElementById("transfer-reset");
-
+  const transferCheck = document.getElementById("transfer-check");
+  const transferReset = document.getElementById("transfer-reset");
   const transferOverallFeedback =
     document.getElementById("transfer-overall-feedback");
 
   transferCheck.addEventListener("click", () => {
-
     let correct = 0;
     let answered = 0;
 
     transferQuestions.forEach(question => {
-
       const input = document.getElementById(question.input);
       const feedback = document.getElementById(question.feedback);
-
       const value = input.value.trim().toLowerCase();
 
       input.classList.remove("answer-correct", "answer-incorrect");
@@ -894,56 +1026,39 @@ function initializeNearTransfer() {
       answered++;
 
       if (value === question.answer) {
-
         correct++;
         feedback.textContent = question.correct;
         input.classList.add("answer-correct");
-
       } else {
-
         feedback.textContent = question.incorrect;
         input.classList.add("answer-incorrect");
-
       }
-
     });
 
     if (correct === transferQuestions.length) {
-
       transferOverallFeedback.textContent =
         "Well done! You applied all five concepts correctly.";
-
     } else if (answered < transferQuestions.length) {
-
       transferOverallFeedback.textContent =
         `You have ${transferQuestions.length - answered} unanswered question(s).`;
-
     } else {
-
       transferOverallFeedback.textContent =
-        `${correct} of ${transferQuestions.length} correct. Use the feedback and try again.`;
-
+        `${correct} of ${transferQuestions.length} correct. ` +
+        "Use the feedback and try again.";
     }
-
   });
 
   transferReset.addEventListener("click", () => {
-
     transferQuestions.forEach(question => {
-
       const input = document.getElementById(question.input);
       const feedback = document.getElementById(question.feedback);
 
       input.value = "";
       input.classList.remove("answer-correct", "answer-incorrect");
-
       feedback.textContent = "";
-
     });
 
     transferOverallFeedback.textContent = "";
-
   });
-
 }
 renderPage();
