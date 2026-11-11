@@ -1450,13 +1450,258 @@ and return to your starting location.
 },
 
   {
-    id: 8,
-    type: "learn",
-    label: "Your Turn",
-    title: "Predict Before Drawing",
-    content: `<p>Coming soon: Applying the one-stroke drawing principle.</p>`
-  },
+  id: 8,
+  type: "learn",
+  label: "Contrasting Cases",
+  title: "Every Edge or Every Vertex?",
+  content: `
 
+    <p class="lead">
+      You have now experienced two different route-finding challenges.
+      Let's compare them and discover what makes each one possible.
+    </p>
+
+    <section class="content-section">
+
+      <h2>1. Recall: Two Different Goals</h2>
+
+      <div class="concept-grid">
+
+        <div class="concept-card">
+          <h3>Remember Page 4?</h3>
+
+          <p>
+            You tried to travel along
+            <strong>every connection exactly once.</strong>
+          </p>
+
+          <p>
+            This is called an <strong>Eulerian trail</strong>:
+            a trail that uses every edge exactly once.
+          </p>
+
+          <p>
+            An <strong>Eulerian circuit</strong> is an Eulerian
+            trail that returns to its starting vertex.
+          </p>
+        </div>
+
+        <div class="concept-card">
+          <h3>Remember Page 7?</h3>
+
+          <p>
+            You tried to visit
+            <strong>every location exactly once</strong>
+            before returning to your starting point.
+          </p>
+
+          <p>
+            This is a <strong>Hamiltonian cycle</strong>.
+          </p>
+
+          <p>
+            It does not need to use every edge.
+          </p>
+        </div>
+
+      </div>
+
+      <p>
+        <strong>Key distinction:</strong>
+        Eulerian trails focus on <em>edges</em>.
+        Hamiltonian cycles focus on <em>vertices</em>.
+      </p>
+
+    </section>
+
+
+    <section class="content-section">
+
+      <h2>2. Compare: Same Questions, Different Graphs</h2>
+
+      <p>
+        Examine the three graphs below.
+        For each graph, predict whether it has an
+        Eulerian trail and whether it has a Hamiltonian cycle.
+      </p>
+
+      <p>
+        <strong>Choose Yes or No for each property.</strong>
+        You do not need to construct a route yet.
+      </p>
+
+      <div id="contrast-graphs" class="contrast-grid"></div>
+
+      <button
+        id="contrast-check"
+        type="button"
+        class="primary-button"
+      >
+        Check Predictions
+      </button>
+
+      <p
+        id="contrast-feedback"
+        aria-live="polite"
+      ></p>
+
+      <div id="contrast-explanations" hidden></div>
+
+    </section>
+
+
+    <section class="content-section">
+
+      <h2>3. Investigate: What Do the Degrees Tell Us?</h2>
+
+      <p>
+        Recall that the <strong>degree</strong> of a vertex
+        is the number of edges meeting at that vertex.
+      </p>
+
+      <p>
+        An <strong>odd-degree vertex</strong> has an odd
+        number of incident edges, such as 1, 3, or 5.
+      </p>
+
+      <p>
+        A graph is <strong>connected</strong> if every
+        vertex can be reached from every other vertex
+        by following edges.
+      </p>
+
+      <p>
+        All three graphs above are connected.
+      </p>
+
+      <button
+        id="contrast-degrees"
+        type="button"
+        class="secondary-button"
+      >
+        Show Vertex Degrees
+      </button>
+
+      <div id="contrast-degree-summary" hidden></div>
+
+      <p>
+        <strong>Think:</strong>
+        What do you notice about the number of
+        odd-degree vertices in graphs that have
+        Eulerian trails?
+      </p>
+
+    </section>
+
+
+    <section class="content-section">
+
+      <h2>4. Generalize: A Powerful Theorem</h2>
+
+      <p>
+        Can we determine whether an Eulerian trail exists
+        without trying to find one?
+      </p>
+
+      <button
+        id="contrast-theorem-button"
+        type="button"
+        class="primary-button"
+      >
+        Reveal Euler's Theorem
+      </button>
+
+      <div id="contrast-theorem" class="theorem-card" hidden>
+
+        <h3>Euler's Theorem</h3>
+
+        <p>
+          A connected graph with at least one edge
+          has an <strong>Eulerian trail</strong>
+          if and only if it has
+          <strong>zero or exactly two odd-degree vertices.</strong>
+        </p>
+
+        <ul>
+          <li>
+            <strong>0 odd-degree vertices:</strong>
+            An Eulerian circuit exists.
+          </li>
+
+          <li>
+            <strong>2 odd-degree vertices:</strong>
+            An Eulerian trail exists, starting at one
+            odd-degree vertex and ending at the other.
+          </li>
+
+          <li>
+            <strong>More than 2 odd-degree vertices:</strong>
+            No Eulerian trail exists.
+          </li>
+        </ul>
+
+        <p>
+          <strong>Why?</strong>
+          Every time a trail enters an intermediate vertex,
+          it must leave along a different edge.
+          Those edges come in pairs.
+        </p>
+
+        <p>
+          <strong>Return to Page 4:</strong>
+          Instead of searching for a route,
+          could you now predict whether one exists
+          simply by examining vertex degrees?
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <section class="content-section">
+
+      <h2>5. Zoom Out: Contrasting Cases</h2>
+
+      <button
+        type="button"
+        class="strategy-flashcard"
+        aria-pressed="false"
+        aria-label="Reveal the learning strategy"
+      >
+
+        <span class="flashcard-front">
+          <span class="flashcard-label">REFLECT</span>
+
+          <strong>
+            How did comparing similar-looking graphs help
+            you recognize which mathematical properties matter?
+          </strong>
+
+          <span class="flashcard-hint">
+            Select to reveal the learning strategy.
+          </span>
+        </span>
+
+        <span class="flashcard-back">
+          <span class="flashcard-label">LEARNING STRATEGY</span>
+
+          <strong>Contrasting Cases</strong>
+
+          <span>
+            Comparing carefully selected examples helps
+            learners notice important differences,
+            distinguish related concepts, and identify
+            the structural features that matter.
+          </span>
+        </span>
+
+      </button>
+
+    </section>
+
+  `
+},
   {
     id: 9,
     type: "zoom",
