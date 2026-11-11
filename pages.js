@@ -477,7 +477,9 @@ const pages = [
             Keep the intellectual challenge high while
             providing clear expectations, purposeful steps,
             and timely feedback. Structure should support
-            students' thinking, not replace it.
+            students' thinking, not replace it. 
+            Structure can be made less or more visible 
+            depending on your audience and their background.
 
           </span>
 
