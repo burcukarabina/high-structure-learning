@@ -109,6 +109,58 @@ const pages = [
       <p class="word-cloud-count">0 responses</p>
 
     </section>
+    <section class="strategy-reflection">
+  <h2>Zoom Out: What Did We Just Learn About Learning?</h2>
+
+  <p>
+    Before moving on, consider the learning strategy
+    behind this activity.
+  </p>
+
+  <button
+    type="button"
+    class="strategy-flashcard"
+    aria-expanded="false"
+  >
+    <span class="flashcard-front">
+      <span class="flashcard-label">REFLECT</span>
+
+      <span class="flashcard-question">
+        Why did we begin by asking you to share
+        your existing ideas about high expectations
+        and high structure?
+      </span>
+
+      <span class="flashcard-hint">
+        Click to reveal the learning strategy.
+      </span>
+    </span>
+
+    <span class="flashcard-back" hidden>
+      <span class="flashcard-label">LEARNING STRATEGY</span>
+
+      <strong>Activating Prior Knowledge</strong>
+
+      <span>
+        Inviting learners to recall and share what they
+        already know makes their existing ideas visible
+        and creates a foundation for new learning.
+      </span>
+
+      <span class="flashcard-application">
+        <strong>Apply it in your teaching:</strong>
+        Begin a new topic with a brief prediction,
+        question, or concept-sharing activity.
+        Revisit students' initial responses later
+        to make changes in their thinking visible.
+      </span>
+
+      <span class="flashcard-hint">
+        Click to return to the question.
+      </span>
+    </span>
+  </button>
+</section>
 
   </div>
 `
