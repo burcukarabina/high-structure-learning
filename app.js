@@ -30,7 +30,21 @@ function renderPage() {
     <h1>${page.title}</h1>
     ${page.content}
   `;
+const flashcard = document.querySelector(".strategy-flashcard");
 
+if (flashcard) {
+  flashcard.addEventListener("click", () => {
+    const front = flashcard.querySelector(".flashcard-front");
+    const back = flashcard.querySelector(".flashcard-back");
+
+    const isRevealed = flashcard.getAttribute("aria-expanded") === "true";
+
+    front.hidden = !isRevealed;
+    back.hidden = isRevealed;
+
+    flashcard.setAttribute("aria-expanded", String(!isRevealed));
+  });
+};
   // Update progress
   const pageNumber = currentPage + 1;
   const totalPages = pages.length;
