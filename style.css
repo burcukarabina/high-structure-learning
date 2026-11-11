@@ -1218,3 +1218,85 @@ select:focus {
   }
 
 }
+
+/* =========================================
+   PAGE 6 — COMPACT GRAPH APPLICATION
+   ========================================= */
+
+/* Position graph and questions side by side */
+.near-transfer-activity:has(#transfer-graph-svg) {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  column-gap: 1.5rem;
+  align-items: start;
+}
+
+/* Headings and instructions span both columns */
+.near-transfer-activity:has(#transfer-graph-svg)
+  > :not(.transfer-graph):not(.transfer-questions) {
+  grid-column: 1 / -1;
+}
+
+/* Smaller graph */
+.near-transfer-activity .transfer-graph {
+  grid-column: 1;
+  width: 100%;
+  max-width: 300px;
+  margin: 0;
+  padding: 0.5rem;
+  align-self: start;
+}
+
+/* Maintain graph proportions */
+.near-transfer-activity .transfer-graph svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Questions beside graph */
+.near-transfer-activity .transfer-questions {
+  grid-column: 2;
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+}
+
+/* Compact individual questions */
+.near-transfer-activity .transfer-question {
+  padding: 0.65rem 0.8rem;
+}
+
+/* Smaller answer fields */
+.near-transfer-activity .transfer-question input,
+.near-transfer-activity .transfer-question select {
+  margin-top: 0.35rem;
+  padding: 0.4rem 0.55rem;
+}
+
+/* Reduce unnecessary space below feedback */
+.near-transfer-activity .question-feedback:empty {
+  display: none;
+}
+
+/* =========================================
+   RESPONSIVE LAYOUT
+   ========================================= */
+
+@media (max-width: 760px) {
+
+  .near-transfer-activity:has(#transfer-graph-svg) {
+    grid-template-columns: 1fr;
+  }
+
+  .near-transfer-activity .transfer-graph,
+  .near-transfer-activity .transfer-questions {
+    grid-column: 1;
+  }
+
+  .near-transfer-activity .transfer-graph {
+    max-width: 280px;
+    margin: 0 auto 1rem;
+  }
+
+}
