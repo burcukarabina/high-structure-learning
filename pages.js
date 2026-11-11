@@ -1449,7 +1449,7 @@ and return to your starting location.
   `
 },
 
-  {
+ {
   id: 8,
   type: "learn",
   label: "Contrasting Cases",
@@ -1457,78 +1457,102 @@ and return to your starting location.
   content: `
 
     <p class="lead">
-      You have now experienced two different route-finding challenges.
-      Let's compare them and discover what makes each one possible.
+      Two route-finding challenges. Two different mathematical goals.
+      What makes the difference?
     </p>
+
+    <!-- =====================================
+         1. RECALL
+         ===================================== -->
 
     <section class="content-section">
 
       <h2>1. Recall: Two Different Goals</h2>
 
-      <div class="concept-grid">
+      <div class="contrast-goals">
 
-        <div class="concept-card">
-          <h3>Remember Page 4?</h3>
-
+        <div class="contrast-goal-card">
+          <span class="contrast-goal-label">PAGE 4</span>
+          <h3>Every Edge</h3>
           <p>
-            You tried to travel along
-            <strong>every connection exactly once.</strong>
+            Travel along <strong>every connection exactly once.</strong>
           </p>
-
-          <p>
-            This is called an <strong>Eulerian trail</strong>:
-            a trail that uses every edge exactly once. 
-            A particularly real-life example of an Eulerian trail is a street sweeper cleaning roads in a neighbourhood.
-          </p>
-
-          <p>
-            An <strong>Eulerian cycle</strong> is an Eulerian
-            trail that returns to its starting vertex.
+          <p class="contrast-term">
+            Eulerian Trail
           </p>
         </div>
 
-        <div class="concept-card">
-          <h3>Remember Page 7?</h3>
-
+        <div class="contrast-goal-card">
+          <span class="contrast-goal-label">PAGE 7</span>
+          <h3>Every Vertex</h3>
           <p>
-            You tried to visit
-            <strong>every location exactly once</strong>
-            before returning to your starting point.
+            Visit <strong>every location exactly once</strong>
+            and return to the starting point.
           </p>
-
-          <p>
-            This is a <strong>Hamiltonian cycle</strong>.
-          </p>
-
-          <p>
-            It does not need to use every edge.
+          <p class="contrast-term">
+            Hamiltonian Cycle
           </p>
         </div>
 
       </div>
 
       <p>
-        <strong>Key distinction:</strong>
-        Eulerian trails focus on <em>edges</em>.
-        Hamiltonian cycles focus on <em>vertices</em>.
+        These two problems appear in everyday situations.
       </p>
+
+      <div class="contrast-comparison">
+
+        <div class="contrast-comparison-card">
+          <h3>Street Sweeper</h3>
+          <p>Must travel along every street exactly once.</p>
+          <p>Focuses on <strong>edges</strong>.</p>
+          <p><strong>Eulerian trail</strong></p>
+          <p>Does not necessarily return to the start.</p>
+        </div>
+
+        <div class="contrast-comparison-card">
+          <h3>Delivery Driver</h3>
+          <p>Must visit every delivery location exactly once.</p>
+          <p>Focuses on <strong>vertices</strong>.</p>
+          <p><strong>Hamiltonian cycle</strong></p>
+          <p>Must return to the start.</p>
+        </div>
+
+      </div>
 
     </section>
 
+
+    <!-- =====================================
+         2. COMPARE
+         ===================================== -->
 
     <section class="content-section">
 
       <h2>2. Compare: Same Questions, Different Graphs</h2>
 
       <p>
-        Examine the three graphs below.
-        For each graph, predict whether it has an
-        Eulerian trail and whether it has a Hamiltonian cycle.
+        Examine each graph and make two predictions:
       </p>
 
+      <div class="contrast-prompt">
+        <p>
+          <strong>Question 1:</strong>
+          Does an Eulerian trail exist?
+          Can you travel along every edge exactly once?
+        </p>
+
+        <p>
+          <strong>Question 2:</strong>
+          Does a Hamiltonian cycle exist?
+          Can you visit every vertex exactly once
+          and return to the starting point?
+        </p>
+      </div>
+
       <p>
-        <strong>Choose Yes or No for each property.</strong>
-        You do not need to construct a route yet.
+        Choose <strong>Yes</strong> or <strong>No</strong>
+        for each property.
       </p>
 
       <div id="contrast-graphs" class="contrast-grid"></div>
@@ -1541,19 +1565,20 @@ and return to your starting location.
         Check Predictions
       </button>
 
-      <p
-        id="contrast-feedback"
-        aria-live="polite"
-      ></p>
+      <p id="contrast-feedback" aria-live="polite"></p>
 
       <div id="contrast-explanations" hidden></div>
 
     </section>
 
 
+    <!-- =====================================
+         3. THEOREM REVEAL
+         ===================================== -->
+
     <section class="content-section">
 
-      <h2>3. Investigate: What Do the Degrees Tell Us?</h2>
+      <h2>3. Discover: Can We Predict Without Drawing?</h2>
 
       <p>
         Recall that the <strong>degree</strong> of a vertex
@@ -1562,107 +1587,103 @@ and return to your starting location.
 
       <p>
         An <strong>odd-degree vertex</strong> has an odd
-        number of incident edges, such as 1, 3, or 5.
+        number of edges meeting at it.
       </p>
 
       <p>
-        A graph is <strong>connected</strong> if every
+        A graph is <strong>connected</strong> when every
         vertex can be reached from every other vertex
         by following edges.
       </p>
 
       <p>
-        All three graphs above are connected.
-      </p>
-
-      <button
-        id="contrast-degrees"
-        type="button"
-        class="secondary-button"
-      >
-        Show Vertex Degrees
-      </button>
-
-      <div id="contrast-degree-summary" hidden></div>
-
-      <p>
-        <strong>Think:</strong>
-        What do you notice about the number of
-        odd-degree vertices in graphs that have
-        Eulerian trails?
-      </p>
-
-    </section>
-
-
-    <section class="content-section">
-
-      <h2>4. Generalize: A Powerful Theorem</h2>
-
-      <p>
         Can we determine whether an Eulerian trail exists
-        without trying to find one?
+        simply by examining the vertex degrees?
       </p>
 
-      <button
-        id="contrast-theorem-button"
-        type="button"
-        class="primary-button"
+      <div class="theorem-reveal-area">
+
+        <button
+          id="contrast-theorem-button"
+          type="button"
+          class="primary-button"
+        >
+          Reveal the Theorem
+        </button>
+
+        <div
+          id="contrast-celebration"
+          class="contrast-celebration"
+          aria-hidden="true"
+        ></div>
+
+        <div
+          id="contrast-theorem"
+          class="theorem-card"
+          hidden
+        >
+
+          <span class="theorem-eyebrow">
+            THE MATHEMATICAL INSIGHT
+          </span>
+
+          <h3>Euler's Theorem — Eulerian Trails</h3>
+
+          <p class="theorem-statement">
+            A connected graph with at least one edge
+            has an <strong>Eulerian trail</strong>
+            if and only if it has
+            <strong>at most two vertices of odd degree.</strong>
+          </p>
+
+          <p>
+            That's it! We can determine whether an
+            Eulerian trail exists without constructing one.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div
+        id="contrast-return"
+        class="contrast-return"
+        hidden
       >
-        Reveal Euler's Theorem
-      </button>
-
-      <div id="contrast-theorem" class="theorem-card" hidden>
-
-        <h3>Euler's Theorem</h3>
+        <h3>Return to Our Initial Challenge</h3>
 
         <p>
-          A connected graph with at least one edge
-          has an <strong>Eulerian trail</strong>
-          if and only if it has
-          <strong>zero or exactly two odd-degree vertices.</strong>
-        </p>
-
-        <ul>
-          <li>
-            <strong>0 odd-degree vertices:</strong>
-            An Eulerian circuit exists.
-          </li>
-
-          <li>
-            <strong>2 odd-degree vertices:</strong>
-            An Eulerian trail exists, starting at one
-            odd-degree vertex and ending at the other.
-          </li>
-
-          <li>
-            <strong>More than 2 odd-degree vertices:</strong>
-            No Eulerian trail exists.
-          </li>
-        </ul>
-
-        <p>
-          <strong>Why?</strong>
-          Every time a trail enters an intermediate vertex,
-          it must leave along a different edge.
-          Those edges come in pairs.
+          Remember the network from Page 4?
         </p>
 
         <p>
-          <strong>Return to Page 4:</strong>
-          Instead of searching for a route,
-          could you now predict whether one exists
-          simply by examining vertex degrees?
+          It has exactly <strong>two odd-degree vertices:
+          A and G</strong>.
         </p>
 
+        <p>
+          Therefore, an Eulerian trail
+          <strong>does exist</strong>.
+          It must start at A and end at G,
+          or start at G and end at A.
+        </p>
+
+        <p>
+          We now know this without having to
+          find the entire route!
+        </p>
       </div>
 
     </section>
 
 
+    <!-- =====================================
+         4. ZOOM OUT
+         ===================================== -->
+
     <section class="content-section">
 
-      <h2>5. Zoom Out: Contrasting Cases</h2>
+      <h2>4. Zoom Out: Contrasting Cases</h2>
 
       <button
         type="button"
@@ -1675,7 +1696,7 @@ and return to your starting location.
           <span class="flashcard-label">REFLECT</span>
 
           <strong>
-            How did comparing similar-looking graphs help
+            How did comparing different graphs help
             you recognize which mathematical properties matter?
           </strong>
 
@@ -1691,9 +1712,9 @@ and return to your starting location.
 
           <span>
             Comparing carefully selected examples helps
-            learners notice important differences,
-            distinguish related concepts, and identify
-            the structural features that matter.
+            learners distinguish related concepts
+            and identify the structural features
+            that matter.
           </span>
         </span>
 
