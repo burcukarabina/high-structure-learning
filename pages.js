@@ -1106,7 +1106,75 @@ const pages = [
         Ideally, the driver would visit each location
         only once.
       </p>
+<figure class="delivery-story-figure">
+  <svg
+    viewBox="0 0 600 260"
+    role="img"
+    aria-label="Schematic delivery network with distribution centre A and five delivery locations B through F, connected by roads."
+  >
+    <!-- Roads -->
+    <g
+      stroke="#9a9a9a"
+      stroke-width="9"
+      stroke-linecap="round"
+      fill="none"
+    >
+      <path d="M90 130 L210 45 L390 45 L510 130 L390 215 L210 215 Z" />
+      <path d="M90 130 L210 215" />
+      <path d="M90 130 L390 45" />
+      <path d="M210 45 L390 215" />
+      <path d="M210 45 L210 215" />
+      <path d="M390 45 L390 215" />
+    </g>
 
+    <!-- Distribution centre -->
+    <rect
+      x="38" y="90"
+      width="104" height="80"
+      rx="9"
+      fill="#ffe08a"
+      stroke="#222"
+      stroke-width="2"
+    />
+    <text x="90" y="120" text-anchor="middle" font-size="13" font-weight="700">
+      Distribution
+    </text>
+    <text x="90" y="137" text-anchor="middle" font-size="13" font-weight="700">
+      centre
+    </text>
+    <text x="90" y="156" text-anchor="middle" font-size="17" font-weight="700">
+      A
+    </text>
+
+    <!-- Delivery locations -->
+    <g fill="#fff" stroke="#222" stroke-width="2.5">
+      <circle cx="210" cy="45" r="23" />
+      <circle cx="390" cy="45" r="23" />
+      <circle cx="510" cy="130" r="23" />
+      <circle cx="390" cy="215" r="23" />
+      <circle cx="210" cy="215" r="23" />
+    </g>
+
+    <g
+      fill="#222"
+      font-size="18"
+      font-weight="700"
+      text-anchor="middle"
+      dominant-baseline="central"
+    >
+      <text x="210" y="45">B</text>
+      <text x="390" y="45">C</text>
+      <text x="510" y="130">D</text>
+      <text x="390" y="215">E</text>
+      <text x="210" y="215">F</text>
+    </g>
+  </svg>
+
+  <figcaption>
+    A delivery network: each location is connected to others by available roads.
+    Which route would allow the driver to visit every location and return to A?
+  </figcaption>
+</figure>
       <div class="concept-highlight">
         <strong>The question:</strong>
         Can we find a route that visits every location
