@@ -1254,12 +1254,11 @@ const pages = [
         an available direct connection.
       </p>
 
-      <p>
-        <strong>Your task:</strong>
-        Start at the distribution centre
-        <strong>A</strong>, visit every other location
-        exactly once, and return to A.
-      </p>
+     <strong>Your task:</strong>
+Start at the distribution centre
+<strong id="delivery-start">A</strong>,
+visit every other location exactly once,
+and return to your starting location.
       <p>
   There may be more than one valid route.
   If you get stuck, use <strong>Undo</strong> to
@@ -1290,8 +1289,14 @@ const pages = [
             class="delivery-route"
             aria-live="polite"
           >
-            A
+            Select a network...
           </p>
+
+          <p>
+  <strong>Remember:</strong>
+  Lines that cross without a marked location
+  do not create an additional connection.
+</p>
 
           <p id="delivery-progress">
             Locations visited: 1 of 6
