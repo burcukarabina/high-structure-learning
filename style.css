@@ -581,12 +581,18 @@ select:focus {
 
 }
 /* =========================================
-   LEARNING STRATEGY FLASHCARDS
+   LEARNING STRATEGY FLASHCARD
+   3D FLIP EFFECT
    ========================================= */
 
 .strategy-reflection {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
   margin-top: 3rem;
   padding-top: 1.5rem;
+
   border-top: 2px solid #e5e5e5;
 }
 
@@ -595,44 +601,91 @@ select:focus {
   margin-bottom: 0.75rem;
 }
 
+/* Perspective container */
+
+.flashcard-scene {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 1.25rem;
+
+  perspective: 1200px;
+}
+
+/* Clickable card */
+
 .strategy-flashcard {
   display: block;
+  position: relative;
+
   width: 100%;
-  min-height: 220px;
-  margin-top: 1.25rem;
-  padding: 2rem;
-  border: 2px solid #d6ac37;
+  height: 340px;
+  padding: 0;
+
+  border: none;
   border-radius: 14px;
-  background: #fff9e8;
-  color: #222;
+  background: transparent;
+
   font: inherit;
   text-align: left;
+  color: #222;
+
   cursor: pointer;
-  transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
-.strategy-flashcard:hover {
-  background: #fff3cc;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+/* Rotating inner card */
+
+.flashcard-inner {
+  display: block;
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  transform-style: preserve-3d;
+  transition: transform 0.7s ease;
 }
 
-.strategy-flashcard:focus-visible {
-  outline: 3px solid #222;
-  outline-offset: 4px;
+.strategy-flashcard.is-flipped .flashcard-inner {
+  transform: rotateY(180deg);
 }
 
-.flashcard-front,
-.flashcard-back {
+/* Both card faces */
+
+.flashcard-face {
+  position: absolute;
+  inset: 0;
+
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 1rem;
+
+  padding: 2rem;
+  box-sizing: border-box;
+
+  border: 2px solid #d6ac37;
+  border-radius: 14px;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  overflow: auto;
 }
 
-/* Ensure the hidden side stays hidden */
-.flashcard-front[hidden],
-.flashcard-back[hidden] {
-  display: none;
+/* Front */
+
+.flashcard-front {
+  background: #fff9e8;
 }
+
+/* Back */
+
+.flashcard-back {
+  background: #fff3cc;
+  transform: rotateY(180deg);
+}
+
+/* Typography */
 
 .flashcard-label {
   font-size: 0.75rem;
@@ -642,20 +695,20 @@ select:focus {
 }
 
 .flashcard-question {
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   font-weight: 600;
   line-height: 1.5;
 }
 
 .flashcard-back > strong {
-  font-size: 1.4rem;
+  font-size: 1.35rem;
 }
 
 .flashcard-application {
   display: block;
-  padding-top: 1rem;
+  padding-top: 0.75rem;
   border-top: 1px solid #d6ac37;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .flashcard-hint {
@@ -664,18 +717,41 @@ select:focus {
   color: #555;
 }
 
+/* Keyboard accessibility */
+
+.strategy-flashcard:focus-visible {
+  outline: 3px solid #222;
+  outline-offset: 4px;
+}
+
+/* Responsive layout */
+
 @media (max-width: 700px) {
+
   .strategy-flashcard {
+    height: 420px;
+  }
+
+  .flashcard-face {
     padding: 1.25rem;
   }
 
   .flashcard-question {
     font-size: 1.15rem;
   }
+
+  .flashcard-back > strong {
+    font-size: 1.2rem;
+  }
+
 }
 
+/* Respect reduced-motion preferences */
+
 @media (prefers-reduced-motion: reduce) {
-  .strategy-flashcard {
+
+  .flashcard-inner {
     transition: none;
   }
+
 }
