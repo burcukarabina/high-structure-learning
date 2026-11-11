@@ -140,6 +140,10 @@ if (page.id === 6) {
 if (page.id === 7) {
   initializeDeliveryChallenge();
 }
+   // Page 8: Contrasting cases and Euler's theorem
+if (page.id === 8) {
+  initializeContrastingCases();
+}
 
   // Scroll to top when changing pages
   window.scrollTo({
@@ -1829,4 +1833,475 @@ resetButton.addEventListener("click", loadNewNetwork);
  loadNewNetwork();
 
 }
+
+// =========================================
+// PAGE 8 — CONTRASTING CASES
+// =========================================
+
+function initializeContrastingCases() {
+
+  const container = document.getElementById("contrast-graphs");
+
+  if (!container) return;
+
+  const SVG_NS = "http://www.w3.org/2000/svg";
+
+  const graphs = [
+
+    // GRAPH A: TWO TRIANGLES SHARING A VERTEX
+    {
+      name: "Graph A",
+      vertices: {
+        A: [35, 110],
+        B: [100, 40],
+        C: [100, 180],
+        D: [165, 40],
+        E: [165, 180]
+      },
+      edges: [
+        ["A", "B"],
+        ["B", "C"],
+        ["C", "A"],
+        ["C", "D"],
+        ["D", "E"],
+        ["E", "C"]
+      ],
+      explanation:
+        "The two triangles share vertex C. " +
+        "Every edge can be used exactly once in an Eulerian circuit. " +
+        "However, a Hamiltonian cycle is impossible because " +
+        "visiting both triangles would require returning to C."
+    },
+
+    // GRAPH B: SQUARE WITH BOTH DIAGONALS
+    {
+      name: "Graph B",
+      vertices: {
+        A: [45, 45],
+        B: [165, 45],
+        C: [165, 165],
+        D: [45, 165]
+      },
+      edges: [
+        ["A", "B"],
+        ["B", "C"],
+        ["C", "D"],
+        ["D", "A"],
+        ["A", "C"],
+        ["B", "D"]
+      ],
+      explanation:
+        "The outer square is a Hamiltonian cycle. " +
+        "However, all four vertices have degree 3, " +
+        "so an Eulerian trail does not exist."
+    },
+
+    // GRAPH C: SIMPLE SQUARE
+    {
+      name: "Graph C",
+      vertices: {
+        A: [45, 45],
+        B: [165, 45],
+        C: [165, 165],
+        D: [45, 165]
+      },
+      edges: [
+        ["A", "B"],
+        ["B", "C"],
+        ["C", "D"],
+        ["D", "A"]
+      ],
+      explanation:
+        "Following the square uses every edge exactly once " +
+        "and visits every vertex exactly once before returning " +
+        "to the start. Both properties hold."
+    }
+
+  ];
+
+
+  // =========================================
+  // GRAPH THEORY HELPERS
+  // =========================================
+
+  function degreeOf(graph, vertex) {
+
+    return graph.edges.filter(([a, b]) =>
+      a === vertex || b === vertex
+    ).length;
+
+  }
+
+  function oddVertices(graph) {
+
+    return Object.keys(graph.vertices).filter(
+      vertex => degreeOf(graph, vertex) % 2 !== 0
+    );
+
+  }
+
+  // These three graphs are connected.
+  function hasEulerianTrail(graph) {
+
+    const count = oddVertices(graph).length;
+
+    return count === 0 || count === 2;
+
+  }
+
+  function hasHamiltonianCycle(graph) {
+
+    const names = Object.keys(graph.vertices);
+    const start = names[0];
+
+    function connected(a, b) {
+
+      return graph.edges.some(([u, v]) =>
+        (u === a && v === b) ||
+        (u === b && v === a)
+      );
+
+    }
+
+    function search(current, visited) {
+
+      if (visited.size === names.length) {
+        return connected(current, start);
+      }
+
+      for (const next of names) {
+
+        if (
+          !visited.has(next) &&
+          connected(current, next)
+        ) {
+
+          const newVisited = new Set(visited);
+          newVisited.add(next);
+
+          if (search(next, newVisited)) {
+            return true;
+          }
+
+        }
+
+      }
+
+      return false;
+
+    }
+
+    return search(start, new Set([start]));
+
+  }
+
+
+  // =========================================
+  // DRAW A GRAPH
+  // =========================================
+
+  function makeSVGElement(tag, attributes = {}) {
+
+    const element = document.createElementNS(
+      SVG_NS,
+      tag
+    );
+
+    Object.entries(attributes).forEach(([key, value]) => {
+      element.setAttribute(key, value);
+    });
+
+    return element;
+
+  }
+
+  function drawGraph(graph, index) {
+
+    const svg = makeSVGElement("svg", {
+      viewBox: "0 0 210 220",
+      class: "contrast-svg",
+      role: "img",
+      "aria-label":
+        `${graph.name}: ` +
+        graph.edges.map(([a, b]) => `${a} to ${b}`).join(", ")
+    });
+
+    const edgeGroup = makeSVGElement("g", {
+      class: "contrast-edges"
+    });
+
+    graph.edges.forEach(([a, b]) => {
+
+      const [x1, y1] = graph.vertices[a];
+      const [x2, y2] = graph.vertices[b];
+
+      edgeGroup.appendChild(
+        makeSVGElement("line", { x1, y1, x2, y2 })
+      );
+
+    });
+
+    svg.appendChild(edgeGroup);
+
+    Object.entries(graph.vertices).forEach(([name, [x, y]]) => {
+
+      const group = makeSVGElement("g", {
+        class: "contrast-vertex"
+      });
+
+      const circle = makeSVGElement("circle", {
+        cx: x,
+        cy: y,
+        r: 15
+      });
+
+      const label = makeSVGElement("text", {
+        x,
+        y: y + 5,
+        "text-anchor": "middle"
+      });
+
+      label.textContent = name;
+
+      const degreeLabel = makeSVGElement("text", {
+        x,
+        y: y + 32,
+        "text-anchor": "middle",
+        class: "contrast-degree-label"
+      });
+
+      degreeLabel.textContent = `deg ${degreeOf(graph, name)}`;
+      degreeLabel.style.display = "none";
+
+      group.appendChild(circle);
+      group.appendChild(label);
+      group.appendChild(degreeLabel);
+
+      svg.appendChild(group);
+
+    });
+
+    return svg;
+
+  }
+
+
+  // =========================================
+  // RENDER THREE COMPARISON CARDS
+  // =========================================
+
+  graphs.forEach((graph, index) => {
+
+    const card = document.createElement("div");
+    card.className = "contrast-card";
+
+    const heading = document.createElement("h3");
+    heading.textContent = graph.name;
+
+    const svg = drawGraph(graph, index);
+
+    const questions = document.createElement("div");
+    questions.className = "contrast-questions";
+
+    questions.innerHTML = `
+      <label for="contrast-euler-${index}">
+        Eulerian trail?
+      </label>
+
+      <select id="contrast-euler-${index}">
+        <option value="">Choose...</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <label for="contrast-hamilton-${index}">
+        Hamiltonian cycle?
+      </label>
+
+      <select id="contrast-hamilton-${index}">
+        <option value="">Choose...</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+    `;
+
+    card.appendChild(heading);
+    card.appendChild(svg);
+    card.appendChild(questions);
+
+    container.appendChild(card);
+
+  });
+
+
+  // =========================================
+  // CHECK PREDICTIONS
+  // =========================================
+
+  const checkButton = document.getElementById("contrast-check");
+  const feedback = document.getElementById("contrast-feedback");
+  const explanations = document.getElementById(
+    "contrast-explanations"
+  );
+
+  checkButton.addEventListener("click", () => {
+
+    let correct = 0;
+    let answered = 0;
+
+    graphs.forEach((graph, index) => {
+
+      const eulerInput = document.getElementById(
+        `contrast-euler-${index}`
+      );
+
+      const hamiltonInput = document.getElementById(
+        `contrast-hamilton-${index}`
+      );
+
+      const eulerAnswer =
+        hasEulerianTrail(graph) ? "yes" : "no";
+
+      const hamiltonAnswer =
+        hasHamiltonianCycle(graph) ? "yes" : "no";
+
+      [
+        [eulerInput, eulerAnswer],
+        [hamiltonInput, hamiltonAnswer]
+      ].forEach(([input, answer]) => {
+
+        input.classList.remove(
+          "answer-correct",
+          "answer-incorrect"
+        );
+
+        if (!input.value) return;
+
+        answered++;
+
+        if (input.value === answer) {
+          correct++;
+          input.classList.add("answer-correct");
+        } else {
+          input.classList.add("answer-incorrect");
+        }
+
+      });
+
+    });
+
+    if (answered < 6) {
+
+      feedback.textContent =
+        `You have answered ${answered} of 6 questions. ` +
+        "Complete the remaining predictions before checking.";
+
+      return;
+
+    }
+
+    feedback.textContent =
+      `${correct} of 6 predictions correct. ` +
+      "Compare the explanations below.";
+
+    explanations.innerHTML = "";
+
+    graphs.forEach(graph => {
+
+      const paragraph = document.createElement("p");
+
+      paragraph.textContent =
+        `${graph.name}: ${graph.explanation}`;
+
+      explanations.appendChild(paragraph);
+
+    });
+
+    explanations.hidden = false;
+
+  });
+
+
+  // =========================================
+  // REVEAL VERTEX DEGREES
+  // =========================================
+
+  const degreesButton = document.getElementById(
+    "contrast-degrees"
+  );
+
+  const degreeSummary = document.getElementById(
+    "contrast-degree-summary"
+  );
+
+  let degreesVisible = false;
+
+  degreesButton.addEventListener("click", () => {
+
+    degreesVisible = !degreesVisible;
+
+    document.querySelectorAll(
+      ".contrast-degree-label"
+    ).forEach(label => {
+
+      label.style.display =
+        degreesVisible ? "block" : "none";
+
+    });
+
+    degreeSummary.hidden = !degreesVisible;
+
+    degreesButton.textContent = degreesVisible
+      ? "Hide Vertex Degrees"
+      : "Show Vertex Degrees";
+
+    if (degreesVisible) {
+
+      degreeSummary.innerHTML = "";
+
+      graphs.forEach(graph => {
+
+        const odd = oddVertices(graph);
+
+        const paragraph = document.createElement("p");
+
+        paragraph.textContent =
+          `${graph.name}: ${odd.length} odd-degree vertices` +
+          (odd.length
+            ? ` (${odd.join(", ")})`
+            : " (all vertices have even degree)") +
+          ".";
+
+        degreeSummary.appendChild(paragraph);
+
+      });
+
+    }
+
+  });
+
+
+  // =========================================
+  // REVEAL EULER'S THEOREM
+  // =========================================
+
+  const theoremButton = document.getElementById(
+    "contrast-theorem-button"
+  );
+
+  const theorem = document.getElementById(
+    "contrast-theorem"
+  );
+
+  theoremButton.addEventListener("click", () => {
+
+    theorem.hidden = false;
+
+    theoremButton.textContent = "Euler's Theorem Revealed";
+    theoremButton.disabled = true;
+
+  });
+
+}
+
 renderPage();
