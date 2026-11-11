@@ -45,16 +45,15 @@ function renderPage() {
 
   const page = pages[currentPage];
 
-  pageContent.className =
-    page.type === "zoom" ? "page-zoom" : "page-learn";
-
-  pageContent.innerHTML = `
+   pageContent.innerHTML = `
     <span class="page-label">${page.label}</span>
     <h1>${page.title}</h1>
     ${page.content}
   `;
-initializeFlashcards();
-};
+
+  // Initialize flashcards
+  initializeFlashcards();
+
   // Update progress
   const pageNumber = currentPage + 1;
   const totalPages = pages.length;
@@ -183,7 +182,7 @@ function initializeNetworkPuzzle() {
   };
 
   // 22 connections.
-// Exactly A and C have odd degree.
+/// Exactly A and G have odd degree.
 // An Eulerian trail exists.
    
   const edgePairs = [
