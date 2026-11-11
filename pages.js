@@ -704,6 +704,87 @@ const pages = [
         the matching activity.
       </p>
     </div>
+ <section class="strategy-reflection">
+
+  <h2>Zoom Out: What Did We Just Learn About Learning?</h2>
+
+  <p>
+    Think about how the illustrations helped you
+    make sense of the graph theory definitions.
+  </p>
+
+  <div class="flashcard-scene">
+
+    <button
+      type="button"
+      class="strategy-flashcard"
+      aria-pressed="false"
+      aria-label="Reveal the learning strategy"
+    >
+
+      <span class="flashcard-inner">
+
+        <!-- FRONT -->
+        <span class="flashcard-face flashcard-front">
+
+          <span class="flashcard-label">REFLECT</span>
+
+          <span class="flashcard-question">
+            How might sketching or scribbling while
+            listening or reading help you learn
+            something new?
+          </span>
+
+          <span class="flashcard-hint">
+            Click to flip the card.
+          </span>
+
+        </span>
+
+        <!-- BACK -->
+        <span class="flashcard-face flashcard-back">
+
+          <span class="flashcard-label">
+            LEARNING STRATEGY
+          </span>
+
+          <strong>Visual Learning & Active Processing</strong>
+
+          <span>
+            Combining words with meaningful visuals
+            can support comprehension and recall.
+            Sketching relationships, annotating diagrams,
+            and creating simple visual notes encourage
+            learners to actively process information.
+          </span>
+
+          <span class="flashcard-application">
+
+            <strong>Apply it in your teaching:</strong>
+
+            Encourage students to scribble with purpose
+            while listening or reading: sketch connections,
+            label diagrams, draw arrows, or represent
+            relationships visually.
+
+            The goal is not artistic quality, but
+            making thinking visible.
+
+          </span>
+
+          <span class="flashcard-hint">
+            Click to flip back.
+          </span>
+
+        </span>
+
+      </span>
+
+    </button>
+
+  </div>
+
+</section>
   `
 },
 
