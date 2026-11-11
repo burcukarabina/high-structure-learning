@@ -792,12 +792,321 @@ const pages = [
 },
 
   {
-    id: 6,
-    type: "zoom",
-    label: "Zoom Out 2",
-    title: "How Experts See Problems",
-    content: `<p>Coming soon: Expert–novice thinking and cognitive apprenticeship.</p>`
-  },
+  id: 6,
+  type: "learn",
+  label: "Your Turn",
+  title: "Near Transfer: Apply What You've Learned",
+
+  content: `
+
+    <p class="intro-text">
+      You've explored six important concepts from graph theory.
+      Now it's your turn to use them.
+    </p>
+
+    <p>
+      Complete two short activities. You can check your answers,
+      learn from the feedback, and try again.
+    </p>
+
+    <!-- =====================================
+         YOUR TURN 1: MATCHING
+         ===================================== -->
+
+    <section class="activity-card near-transfer-activity">
+
+      <span class="activity-eyebrow">YOUR TURN 1</span>
+
+      <h2>Match the Concepts</h2>
+
+      <p>
+        Match each definition with the correct graph theory term.
+        Each term is used exactly once.
+      </p>
+
+      <div id="matching-questions" class="matching-questions"></div>
+
+      <div class="near-transfer-controls">
+        <button type="button" id="matching-check">
+          Check My Matches
+        </button>
+
+        <button type="button" id="matching-reset" class="secondary">
+          Try Again
+        </button>
+      </div>
+
+      <p
+        id="matching-feedback"
+        class="near-transfer-feedback"
+        role="status"
+        aria-live="polite"
+      ></p>
+
+    </section>
+
+
+    <!-- =====================================
+         YOUR TURN 2: GRAPH APPLICATION
+         ===================================== -->
+
+    <section class="activity-card near-transfer-activity">
+
+      <span class="activity-eyebrow">YOUR TURN 2</span>
+
+      <h2>Apply the Concepts</h2>
+
+      <p>
+        Study the graph below. Use what you learned
+        on the previous page to answer the questions.
+      </p>
+
+      <div class="transfer-graph">
+
+        <svg
+          viewBox="0 0 420 290"
+          role="img"
+          aria-label="Graph with five vertices A, B, C, D, E.
+          Edges connect A to B, A to C, B to C,
+          B to D, C to D, and D to E."
+        >
+
+          <g class="definition-edges">
+
+            <line x1="70" y1="145" x2="170" y2="55"/>
+            <line x1="70" y1="145" x2="170" y2="235"/>
+            <line x1="170" y1="55" x2="170" y2="235"/>
+            <line x1="170" y1="55" x2="300" y2="85"/>
+            <line x1="170" y1="235" x2="300" y2="85"/>
+            <line x1="300" y1="85" x2="350" y2="215"/>
+
+          </g>
+
+          <g class="definition-vertices">
+
+            <circle cx="70" cy="145" r="13"/>
+            <circle cx="170" cy="55" r="13"/>
+            <circle cx="170" cy="235" r="13"/>
+            <circle cx="300" cy="85" r="13"/>
+            <circle cx="350" cy="215" r="13"/>
+
+          </g>
+
+          <g class="transfer-graph-labels">
+
+            <text x="43" y="150">A</text>
+            <text x="164" y="30">B</text>
+            <text x="164" y="270">C</text>
+            <text x="315" y="75">D</text>
+            <text x="366" y="220">E</text>
+
+          </g>
+
+        </svg>
+
+      </div>
+
+      <div id="transfer-questions" class="transfer-questions">
+
+        <div class="transfer-question">
+
+          <label for="transfer-vertices">
+            <strong>1.</strong>
+            How many vertices does the graph have?
+          </label>
+
+          <input
+            type="number"
+            id="transfer-vertices"
+            min="0"
+            inputmode="numeric"
+          >
+
+          <p id="feedback-vertices" class="question-feedback"></p>
+
+        </div>
+
+
+        <div class="transfer-question">
+
+          <label for="transfer-edges">
+            <strong>2.</strong>
+            How many edges does the graph have?
+          </label>
+
+          <input
+            type="number"
+            id="transfer-edges"
+            min="0"
+            inputmode="numeric"
+          >
+
+          <p id="feedback-edges" class="question-feedback"></p>
+
+        </div>
+
+
+        <div class="transfer-question">
+
+          <label for="transfer-degree">
+            <strong>3.</strong>
+            What is the degree of vertex D?
+          </label>
+
+          <input
+            type="number"
+            id="transfer-degree"
+            min="0"
+            inputmode="numeric"
+          >
+
+          <p id="feedback-degree" class="question-feedback"></p>
+
+        </div>
+
+
+        <div class="transfer-question">
+
+          <label for="transfer-walk">
+            <strong>4.</strong>
+            Is A → B → C → B a valid walk?
+          </label>
+
+          <select id="transfer-walk">
+            <option value="">Choose an answer</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+
+          <p id="feedback-walk" class="question-feedback"></p>
+
+        </div>
+
+
+        <div class="transfer-question">
+
+          <label for="transfer-trail">
+            <strong>5.</strong>
+            Is A → B → C → B a trail?
+          </label>
+
+          <select id="transfer-trail">
+            <option value="">Choose an answer</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+
+          <p id="feedback-trail" class="question-feedback"></p>
+
+        </div>
+
+      </div>
+
+      <div class="near-transfer-controls">
+
+        <button type="button" id="transfer-check">
+          Check My Answers
+        </button>
+
+        <button type="button" id="transfer-reset" class="secondary">
+          Try Again
+        </button>
+
+      </div>
+
+      <p
+        id="transfer-overall-feedback"
+        class="near-transfer-feedback"
+        role="status"
+        aria-live="polite"
+      ></p>
+
+    </section>
+
+
+    <!-- =====================================
+         REFLECTION FLASHCARD
+         ===================================== -->
+
+    <section class="strategy-reflection">
+
+      <h2>Zoom Out: What Did We Just Learn About Learning?</h2>
+
+      <p>
+        Think about why you were asked to apply these concepts
+        immediately after learning them.
+      </p>
+
+      <div class="flashcard-scene">
+
+        <button
+          type="button"
+          class="strategy-flashcard"
+          aria-pressed="false"
+          aria-label="Reveal the learning strategy"
+        >
+
+          <span class="flashcard-inner">
+
+            <span class="flashcard-face flashcard-front">
+
+              <span class="flashcard-label">REFLECT</span>
+
+              <span class="flashcard-question">
+                Why did we move from learning definitions
+                to applying them to a new graph?
+              </span>
+
+              <span class="flashcard-hint">
+                Click to flip the card.
+              </span>
+
+            </span>
+
+            <span class="flashcard-face flashcard-back">
+
+              <span class="flashcard-label">
+                LEARNING STRATEGY
+              </span>
+
+              <strong>Near Transfer</strong>
+
+              <span>
+                Near transfer involves applying recently learned
+                knowledge to a new but closely related situation.
+                It helps learners move beyond recognizing information
+                toward using it.
+              </span>
+
+              <span class="flashcard-application">
+
+                <strong>Apply it in your teaching:</strong>
+
+                After introducing a concept, provide a short
+                application task that closely resembles the examples
+                students have studied.
+
+                Offer feedback and opportunities to revise
+                before increasing the complexity.
+
+              </span>
+
+              <span class="flashcard-hint">
+                Click to flip back.
+              </span>
+
+            </span>
+
+          </span>
+
+        </button>
+
+      </div>
+
+    </section>
+
+  `
+},
 
   {
     id: 7,
