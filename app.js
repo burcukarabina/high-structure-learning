@@ -1334,8 +1334,10 @@ function initializeDeliveryChallenge() {
 
 const graphPool = [
 
-  // Network 1
+  // NETWORK 1 — WARM-UP
+  // Starting point: A
   {
+    start: "A",
     vertices: {
       A: [75, 150],
       B: [160, 55],
@@ -1345,134 +1347,148 @@ const graphPool = [
       F: [160, 260]
     },
     edges: [
-      ["A", "B"], ["B", "C"], ["C", "D"],
-      ["D", "E"], ["E", "F"], ["F", "A"],
-      ["A", "C"], ["B", "E"], ["C", "E"],
-      ["B", "F"]
+      ["A","B"], ["B","C"], ["C","D"],
+      ["D","E"], ["E","F"], ["F","A"],
+      ["A","C"], ["B","E"], ["C","E"],
+      ["B","F"]
     ]
   },
 
-  // Network 2
+  // NETWORK 2 — INTERNAL ROUTES
+  // Starting point: C
   {
+    start: "C",
     vertices: {
       A: [75, 150],
-      B: [175, 60],
-      C: [320, 80],
-      D: [350, 225],
-      E: [210, 260],
-      F: [105, 250]
-    },
-    edges: [
-      ["A", "B"], ["B", "C"], ["C", "D"],
-      ["D", "E"], ["E", "F"], ["F", "A"],
-      ["A", "E"], ["B", "D"], ["C", "E"]
-    ]
-  },
-
-  // Network 3
-  {
-    vertices: {
-      A: [65, 150],
-      B: [170, 45],
-      C: [325, 45],
-      D: [370, 150],
-      E: [325, 265],
-      F: [170, 265]
-    },
-    edges: [
-      ["A", "B"], ["B", "C"], ["C", "D"],
-      ["D", "E"], ["E", "F"], ["F", "A"],
-      ["A", "D"], ["B", "E"], ["C", "F"]
-    ]
-  },
-
-  // Network 4
-  {
-    vertices: {
-      A: [75, 155],
       B: [175, 55],
-      C: [320, 55],
-      D: [355, 155],
-      E: [320, 255],
+      C: [315, 55],
+      D: [355, 150],
+      E: [315, 255],
       F: [175, 255]
     },
     edges: [
-      ["A", "B"], ["B", "C"], ["C", "D"],
-      ["D", "E"], ["E", "F"], ["F", "A"],
-      ["A", "C"], ["B", "E"], ["C", "E"],
-      ["D", "F"]
+      ["A","B"], ["B","C"], ["C","D"],
+      ["D","E"], ["E","F"], ["A","C"],
+      ["A","D"], ["B","E"], ["C","E"],
+      ["D","F"]
     ]
   },
 
-  // Network 5
+  // NETWORK 3 — CONNECTED GROUPS
+  // Starting point: B
   {
+    start: "B",
     vertices: {
-      A: [80, 75],
-      B: [210, 45],
-      C: [350, 75],
-      D: [350, 230],
-      E: [210, 265],
-      F: [80, 230]
+      A: [85, 150],
+      B: [180, 60],
+      C: [180, 240],
+      D: [310, 60],
+      E: [310, 240],
+      F: [390, 150]
     },
     edges: [
-      ["A", "B"], ["B", "C"], ["C", "D"],
-      ["D", "E"], ["E", "F"], ["F", "A"],
-      ["A", "D"], ["B", "E"], ["C", "F"],
-      ["A", "E"]
+      ["A","B"], ["B","C"], ["C","A"],
+      ["D","E"], ["E","F"], ["F","D"],
+      ["B","D"], ["C","E"], ["A","F"]
     ]
   },
 
-  // Network 6
+  // NETWORK 4 — CROSS CONNECTIONS
+  // Starting point: E
   {
+    start: "E",
     vertices: {
       A: [70, 150],
-      B: [175, 55],
+      B: [170, 55],
       C: [310, 55],
       D: [370, 150],
-      E: [310, 260],
-      F: [175, 260]
+      E: [310, 255],
+      F: [170, 255]
     },
     edges: [
-      ["A", "B"], ["B", "C"], ["C", "D"],
-      ["D", "E"], ["E", "F"], ["F", "A"],
-      ["A", "E"], ["B", "D"], ["C", "F"],
-      ["B", "E"]
+      ["A","B"], ["B","C"], ["C","D"],
+      ["D","E"], ["E","F"], ["A","C"],
+      ["B","E"], ["C","F"], ["A","E"],
+      ["D","F"]
     ]
   },
 
-  // Network 7
+  // NETWORK 5 — CONSTRAINED ROUTE
+  // Starting point: F
+  // Exactly one Hamiltonian cycle, ignoring direction.
   {
+    start: "F",
+    vertices: {
+      A: [80, 80],
+      B: [220, 45],
+      C: [355, 80],
+      D: [355, 235],
+      E: [220, 270],
+      F: [80, 235]
+    },
+    edges: [
+      ["A","B"], ["B","C"], ["C","D"],
+      ["D","E"], ["E","A"], ["A","F"],
+      ["F","C"], ["B","E"]
+    ]
+  },
+
+  // NETWORK 6 — MANY POSSIBILITIES
+  // Starting point: D
+  {
+    start: "D",
     vertices: {
       A: [75, 150],
-      B: [160, 55],
-      C: [300, 55],
-      D: [355, 150],
-      E: [300, 260],
-      F: [160, 260]
+      B: [170, 55],
+      C: [305, 55],
+      D: [370, 150],
+      E: [305, 255],
+      F: [170, 255]
     },
     edges: [
-      ["A", "B"], ["B", "C"], ["C", "D"],
-      ["D", "E"], ["E", "F"], ["F", "A"],
-      ["A", "D"], ["B", "E"], ["C", "F"],
-      ["A", "C"], ["D", "F"]
+      ["A","B"], ["B","C"], ["C","D"],
+      ["D","E"], ["E","F"], ["A","D"],
+      ["A","E"], ["B","F"], ["C","F"],
+      ["B","E"], ["D","F"]
     ]
   },
 
-  // Network 8
+  // NETWORK 7 — ALTERNATIVE CONNECTIONS
+  // Starting point: B
   {
+    start: "B",
     vertices: {
-      A: [70, 155],
-      B: [175, 45],
-      C: [325, 65],
-      D: [365, 165],
-      E: [310, 265],
-      F: [165, 260]
+      A: [75, 150],
+      B: [170, 55],
+      C: [310, 55],
+      D: [370, 150],
+      E: [310, 255],
+      F: [170, 255]
     },
     edges: [
-      ["A", "B"], ["B", "C"], ["C", "D"],
-      ["D", "E"], ["E", "F"], ["F", "A"],
-      ["A", "E"], ["B", "D"], ["C", "E"],
-      ["B", "F"]
+      ["B","D"], ["D","F"], ["F","A"],
+      ["A","C"], ["C","E"], ["E","B"],
+      ["A","B"], ["C","D"], ["E","F"]
+    ]
+  },
+
+  // NETWORK 8 — FINAL CHALLENGE
+  // Starting point: F
+  {
+    start: "F",
+    vertices: {
+      A: [70, 155],
+      B: [170, 50],
+      C: [310, 50],
+      D: [370, 155],
+      E: [310, 260],
+      F: [170, 260]
+    },
+    edges: [
+      ["A","B"], ["B","D"], ["D","E"],
+      ["E","C"], ["C","F"], ["F","A"],
+      ["A","C"], ["B","E"], ["D","F"],
+      ["B","C"], ["A","E"]
     ]
   }
 
@@ -1604,28 +1620,22 @@ function drawNetwork() {
 }
    function loadNewNetwork() {
 
-  // Refill the pool after all eight networks
-  // have been used.
   if (remainingGraphs.length === 0) {
     remainingGraphs = graphPool.map((_, index) => index);
   }
 
-  // Select a network without repeating the
-  // immediately preceding network.
+  // Avoid showing the same network twice in a row.
   let available = remainingGraphs;
 
   if (currentGraph && remainingGraphs.length > 1) {
-
     const previousIndex = graphPool.indexOf(currentGraph);
 
     available = remainingGraphs.filter(
       index => index !== previousIndex
     );
-
   }
 
   const randomIndex = Math.floor(Math.random() * available.length);
-
   const selectedIndex = available[randomIndex];
 
   remainingGraphs = remainingGraphs.filter(
@@ -1638,15 +1648,24 @@ function drawNetwork() {
   edges = currentGraph.edges;
   vertexNames = Object.keys(vertices);
 
-  route = ["A"];
+  // Start at this network's distribution centre.
+  route = [currentGraph.start];
 
   drawNetwork();
 
+  // Update the displayed starting location.
+  const startLabel = document.getElementById("delivery-start");
+
+  if (startLabel) {
+    startLabel.textContent = currentGraph.start;
+  }
+
   feedback.textContent =
-    "New delivery network! Start at A and visit every location exactly once before returning.";
+    `New delivery network! Start at ${currentGraph.start}, ` +
+    "visit every other location exactly once, " +
+    `and return to ${currentGraph.start}.`;
 
   updateDisplay();
-
 }
 
   // =========================================
@@ -1655,79 +1674,73 @@ function drawNetwork() {
 
   function selectLocation(name) {
 
-    const current = route[route.length - 1];
+  const current = route[route.length - 1];
+  const start = currentGraph.start;
 
-    // Stop after completing the cycle.
-    if (
-      route.length === vertexNames.length + 1 &&
-      current === "A"
-    ) {
+  // Stop after completing the cycle.
+  if (
+    route.length === vertexNames.length + 1 &&
+    current === start
+  ) {
+    return;
+  }
+
+  // Check whether a direct connection exists.
+  if (!connected(current, name)) {
+
+    feedback.textContent =
+      `There is no direct connection from ${current} to ${name}.`;
+
+    return;
+  }
+
+  // Returning to the distribution centre.
+  if (name === start) {
+
+    if (route.length !== vertexNames.length) {
+
+      feedback.textContent =
+        `You must visit every other location before returning to ${start}.`;
+
       return;
     }
 
-    if (!connected(current, name)) {
+    route.push(start);
 
-      feedback.textContent =
-        `There is no direct connection from ${current} to ${name}.`;
-
-      return;
-
-    }
-
-    // Returning to A is allowed only after
-    // all other locations have been visited.
-    if (name === "A") {
-
-      if (route.length !== vertexNames.length) {
-
-        feedback.textContent =
-          "You must visit every other location before returning to A.";
-
-        return;
-
-      }
-
-      route.push("A");
-
-      feedback.textContent =
-        "Success! You found a Hamiltonian cycle.";
-
-      updateDisplay();
-
-      return;
-
-    }
-
-    // No repeated vertices.
-    if (route.includes(name)) {
-
-      feedback.textContent =
-        "You've already visited that location. " +
-        "A Hamiltonian cycle visits each vertex exactly once.";
-
-      return;
-
-    }
-
-    route.push(name);
-
-    if (route.length === vertexNames.length) {
-
-      feedback.textContent = connected(name, "A")
-        ? "All locations visited! Return to A to complete the cycle."
-        : "All locations visited, but there is no direct connection to A. " +
-          "Undo a move and try a different route.";
-
-    } else {
-
-      feedback.textContent =
-        `Now at location ${name}. Choose your next location.`;
-
-    }
+    feedback.textContent =
+      "Success! You found a Hamiltonian cycle.";
 
     updateDisplay();
-
+    return;
   }
+
+  // Prevent repeated locations.
+  if (route.includes(name)) {
+
+    feedback.textContent =
+      "You've already visited that location. " +
+      "A Hamiltonian cycle visits each vertex exactly once.";
+
+    return;
+  }
+
+  route.push(name);
+
+  if (route.length === vertexNames.length) {
+
+    feedback.textContent = connected(name, start)
+      ? `All locations visited! Return to ${start} to complete the cycle.`
+      : `All locations visited, but there is no direct connection ` +
+        `to ${start}. Undo a move and try a different route.`;
+
+  } else {
+
+    feedback.textContent =
+      `Now at location ${name}. Choose your next location.`;
+  }
+
+  updateDisplay();
+}
 
 
   // =========================================
