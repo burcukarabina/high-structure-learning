@@ -2305,25 +2305,81 @@ function initializeContrastingCases() {
 
 
   // =========================================
-  // REVEAL EULER'S THEOREM
-  // =========================================
+// REVEAL EULER'S THEOREM
+// =========================================
 
-  const theoremButton = document.getElementById(
-    "contrast-theorem-button"
-  );
+const theoremButton = document.getElementById(
+  "contrast-theorem-button"
+);
 
-  const theorem = document.getElementById(
-    "contrast-theorem"
-  );
+const theorem = document.getElementById(
+  "contrast-theorem"
+);
 
-  theoremButton.addEventListener("click", () => {
+const returnSection = document.getElementById(
+  "contrast-return"
+);
 
-    theorem.hidden = false;
+const celebration = document.getElementById(
+  "contrast-celebration"
+);
 
-    theoremButton.textContent = "Euler's Theorem Revealed";
-    theoremButton.disabled = true;
+theoremButton.addEventListener("click", () => {
 
-  });
+  theorem.hidden = false;
+  returnSection.hidden = false;
+
+  theoremButton.textContent = "Theorem Revealed";
+  theoremButton.disabled = true;
+
+  // Respect reduced-motion preferences.
+  if (
+    window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches
+  ) {
+    return;
+  }
+
+  // Create a short burst of gold particles.
+  const colors = [
+    "#f4d35e",
+    "#d4a017",
+    "#f9e8a4",
+    "#c49a24",
+    "#ffffff"
+  ];
+
+  for (let i = 0; i < 28; i++) {
+
+    const particle = document.createElement("span");
+
+    particle.className = "contrast-particle";
+
+    particle.style.setProperty(
+      "--angle",
+      `${(i / 28) * 360}deg`
+    );
+
+    particle.style.setProperty(
+      "--distance",
+      `${70 + Math.random() * 120}px`
+    );
+
+    particle.style.backgroundColor =
+      colors[i % colors.length];
+
+    celebration.appendChild(particle);
+
+    particle.addEventListener(
+      "animationend",
+      () => particle.remove(),
+      { once: true }
+    );
+
+  }
+
+});
 
 }
 
