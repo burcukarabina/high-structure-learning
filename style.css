@@ -1876,3 +1876,82 @@ select:focus {
     transform: none;
   }
 }
+/* =========================================
+   PAGE 8 — YELLOW COMPARISON BOXES
+   ========================================= */
+
+/* Two-column layout */
+.contrast-goals,
+.contrast-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+/* PAGE 4 and PAGE 7 cards */
+.contrast-goal-card {
+  background: #fff7dc;
+  border: 2px solid #d4a017;
+  border-radius: 14px;
+  padding: 1.75rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Page labels */
+.contrast-goal-label {
+  display: inline-block;
+  background: #f4d35e;
+  color: #222;
+  padding: 0.3rem 0.75rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* Mathematical terminology */
+.contrast-term {
+  display: inline-block;
+  background: #f4d35e;
+  color: #222;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+/* Street Sweeper and Delivery Driver cards */
+.contrast-comparison-card {
+  background: #fff7dc;
+  border: 2px solid #d4a017;
+  border-radius: 14px;
+  padding: 1.75rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Comparison headings */
+.contrast-comparison-card h3 {
+  margin-top: 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #d4a017;
+}
+
+/* Comparison rows */
+.contrast-comparison-card p {
+  margin: 0;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid #e6d7a5;
+}
+
+.contrast-comparison-card p:last-child {
+  border-bottom: none;
+}
+
+/* Responsive layout */
+@media (max-width: 650px) {
+  .contrast-goals,
+  .contrast-comparison {
+    grid-template-columns: 1fr;
+  }
+}
