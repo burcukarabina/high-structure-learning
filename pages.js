@@ -67,7 +67,6 @@ const pages = [
 
     </section>
 
-
     <!-- HIGH STRUCTURE -->
 
     <section
@@ -116,6 +115,7 @@ const pages = [
     Before moving on, consider the learning strategy
     behind this activity.
   </p>
+  </div>
 
   <div class="flashcard-scene">
   <button
