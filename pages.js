@@ -1258,6 +1258,13 @@ const pages = [
         <strong>A</strong>, visit every other location
         exactly once, and return to A.
       </p>
+      <p>
+  There may be more than one valid route.
+  If you get stuck, use <strong>Undo</strong> to
+  reconsider your choices. Select
+  <strong>Try Again</strong> to explore a different
+  delivery network.
+</p>
 
       <div class="delivery-layout">
 
