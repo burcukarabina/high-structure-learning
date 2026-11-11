@@ -1084,12 +1084,288 @@ const pages = [
 },
 
   {
-    id: 7,
-    type: "learn",
-    label: "Learning Moment 3",
-    title: "Discover the Pattern",
-    content: `<p>Coming soon: Odd and even vertices.</p>`
-  },
+  id: 7,
+  type: "learn",
+  label: "Explore",
+  title: "Cycles and Hamiltonian Cycles",
+
+  content: `
+
+    <section class="learning-intro">
+
+      <h2>Why Do We Care About Graphs?</h2>
+
+      <p>
+        Imagine you're planning a delivery route.
+        A driver must leave a distribution centre,
+        visit every delivery location, and return
+        to the distribution centre.
+      </p>
+
+      <p>
+        Ideally, the driver would visit each location
+        only once.
+      </p>
+
+      <div class="concept-highlight">
+        <strong>The question:</strong>
+        Can we find a route that visits every location
+        exactly once before returning to where we started?
+      </div>
+
+      <p>
+        Graph theory gives us a way to represent
+        and investigate this problem.
+      </p>
+
+    </section>
+
+
+    <!-- =====================================
+         DEFINITIONS
+         ===================================== -->
+
+    <section class="concept-section">
+
+      <h2>Two New Concepts</h2>
+
+      <div class="concept-cards">
+
+        <article class="concept-card">
+
+          <h3>Cycle</h3>
+
+          <p>
+            A <strong>cycle</strong> is a closed trail
+            that does not repeat any vertices,
+            except that the starting and ending
+            vertices are the same.
+          </p>
+
+        </article>
+
+        <article class="concept-card">
+
+          <h3>Hamiltonian Cycle</h3>
+
+          <p>
+            A <strong>Hamiltonian cycle</strong>
+            is a cycle that visits every vertex
+            of the graph exactly once before
+            returning to its starting vertex.
+          </p>
+
+        </article>
+
+      </div>
+
+      <p class="concept-note">
+        <strong>Important:</strong>
+        A Hamiltonian cycle must visit every vertex,
+        but it does not need to use every edge.
+      </p>
+
+    </section>
+
+
+    <!-- =====================================
+         INTERACTIVE DELIVERY CHALLENGE
+         ===================================== -->
+
+    <section class="activity-card delivery-activity">
+
+      <span class="activity-eyebrow">YOUR CHALLENGE</span>
+
+      <h2>Plan the Delivery Route</h2>
+
+      <p>
+        The graph below represents a small delivery network.
+        Each vertex is a location, and each edge represents
+        an available direct connection.
+      </p>
+
+      <p>
+        <strong>Your task:</strong>
+        Start at the distribution centre
+        <strong>A</strong>, visit every other location
+        exactly once, and return to A.
+      </p>
+
+      <div class="delivery-layout">
+
+        <div class="delivery-graph-panel">
+
+          <svg
+            id="delivery-graph"
+            viewBox="0 0 420 320"
+            role="group"
+            aria-label="Interactive delivery network with six locations"
+          ></svg>
+
+        </div>
+
+        <div class="delivery-status-panel">
+
+          <h3>Your Route</h3>
+
+          <p
+            id="delivery-route"
+            class="delivery-route"
+            aria-live="polite"
+          >
+            A
+          </p>
+
+          <p id="delivery-progress">
+            Locations visited: 1 of 6
+          </p>
+
+          <p
+            id="delivery-feedback"
+            class="delivery-feedback"
+            role="status"
+            aria-live="polite"
+          >
+            Select a location connected to A.
+          </p>
+
+          <div class="delivery-controls">
+
+            <button type="button" id="delivery-undo">
+              Undo
+            </button>
+
+            <button
+              type="button"
+              id="delivery-reset"
+              class="secondary"
+            >
+              Try Again
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================
+         REAL-WORLD CONNECTION
+         ===================================== -->
+
+    <section class="concept-section">
+
+      <h2>From Graphs to Real-World Decisions</h2>
+
+      <p>
+        A Hamiltonian cycle tells us whether
+        a route exists that visits every location
+        exactly once and returns to the start.
+      </p>
+
+      <p>
+        But what if some roads are longer than others?
+        Which route would minimize the total distance?
+      </p>
+
+      <p>
+        This leads to a related optimization problem:
+        the <strong>Travelling Salesperson Problem</strong>.
+      </p>
+
+      <div class="concept-highlight">
+        Finding a Hamiltonian cycle is about
+        <strong>whether a suitable route exists</strong>.
+        Finding the shortest such route introduces
+        an additional optimization challenge.
+      </div>
+
+    </section>
+
+
+    <!-- =====================================
+         REFLECTION FLASHCARD
+         ===================================== -->
+
+    <section class="strategy-reflection">
+
+      <h2>Zoom Out: What Did We Just Learn About Learning?</h2>
+
+      <p>
+        Think about why we began with a delivery problem
+        before introducing the mathematical definitions.
+      </p>
+
+      <div class="flashcard-scene">
+
+        <button
+          type="button"
+          class="strategy-flashcard"
+          aria-pressed="false"
+          aria-label="Reveal the learning strategy"
+        >
+
+          <span class="flashcard-inner">
+
+            <span class="flashcard-face flashcard-front">
+
+              <span class="flashcard-label">REFLECT</span>
+
+              <span class="flashcard-question">
+                Why might introducing a real-world problem
+                help students learn an abstract concept?
+              </span>
+
+              <span class="flashcard-hint">
+                Click to flip the card.
+              </span>
+
+            </span>
+
+            <span class="flashcard-face flashcard-back">
+
+              <span class="flashcard-label">
+                LEARNING STRATEGY
+              </span>
+
+              <strong>Authentic Contexts</strong>
+
+              <span>
+                Meaningful applications can help learners
+                recognize why a concept matters and
+                when it might be useful.
+              </span>
+
+              <span class="flashcard-application">
+
+                <strong>Apply it in your teaching:</strong>
+
+                Introduce a realistic problem that creates
+                a need for the concept. Then return to that
+                problem after students have learned
+                the relevant mathematics.
+
+              </span>
+
+              <span class="flashcard-hint">
+                Click to flip back.
+              </span>
+
+            </span>
+
+          </span>
+
+        </button>
+
+      </div>
+
+    </section>
+
+  `
+},
 
   {
     id: 8,
