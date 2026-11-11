@@ -142,7 +142,7 @@ if (page.id === 7) {
 }
    // Page 8: Contrasting cases and Euler's theorem
 if (page.id === 8) {
-  initializeContrastingCases();
+  ;
 }
 
   // Scroll to top when changing pages
@@ -1915,7 +1915,30 @@ function initializeContrastingCases() {
         "Following the square uses every edge exactly once " +
         "and visits every vertex exactly once before returning " +
         "to the start. Both properties hold."
-    }
+    },
+     // GRAPH D: SQUARE WITH AN ADDITIONAL EDGE
+{
+  name: "Graph D",
+  vertices: {
+    A: [45, 45],
+    B: [165, 45],
+    C: [165, 165],
+    D: [45, 165],
+    E: [105, 205]
+  },
+  edges: [
+    ["A", "B"],
+    ["B", "C"],
+    ["C", "D"],
+    ["D", "A"],
+    ["D", "E"]
+  ],
+  explanation:
+    "Exactly two vertices, D and E, have odd degree. " +
+    "An Eulerian trail exists, starting at one of them " +
+    "and ending at the other. A Hamiltonian cycle is " +
+    "impossible because E has only one connection."
+}
 
   ];
 
@@ -2190,19 +2213,19 @@ function initializeContrastingCases() {
 
     });
 
-    if (answered < 6) {
+    if (answered < graphs.length * 2) {
 
       feedback.textContent =
-        `You have answered ${answered} of 6 questions. ` +
-        "Complete the remaining predictions before checking.";
+  `You have answered ${answered} of ${graphs.length * 2} questions. ` +
+  "Complete the remaining predictions before checking.";
 
       return;
 
     }
 
     feedback.textContent =
-      `${correct} of 6 predictions correct. ` +
-      "Compare the explanations below.";
+  `${correct} of ${graphs.length * 2} predictions correct. ` +
+  "Compare the explanations below.";
 
     explanations.innerHTML = "";
 
