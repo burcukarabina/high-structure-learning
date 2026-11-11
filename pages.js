@@ -251,20 +251,84 @@ const pages = [
 
       </div>
 
-      <div class="activity-card">
-        <h3>Interactivity ≠ Learning</h3>
+      <section class="strategy-reflection">
 
-        <p>
-          An interactive element can invite participation,
-          but interaction alone does not establish a learning goal.
-        </p>
+  <h2>Zoom Out: What Did We Just Learn About Learning?</h2>
 
-        <p>
-          Meaningful learning activities need intentional design:
-          a clear purpose, appropriate guidance, and opportunities
-          for learners to interpret their experience.
-        </p>
-      </div>
+  <p>
+    Before moving on, consider what made the previous
+    activity an interaction rather than a meaningful
+    learning experience.
+  </p>
+
+  <div class="flashcard-scene">
+
+    <button
+      type="button"
+      class="strategy-flashcard"
+      aria-pressed="false"
+      aria-label="Reveal the learning strategy"
+    >
+
+      <span class="flashcard-inner">
+
+        <!-- FRONT -->
+        <span class="flashcard-face flashcard-front">
+
+          <span class="flashcard-label">REFLECT</span>
+
+          <span class="flashcard-question">
+            Does making an activity interactive
+            necessarily make it a meaningful
+            learning experience?
+          </span>
+
+          <span class="flashcard-hint">
+            Click to flip the card.
+          </span>
+
+        </span>
+
+        <!-- BACK -->
+        <span class="flashcard-face flashcard-back">
+
+          <span class="flashcard-label">
+            LEARNING STRATEGY
+          </span>
+
+          <strong>Interactivity ≠ Learning</strong>
+
+          <span>
+            Interaction alone does not establish a learning goal.
+            Meaningful learning activities require intentional
+            design: a clear purpose, appropriate guidance,
+            and opportunities to interpret the experience.
+          </span>
+
+          <span class="flashcard-application">
+
+            <strong>Apply it in your teaching:</strong>
+
+            Before adding an interactive element to a course,
+            identify what students should learn from it.
+            Provide a clear task and an opportunity to
+            reflect on what the interaction revealed.
+
+          </span>
+
+          <span class="flashcard-hint">
+            Click to flip back.
+          </span>
+
+        </span>
+
+      </span>
+
+    </button>
+
+  </div>
+
+</section>
     `
   },
 
