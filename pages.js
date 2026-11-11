@@ -765,11 +765,8 @@ const pages = [
 
                 <strong>Apply it in your teaching:</strong>
 
-                Encourage students to scribble with purpose
-                while listening or reading: sketch connections,
-                label diagrams, draw arrows, or represent
-                relationships visually.
-
+                Encourage students to sketch relationships, annotate diagrams, 
+                or create simple visual representations while listening or reading.
                 The goal is not artistic quality, but
                 making thinking visible.
 
