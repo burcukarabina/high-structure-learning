@@ -814,33 +814,64 @@ const pages = [
 
       <span class="activity-eyebrow">YOUR TURN 1</span>
 
-      <h2>Match the Concepts</h2>
+  <h2>Match the Concepts</h2>
 
-      <p>
-        Match each definition with the correct graph theory term.
-        Each term is used exactly once.
-      </p>
+  <p>
+    Drag each definition card to the correct graph theory term.
+    You can also select a card and then select its destination.
+  </p>
 
-      <div id="matching-questions" class="matching-questions"></div>
+  <div class="sorting-layout">
 
-      <div class="near-transfer-controls">
-        <button type="button" id="matching-check">
-          Check My Matches
-        </button>
+    <!-- LEFT: DEFINITIONS -->
 
-        <button type="button" id="matching-reset" class="secondary">
-          Try Again
-        </button>
-      </div>
+    <div class="sorting-column">
 
-      <p
-        id="matching-feedback"
-        class="near-transfer-feedback"
-        role="status"
-        aria-live="polite"
-      ></p>
+      <h3>Definitions</h3>
 
-    </section>
+      <div
+        id="definition-bank"
+        class="sorting-bank"
+        aria-label="Definition cards"
+      ></div>
+
+    </div>
+
+    <!-- RIGHT: TERMS -->
+
+    <div class="sorting-column">
+
+      <h3>Graph Theory Terms</h3>
+
+      <div
+        id="term-buckets"
+        class="sorting-buckets"
+      ></div>
+
+    </div>
+
+  </div>
+
+  <div class="near-transfer-controls">
+
+    <button type="button" id="matching-check">
+      Check My Matches
+    </button>
+
+    <button type="button" id="matching-reset" class="secondary">
+      Try Again
+    </button>
+
+  </div>
+
+  <p
+    id="matching-feedback"
+    class="near-transfer-feedback"
+    role="status"
+    aria-live="polite"
+  ></p>
+
+</section>
 
 
     <!-- =====================================
