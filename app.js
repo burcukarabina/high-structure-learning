@@ -136,6 +136,10 @@ function renderPage() {
 if (page.id === 6) {
   initializeNearTransfer();
 }
+   // Page 7: Hamiltonian cycle delivery challenge
+if (page.id === 7) {
+  initializeDeliveryChallenge();
+}
 
   // Scroll to top when changing pages
   window.scrollTo({
@@ -1299,5 +1303,342 @@ function initializeNearTransfer() {
   transferReset.addEventListener("click", loadGraph);
 
   loadGraph();
+}
+// =========================================
+// PAGE 7 — HAMILTONIAN CYCLE CHALLENGE
+// =========================================
+
+function initializeDeliveryChallenge() {
+
+  const svg = document.getElementById("delivery-graph");
+
+  if (!svg) return;
+
+  const routeDisplay = document.getElementById("delivery-route");
+  const progressDisplay = document.getElementById("delivery-progress");
+  const feedback = document.getElementById("delivery-feedback");
+
+  const undoButton = document.getElementById("delivery-undo");
+  const resetButton = document.getElementById("delivery-reset");
+
+  const SVG_NS = "http://www.w3.org/2000/svg";
+
+
+  // =========================================
+  // DELIVERY NETWORK
+  // =========================================
+
+  const vertices = {
+    A: [75, 150],
+    B: [160, 55],
+    C: [300, 55],
+    D: [355, 150],
+    E: [300, 260],
+    F: [160, 260]
+  };
+
+  const edges = [
+    ["A", "B"],
+    ["B", "C"],
+    ["C", "D"],
+    ["D", "E"],
+    ["E", "F"],
+    ["F", "A"],
+    ["A", "C"],
+    ["B", "E"],
+    ["C", "E"],
+    ["B", "F"]
+  ];
+
+  const vertexNames = Object.keys(vertices);
+
+  let route = ["A"];
+
+  const vertexElements = new Map();
+  const edgeElements = [];
+
+
+  // =========================================
+  // SVG HELPER
+  // =========================================
+
+  function createSVGElement(tag, attributes = {}) {
+
+    const element = document.createElementNS(SVG_NS, tag);
+
+    Object.entries(attributes).forEach(([key, value]) => {
+      element.setAttribute(key, value);
+    });
+
+    return element;
+
+  }
+
+
+  // =========================================
+  // CHECK CONNECTION
+  // =========================================
+
+  function connected(a, b) {
+
+    return edges.some(([u, v]) =>
+      (u === a && v === b) ||
+      (u === b && v === a)
+    );
+
+  }
+
+
+  // =========================================
+  // DRAW EDGES
+  // =========================================
+
+  edges.forEach(([a, b]) => {
+
+    const [x1, y1] = vertices[a];
+    const [x2, y2] = vertices[b];
+
+    const line = createSVGElement("line", {
+      x1,
+      y1,
+      x2,
+      y2,
+      class: "delivery-edge"
+    });
+
+    svg.appendChild(line);
+
+    edgeElements.push({ a, b, element: line });
+
+  });
+
+
+  // =========================================
+  // DRAW VERTICES
+  // =========================================
+
+  vertexNames.forEach(name => {
+
+    const [x, y] = vertices[name];
+
+    const group = createSVGElement("g", {
+      class: "delivery-vertex",
+      role: "button",
+      tabindex: "0",
+      "aria-label": `Location ${name}`
+    });
+
+    const circle = createSVGElement("circle", {
+      cx: x,
+      cy: y,
+      r: 19
+    });
+
+    const label = createSVGElement("text", {
+      x,
+      y: y + 5,
+      "text-anchor": "middle"
+    });
+
+    label.textContent = name;
+
+    group.appendChild(circle);
+    group.appendChild(label);
+
+    svg.appendChild(group);
+
+    group.addEventListener("click", () => {
+      selectLocation(name);
+    });
+
+    group.addEventListener("keydown", event => {
+
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        selectLocation(name);
+      }
+
+    });
+
+    vertexElements.set(name, group);
+
+  });
+
+
+  // =========================================
+  // SELECT LOCATION
+  // =========================================
+
+  function selectLocation(name) {
+
+    const current = route[route.length - 1];
+
+    // Stop after completing the cycle.
+    if (
+      route.length === vertexNames.length + 1 &&
+      current === "A"
+    ) {
+      return;
+    }
+
+    if (!connected(current, name)) {
+
+      feedback.textContent =
+        `There is no direct connection from ${current} to ${name}.`;
+
+      return;
+
+    }
+
+    // Returning to A is allowed only after
+    // all other locations have been visited.
+    if (name === "A") {
+
+      if (route.length !== vertexNames.length) {
+
+        feedback.textContent =
+          "You must visit every other location before returning to A.";
+
+        return;
+
+      }
+
+      route.push("A");
+
+      feedback.textContent =
+        "Success! You found a Hamiltonian cycle.";
+
+      updateDisplay();
+
+      return;
+
+    }
+
+    // No repeated vertices.
+    if (route.includes(name)) {
+
+      feedback.textContent =
+        "You've already visited that location. " +
+        "A Hamiltonian cycle visits each vertex exactly once.";
+
+      return;
+
+    }
+
+    route.push(name);
+
+    if (route.length === vertexNames.length) {
+
+      feedback.textContent = connected(name, "A")
+        ? "All locations visited! Return to A to complete the cycle."
+        : "All locations visited, but there is no direct connection to A. " +
+          "Undo a move and try a different route.";
+
+    } else {
+
+      feedback.textContent =
+        `Now at location ${name}. Choose your next location.`;
+
+    }
+
+    updateDisplay();
+
+  }
+
+
+  // =========================================
+  // UPDATE DISPLAY
+  // =========================================
+
+  function updateDisplay() {
+
+    routeDisplay.textContent = route.join(" → ");
+
+    const visitedCount = new Set(route).size;
+
+    progressDisplay.textContent =
+      `Locations visited: ${visitedCount} of ${vertexNames.length}`;
+
+    const current = route[route.length - 1];
+
+    vertexElements.forEach((element, name) => {
+
+      element.classList.toggle(
+        "visited",
+        route.includes(name)
+      );
+
+      element.classList.toggle(
+        "current",
+        name === current
+      );
+
+    });
+
+    edgeElements.forEach(({ a, b, element }) => {
+
+      let used = false;
+
+      for (let i = 0; i < route.length - 1; i++) {
+
+        const u = route[i];
+        const v = route[i + 1];
+
+        if (
+          (a === u && b === v) ||
+          (a === v && b === u)
+        ) {
+          used = true;
+          break;
+        }
+
+      }
+
+      element.classList.toggle("used", used);
+
+    });
+
+    undoButton.disabled = route.length <= 1;
+
+  }
+
+
+  // =========================================
+  // UNDO
+  // =========================================
+
+  undoButton.addEventListener("click", () => {
+
+    if (route.length <= 1) return;
+
+    route.pop();
+
+    feedback.textContent =
+      "Last move removed. Continue building your route.";
+
+    updateDisplay();
+
+  });
+
+
+  // =========================================
+  // RESET
+  // =========================================
+
+  resetButton.addEventListener("click", () => {
+
+    route = ["A"];
+
+    feedback.textContent =
+      "Select a location connected to A.";
+
+    updateDisplay();
+
+  });
+
+
+  // Initialize
+  updateDisplay();
+
 }
 renderPage();
