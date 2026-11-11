@@ -132,6 +132,11 @@ function renderPage() {
     initializeNetworkPuzzle();
   }
 
+   // Page 6: Near-transfer activities
+if (page.id === 6) {
+  initializeNearTransfer();
+}
+
   // Scroll to top when changing pages
   window.scrollTo({
     top: 0,
@@ -654,4 +659,291 @@ or restarting with a different strategy.`;
 // START TEXTBOOK
 // =========================================
 
+// =========================================
+// PAGE 6 — NEAR TRANSFER
+// =========================================
+
+function initializeNearTransfer() {
+
+  // =======================================
+  // ACTIVITY 1: MATCH THE DEFINITIONS
+  // =======================================
+
+  const definitions = [
+    {
+      term: "Graph",
+      definition: "A collection of vertices and edges connecting them."
+    },
+    {
+      term: "Vertex",
+      definition: "A point in a graph."
+    },
+    {
+      term: "Edge",
+      definition: "A connection between two vertices."
+    },
+    {
+      term: "Degree",
+      definition: "The number of edges meeting at a vertex."
+    },
+    {
+      term: "Walk",
+      definition: "A sequence of connected vertices; vertices and edges may repeat."
+    },
+    {
+      term: "Trail",
+      definition: "A walk in which no edge is repeated."
+    }
+  ];
+
+  const matchingContainer =
+    document.getElementById("matching-questions");
+
+  const matchingFeedback =
+    document.getElementById("matching-feedback");
+
+  const matchingCheck =
+    document.getElementById("matching-check");
+
+  const matchingReset =
+    document.getElementById("matching-reset");
+
+  // Shuffle an array without changing the original
+  function shuffle(items) {
+    const result = [...items];
+
+    for (let i = result.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [result[i], result[j]] = [result[j], result[i]];
+    }
+
+    return result;
+  }
+
+  function renderMatching() {
+
+    const shuffledDefinitions = shuffle(definitions);
+    const shuffledTerms = shuffle(definitions.map(item => item.term));
+
+    matchingContainer.innerHTML = "";
+
+    shuffledDefinitions.forEach((item, index) => {
+
+      const row = document.createElement("div");
+      row.className = "matching-row";
+
+      const label = document.createElement("label");
+      label.htmlFor = `matching-${index}`;
+      label.textContent = `${index + 1}. ${item.definition}`;
+
+      const select = document.createElement("select");
+      select.id = `matching-${index}`;
+      select.dataset.answer = item.term;
+
+      const placeholder = document.createElement("option");
+      placeholder.value = "";
+      placeholder.textContent = "Choose a term";
+      select.appendChild(placeholder);
+
+      shuffledTerms.forEach(term => {
+        const option = document.createElement("option");
+        option.value = term;
+        option.textContent = term;
+        select.appendChild(option);
+      });
+
+      const feedback = document.createElement("p");
+      feedback.className = "question-feedback";
+      feedback.setAttribute("aria-live", "polite");
+
+      row.appendChild(label);
+      row.appendChild(select);
+      row.appendChild(feedback);
+
+      matchingContainer.appendChild(row);
+
+    });
+
+    matchingFeedback.textContent = "";
+
+  }
+
+  matchingCheck.addEventListener("click", () => {
+
+    const rows = matchingContainer.querySelectorAll(".matching-row");
+
+    let correct = 0;
+    let answered = 0;
+
+    rows.forEach(row => {
+
+      const select = row.querySelector("select");
+      const feedback = row.querySelector(".question-feedback");
+
+      const answer = select.dataset.answer;
+      const value = select.value;
+
+      row.classList.remove("answer-correct", "answer-incorrect");
+
+      if (!value) {
+        feedback.textContent = "Choose a term.";
+        return;
+      }
+
+      answered++;
+
+      if (value === answer) {
+        correct++;
+        feedback.textContent = "Correct.";
+        row.classList.add("answer-correct");
+      } else {
+        feedback.textContent = "Not quite. Review the definition and try again.";
+        row.classList.add("answer-incorrect");
+      }
+
+    });
+
+    if (correct === definitions.length) {
+      matchingFeedback.textContent =
+        "Excellent! You matched all six concepts correctly.";
+    } else if (answered < definitions.length) {
+      matchingFeedback.textContent =
+        `You have ${definitions.length - answered} unanswered definition(s).`;
+    } else {
+      matchingFeedback.textContent =
+        `${correct} of ${definitions.length} correct. Revise your matches and check again.`;
+    }
+
+  });
+
+  matchingReset.addEventListener("click", renderMatching);
+
+  renderMatching();
+
+
+  // =======================================
+  // ACTIVITY 2: APPLY TO A NEW GRAPH
+  // =======================================
+
+  const transferQuestions = [
+    {
+      input: "transfer-vertices",
+      feedback: "feedback-vertices",
+      answer: "5",
+      correct: "Correct. The graph contains five vertices.",
+      incorrect: "Count the labeled points A through E."
+    },
+    {
+      input: "transfer-edges",
+      feedback: "feedback-edges",
+      answer: "6",
+      correct: "Correct. There are six connections.",
+      incorrect: "Count each line connecting two vertices."
+    },
+    {
+      input: "transfer-degree",
+      feedback: "feedback-degree",
+      answer: "3",
+      correct: "Correct. Three edges meet at D.",
+      incorrect: "Count only the edges that meet at vertex D."
+    },
+    {
+      input: "transfer-walk",
+      feedback: "feedback-walk",
+      answer: "yes",
+      correct: "Correct. Every consecutive pair is connected, and a walk may repeat edges.",
+      incorrect: "A walk allows both vertices and edges to be repeated."
+    },
+    {
+      input: "transfer-trail",
+      feedback: "feedback-trail",
+      answer: "no",
+      correct: "Correct. The edge BC is used twice, so this is not a trail.",
+      incorrect: "A trail cannot repeat an edge. Check the moves B → C and C → B."
+    }
+  ];
+
+  const transferCheck =
+    document.getElementById("transfer-check");
+
+  const transferReset =
+    document.getElementById("transfer-reset");
+
+  const transferOverallFeedback =
+    document.getElementById("transfer-overall-feedback");
+
+  transferCheck.addEventListener("click", () => {
+
+    let correct = 0;
+    let answered = 0;
+
+    transferQuestions.forEach(question => {
+
+      const input = document.getElementById(question.input);
+      const feedback = document.getElementById(question.feedback);
+
+      const value = input.value.trim().toLowerCase();
+
+      input.classList.remove("answer-correct", "answer-incorrect");
+
+      if (!value) {
+        feedback.textContent = "Please enter or select an answer.";
+        return;
+      }
+
+      answered++;
+
+      if (value === question.answer) {
+
+        correct++;
+        feedback.textContent = question.correct;
+        input.classList.add("answer-correct");
+
+      } else {
+
+        feedback.textContent = question.incorrect;
+        input.classList.add("answer-incorrect");
+
+      }
+
+    });
+
+    if (correct === transferQuestions.length) {
+
+      transferOverallFeedback.textContent =
+        "Well done! You applied all five concepts correctly.";
+
+    } else if (answered < transferQuestions.length) {
+
+      transferOverallFeedback.textContent =
+        `You have ${transferQuestions.length - answered} unanswered question(s).`;
+
+    } else {
+
+      transferOverallFeedback.textContent =
+        `${correct} of ${transferQuestions.length} correct. Use the feedback and try again.`;
+
+    }
+
+  });
+
+  transferReset.addEventListener("click", () => {
+
+    transferQuestions.forEach(question => {
+
+      const input = document.getElementById(question.input);
+      const feedback = document.getElementById(question.feedback);
+
+      input.value = "";
+      input.classList.remove("answer-correct", "answer-incorrect");
+
+      feedback.textContent = "";
+
+    });
+
+    transferOverallFeedback.textContent = "";
+
+  });
+
+}
 renderPage();
