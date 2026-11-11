@@ -1490,11 +1490,6 @@ let route = ["A"];
 const vertexElements = new Map();
 const edgeElements = [];
 
-  let route = ["A"];
-
-  const vertexElements = new Map();
-  const edgeElements = [];
-
 
   // =========================================
   // SVG HELPER
