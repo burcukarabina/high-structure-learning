@@ -1118,3 +1118,103 @@ select:focus {
     min-height: 160px;
   }
 }
+/* =========================================
+   PAGE 6 — COMPACT MATCHING BOARD
+   ========================================= */
+
+/* Two balanced columns: definitions and terms */
+.near-transfer-activity .sorting-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  align-items: start;
+  margin-top: 1.25rem;
+}
+
+/* Compact headings */
+.near-transfer-activity .sorting-column > h3 {
+  margin: 0 0 0.65rem;
+  font-size: 1.05rem;
+}
+
+/* Definition cards: 2 columns × 3 rows */
+.near-transfer-activity .sorting-bank {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+  min-height: 0;
+  padding: 0.8rem;
+  align-content: start;
+}
+
+/* Smaller definition cards */
+.near-transfer-activity .sorting-item {
+  width: 100%;
+  min-height: 76px;
+  padding: 0.65rem;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+}
+
+/* Term buckets: 2 columns × 3 rows */
+.near-transfer-activity .sorting-buckets {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+/* Compact bucket containers */
+.near-transfer-activity .sorting-bucket {
+  min-width: 0;
+  padding: 0.65rem;
+}
+
+/* Compact term headings */
+.near-transfer-activity .sorting-bucket h4 {
+  margin: 0 0 0.4rem;
+  font-size: 0.9rem;
+}
+
+/* Smaller drop zones */
+.near-transfer-activity .sorting-dropzone {
+  min-height: 76px;
+  padding: 0.35rem;
+  box-sizing: border-box;
+}
+
+/* Cards inside drop zones */
+.near-transfer-activity .sorting-dropzone .sorting-item {
+  min-height: 66px;
+  padding: 0.4rem;
+  font-size: 0.8rem;
+}
+
+/* Keep controls close to the activity */
+.near-transfer-activity .near-transfer-controls {
+  margin-top: 1rem;
+}
+
+/* =========================================
+   RESPONSIVE LAYOUT
+   ========================================= */
+
+/* On narrower screens, stack the two sections */
+@media (max-width: 760px) {
+
+  .near-transfer-activity .sorting-layout {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+/* On very small screens, use one card per row */
+@media (max-width: 420px) {
+
+  .near-transfer-activity .sorting-bank,
+  .near-transfer-activity .sorting-buckets {
+    grid-template-columns: 1fr;
+  }
+
+}
