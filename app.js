@@ -17,6 +17,29 @@ const nextBtn = document.getElementById("next-btn");
 // Store reflection responses locally
 const reflections = {};
 
+function initializeFlashcards() {
+
+  document.querySelectorAll(".strategy-flashcard").forEach(flashcard => {
+
+    flashcard.addEventListener("click", () => {
+
+      const isFlipped = flashcard.classList.toggle("is-flipped");
+
+      flashcard.setAttribute("aria-pressed", String(isFlipped));
+
+      flashcard.setAttribute(
+        "aria-label",
+        isFlipped
+          ? "Return to the reflection question"
+          : "Reveal the learning strategy"
+      );
+
+    });
+
+  });
+
+}
+
 // Render current page
 function renderPage() {
 
@@ -30,23 +53,7 @@ function renderPage() {
     <h1>${page.title}</h1>
     ${page.content}
   `;
-const flashcard = document.querySelector(".strategy-flashcard");
-
-if (flashcard) {
-  flashcard.addEventListener("click", () => {
-
-    const isFlipped = flashcard.classList.toggle("is-flipped");
-
-    flashcard.setAttribute("aria-pressed", String(isFlipped));
-
-    flashcard.setAttribute(
-      "aria-label",
-      isFlipped
-        ? "Return to the reflection question"
-        : "Reveal the learning strategy"
-    );
-
-  });
+initializeFlashcards();
 };
   // Update progress
   const pageNumber = currentPage + 1;
