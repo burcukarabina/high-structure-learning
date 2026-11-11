@@ -332,8 +332,6 @@ const pages = [
     `
   },
 
-  // REMAINING PAGES
-
   {
   id: 4,
   type: "learn",
@@ -500,12 +498,212 @@ const pages = [
 },
 
   {
-    id: 5,
-    type: "learn",
-    label: "Your Turn",
-    title: "Discovering Structure",
-    content: `<p>Coming soon: Identifying the important features of a graph.</p>`
-  },
+  id: 5,
+  type: "learn",
+  label: "Learning Moment 3",
+  title: "Learning the Language of Graphs",
+
+  content: `
+    <p class="intro-text">
+      Before exploring how to solve the network challenge,
+      let's learn a few basic ideas from graph theory.
+    </p>
+
+    <p>
+      A graph is a mathematical model of connections.
+      Its language helps us describe and analyze networks.
+    </p>
+
+    <div class="definition-grid">
+
+      <!-- GRAPH -->
+      <div class="definition-card">
+        <h2>Graph</h2>
+        <p>
+          A collection of <strong>vertices</strong>
+          and <strong>edges</strong> connecting them.
+        </p>
+
+        <svg viewBox="0 0 240 150"
+             role="img"
+             aria-label="Graph with four vertices and four edges">
+          <g class="definition-edges">
+            <line x1="50" y1="40" x2="190" y2="40"/>
+            <line x1="50" y1="40" x2="50" y2="115"/>
+            <line x1="190" y1="40" x2="190" y2="115"/>
+            <line x1="50" y1="115" x2="190" y2="115"/>
+          </g>
+          <g class="definition-vertices">
+            <circle cx="50" cy="40" r="9"/>
+            <circle cx="190" cy="40" r="9"/>
+            <circle cx="50" cy="115" r="9"/>
+            <circle cx="190" cy="115" r="9"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- VERTEX -->
+      <div class="definition-card">
+        <h2>Vertex</h2>
+        <p>
+          A <strong>point</strong> in a graph.
+          The plural is <em>vertices</em>.
+        </p>
+
+        <svg viewBox="0 0 240 150"
+             role="img"
+             aria-label="Graph with one vertex highlighted">
+          <g class="definition-edges">
+            <line x1="50" y1="40" x2="190" y2="40"/>
+            <line x1="50" y1="40" x2="120" y2="115"/>
+            <line x1="190" y1="40" x2="120" y2="115"/>
+          </g>
+          <g class="definition-vertices">
+            <circle cx="50" cy="40" r="9"/>
+            <circle cx="190" cy="40" r="9"/>
+            <circle cx="120" cy="115" r="12"
+                    class="definition-highlight"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- EDGE -->
+      <div class="definition-card">
+        <h2>Edge</h2>
+        <p>
+          A <strong>connection</strong> between
+          two vertices.
+        </p>
+
+        <svg viewBox="0 0 240 150"
+             role="img"
+             aria-label="Graph with one edge highlighted">
+          <g class="definition-edges">
+            <line x1="50" y1="40" x2="190" y2="40"/>
+            <line x1="50" y1="40" x2="120" y2="115"/>
+            <line x1="190" y1="40" x2="120" y2="115"
+                  class="definition-highlight-edge"/>
+          </g>
+          <g class="definition-vertices">
+            <circle cx="50" cy="40" r="9"/>
+            <circle cx="190" cy="40" r="9"/>
+            <circle cx="120" cy="115" r="9"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- DEGREE -->
+      <div class="definition-card">
+        <h2>Degree</h2>
+        <p>
+          The <strong>number of edges</strong>
+          meeting at a vertex.
+        </p>
+
+        <svg viewBox="0 0 240 150"
+             role="img"
+             aria-label="Central vertex of degree three">
+          <g class="definition-edges">
+            <line x1="120" y1="75" x2="45" y2="30"/>
+            <line x1="120" y1="75" x2="195" y2="30"/>
+            <line x1="120" y1="75" x2="120" y2="130"/>
+          </g>
+          <g class="definition-vertices">
+            <circle cx="45" cy="30" r="9"/>
+            <circle cx="195" cy="30" r="9"/>
+            <circle cx="120" cy="130" r="9"/>
+            <circle cx="120" cy="75" r="12"
+                    class="definition-highlight"/>
+          </g>
+          <text x="143" y="80" class="definition-svg-label">
+            Degree 3
+          </text>
+        </svg>
+      </div>
+
+      <!-- WALK -->
+      <div class="definition-card">
+        <h2>Walk</h2>
+        <p>
+          A sequence of connected vertices.
+          Vertices and edges may be repeated.
+        </p>
+
+        <svg viewBox="0 0 240 150"
+             role="img"
+             aria-label="Triangle graph showing walk A to B to C to A to B">
+          <g class="definition-edges">
+            <line x1="50" y1="115" x2="120" y2="30"/>
+            <line x1="120" y1="30" x2="190" y2="115"/>
+            <line x1="190" y1="115" x2="50" y2="115"/>
+          </g>
+          <g class="definition-vertices">
+            <circle cx="50" cy="115" r="9"/>
+            <circle cx="120" cy="30" r="9"/>
+            <circle cx="190" cy="115" r="9"/>
+          </g>
+          <g class="definition-svg-label">
+            <text x="33" y="133">A</text>
+            <text x="116" y="17">B</text>
+            <text x="198" y="133">C</text>
+          </g>
+          <text x="120" y="145"
+                text-anchor="middle"
+                class="definition-route-label">
+            A → B → C → A → B
+          </text>
+        </svg>
+      </div>
+
+      <!-- TRAIL -->
+      <div class="definition-card">
+        <h2>Trail</h2>
+        <p>
+          A walk that <strong>does not repeat any edge</strong>.
+          Vertices may be revisited.
+        </p>
+
+        <svg viewBox="0 0 240 150"
+             role="img"
+             aria-label="Triangle graph showing trail A to B to C to A">
+          <g class="definition-edges">
+            <line x1="50" y1="115" x2="120" y2="30"/>
+            <line x1="120" y1="30" x2="190" y2="115"/>
+            <line x1="190" y1="115" x2="50" y2="115"/>
+          </g>
+          <g class="definition-vertices">
+            <circle cx="50" cy="115" r="9"/>
+            <circle cx="120" cy="30" r="9"/>
+            <circle cx="190" cy="115" r="9"/>
+          </g>
+          <g class="definition-svg-label">
+            <text x="33" y="133">A</text>
+            <text x="116" y="17">B</text>
+            <text x="198" y="133">C</text>
+          </g>
+          <text x="120" y="145"
+                text-anchor="middle"
+                class="definition-route-label">
+            A → B → C → A
+          </text>
+        </svg>
+      </div>
+
+    </div>
+
+    <div class="activity-card">
+      <h3>Think Back to the Challenge</h3>
+      <p>
+        Which of these concepts describes the kind
+        of route you were trying to find on the previous page?
+      </p>
+      <p>
+        Keep your answer in mind as you move to
+        the matching activity.
+      </p>
+    </div>
+  `
+},
 
   {
     id: 6,
