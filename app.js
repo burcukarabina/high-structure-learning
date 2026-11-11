@@ -140,9 +140,9 @@ if (page.id === 6) {
 if (page.id === 7) {
   initializeDeliveryChallenge();
 }
-   // Page 8: Contrasting cases and Euler's theorem
+// Page 8: Contrasting cases and Euler's theorem
 if (page.id === 8) {
-  ;
+  initializeContrastingCases();
 }
 
   // Scroll to top when changing pages
@@ -2086,19 +2086,8 @@ function initializeContrastingCases() {
 
       label.textContent = name;
 
-      const degreeLabel = makeSVGElement("text", {
-        x,
-        y: y + 32,
-        "text-anchor": "middle",
-        class: "contrast-degree-label"
-      });
-
-      degreeLabel.textContent = `deg ${degreeOf(graph, name)}`;
-      degreeLabel.style.display = "none";
-
       group.appendChild(circle);
-      group.appendChild(label);
-      group.appendChild(degreeLabel);
+group.appendChild(label);
 
       svg.appendChild(group);
 
@@ -2245,63 +2234,6 @@ function initializeContrastingCases() {
   });
 
 
-  // =========================================
-  // REVEAL VERTEX DEGREES
-  // =========================================
-
-  const degreesButton = document.getElementById(
-    "contrast-degrees"
-  );
-
-  const degreeSummary = document.getElementById(
-    "contrast-degree-summary"
-  );
-
-  let degreesVisible = false;
-
-  degreesButton.addEventListener("click", () => {
-
-    degreesVisible = !degreesVisible;
-
-    document.querySelectorAll(
-      ".contrast-degree-label"
-    ).forEach(label => {
-
-      label.style.display =
-        degreesVisible ? "block" : "none";
-
-    });
-
-    degreeSummary.hidden = !degreesVisible;
-
-    degreesButton.textContent = degreesVisible
-      ? "Hide Vertex Degrees"
-      : "Show Vertex Degrees";
-
-    if (degreesVisible) {
-
-      degreeSummary.innerHTML = "";
-
-      graphs.forEach(graph => {
-
-        const odd = oddVertices(graph);
-
-        const paragraph = document.createElement("p");
-
-        paragraph.textContent =
-          `${graph.name}: ${odd.length} odd-degree vertices` +
-          (odd.length
-            ? ` (${odd.join(", ")})`
-            : " (all vertices have even degree)") +
-          ".";
-
-        degreeSummary.appendChild(paragraph);
-
-      });
-
-    }
-
-  });
 
 
   // =========================================
