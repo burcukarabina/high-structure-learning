@@ -1452,3 +1452,28 @@ select:focus {
   }
 
 }
+
+/* Page 7 — Delivery story illustration */
+
+.delivery-story-figure {
+  max-width: 620px;
+  margin: 1.5rem auto;
+  padding: 1rem;
+  background: #fffdf4;
+  border: 1px solid #ded8c8;
+  border-radius: 12px;
+}
+
+.delivery-story-figure svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.delivery-story-figure figcaption {
+  margin-top: 0.75rem;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #444;
+}
