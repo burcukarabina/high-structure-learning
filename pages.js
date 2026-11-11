@@ -1477,11 +1477,12 @@ and return to your starting location.
 
           <p>
             This is called an <strong>Eulerian trail</strong>:
-            a trail that uses every edge exactly once.
+            a trail that uses every edge exactly once. 
+            A particularly real-life example of an Eulerian trail is a street sweeper cleaning roads in a neighbourhood.
           </p>
 
           <p>
-            An <strong>Eulerian circuit</strong> is an Eulerian
+            An <strong>Eulerian cycle</strong> is an Eulerian
             trail that returns to its starting vertex.
           </p>
         </div>
