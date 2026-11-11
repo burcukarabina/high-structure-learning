@@ -1477,3 +1477,119 @@ select:focus {
   line-height: 1.5;
   color: #444;
 }
+
+/* =========================================
+   PAGE 8 — CONTRASTING CASES
+   ========================================= */
+
+.contrast-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, 240px), 1fr)
+  );
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.contrast-card {
+  background: #fff;
+  border: 1px solid #d8d8d8;
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.contrast-card h3 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.contrast-svg {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto 1rem;
+}
+
+.contrast-edges line {
+  stroke: #555;
+  stroke-width: 2.5;
+}
+
+.contrast-vertex circle {
+  fill: #f4d35e;
+  stroke: #222;
+  stroke-width: 1.5;
+}
+
+.contrast-vertex text {
+  font-size: 14px;
+  font-weight: 700;
+  fill: #111;
+}
+
+.contrast-degree-label {
+  font-size: 11px !important;
+  font-weight: 500 !important;
+}
+
+.contrast-questions {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.contrast-questions label {
+  font-weight: 600;
+}
+
+.contrast-questions select {
+  width: 100%;
+  padding: 0.65rem;
+  border: 1px solid #888;
+  border-radius: 6px;
+  background: white;
+  color: #222;
+  font: inherit;
+}
+
+.contrast-questions select.answer-correct {
+  border: 2px solid #28734a;
+  background: #eef8f1;
+}
+
+.contrast-questions select.answer-incorrect {
+  border: 2px solid #9a6715;
+  background: #fff6e5;
+}
+
+#contrast-feedback,
+#contrast-explanations,
+#contrast-degree-summary {
+  margin-top: 1rem;
+}
+
+#contrast-explanations,
+#contrast-degree-summary {
+  background: #faf6e9;
+  border-left: 4px solid #d4a017;
+  padding: 1rem 1.25rem;
+  border-radius: 6px;
+}
+
+.theorem-card {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: #faf6e9;
+  border: 2px solid #d4a017;
+  border-radius: 12px;
+}
+
+.theorem-card h3 {
+  margin-top: 0;
+}
+
+@media (max-width: 600px) {
+  .contrast-grid {
+    grid-template-columns: 1fr;
+  }
+}
