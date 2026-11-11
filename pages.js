@@ -117,49 +117,58 @@ const pages = [
     behind this activity.
   </p>
 
+  <div class="flashcard-scene">
   <button
     type="button"
     class="strategy-flashcard"
-    aria-expanded="false"
+    aria-pressed="false"
+    aria-label="Reveal the learning strategy"
   >
-    <span class="flashcard-front">
-      <span class="flashcard-label">REFLECT</span>
+    <span class="flashcard-inner">
 
-      <span class="flashcard-question">
-        Why did we begin by asking you to share
-        your existing ideas about high expectations
-        and high structure?
+      <!-- FRONT -->
+      <span class="flashcard-face flashcard-front">
+        <span class="flashcard-label">REFLECT</span>
+
+        <span class="flashcard-question">
+          Why did we begin by asking you to share
+          your existing ideas about high expectations
+          and high structure?
+        </span>
+
+        <span class="flashcard-hint">
+          Click to flip the card.
+        </span>
       </span>
 
-      <span class="flashcard-hint">
-        Click to reveal the learning strategy.
+      <!-- BACK -->
+      <span class="flashcard-face flashcard-back">
+        <span class="flashcard-label">LEARNING STRATEGY</span>
+
+        <strong>Activating Prior Knowledge</strong>
+
+        <span>
+          Inviting learners to recall and share what they
+          already know makes their existing ideas visible
+          and creates a foundation for new learning.
+        </span>
+
+        <span class="flashcard-application">
+          <strong>Apply it in your teaching:</strong>
+          Begin a new topic with a brief prediction,
+          question, or concept-sharing activity.
+          Revisit students' initial responses later
+          to make changes in their thinking visible.
+        </span>
+
+        <span class="flashcard-hint">
+          Click to flip back.
+        </span>
       </span>
-    </span>
 
-    <span class="flashcard-back" hidden>
-      <span class="flashcard-label">LEARNING STRATEGY</span>
-
-      <strong>Activating Prior Knowledge</strong>
-
-      <span>
-        Inviting learners to recall and share what they
-        already know makes their existing ideas visible
-        and creates a foundation for new learning.
-      </span>
-
-      <span class="flashcard-application">
-        <strong>Apply it in your teaching:</strong>
-        Begin a new topic with a brief prediction,
-        question, or concept-sharing activity.
-        Revisit students' initial responses later
-        to make changes in their thinking visible.
-      </span>
-
-      <span class="flashcard-hint">
-        Click to return to the question.
-      </span>
     </span>
   </button>
+</div>
 </section>
 
   </div>
