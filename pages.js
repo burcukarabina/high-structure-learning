@@ -337,7 +337,7 @@ const pages = [
   {
   id: 4,
   type: "learn",
-  label: "Learning Moment 2",
+  label: "Learning Moment",
   title: "An Interactive Experience: Now with Structure",
 
   content: `
