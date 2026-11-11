@@ -152,11 +152,12 @@ const pages = [
         <span>
           Inviting learners to recall and share what they
           already know makes their existing ideas visible
-          and creates a foundation for new learning.
+          and creates a foundation for new learning. Recall also strengthens neural connections.
         </span>
 
         <span class="flashcard-application">
           <strong>Apply it in your teaching:</strong>
+          Stop Reviews, Start Recalls.
           Begin a new topic with a brief prediction,
           question, or concept-sharing activity.
           Revisit students' initial responses later
