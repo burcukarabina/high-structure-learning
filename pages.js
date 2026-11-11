@@ -1170,10 +1170,12 @@ const pages = [
     </g>
   </svg>
 
-  <figcaption>
-    A delivery network: each location is connected to others by available roads.
-    Which route would allow the driver to visit every location and return to A?
-  </figcaption>
+ <figcaption>
+  An example delivery network. Each location is connected
+  to others by available roads.
+  Which route would allow the driver to visit every location
+  exactly once and return to A?
+</figcaption>
 </figure>
       <div class="concept-highlight">
         <strong>The question:</strong>
