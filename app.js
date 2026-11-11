@@ -45,14 +45,14 @@ function renderPage() {
 
   const page = pages[currentPage];
 
-   pageContent.innerHTML = `
+     pageContent.innerHTML = `
     <span class="page-label">${page.label}</span>
     <h1>${page.title}</h1>
     ${page.content}
   `;
 
-  // Initialize flashcards
   initializeFlashcards();
+
 
   // Update progress
   const pageNumber = currentPage + 1;
