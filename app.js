@@ -2358,6 +2358,12 @@ if (houseCheck && houseFeedback) {
       `;
 
     }
+     // Reveal the final reflection flashcard after checking the answer
+const finalFlashcard = document.getElementById("house-final-flashcard");
+
+if (finalFlashcard) {
+  finalFlashcard.hidden = false;
+}
 
   });
 
