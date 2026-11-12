@@ -147,7 +147,7 @@ if (page.id === 8) {
 
 // Page 9: Euler's theorem
 if (page.id === 9) {
-  initializeTheoremReveal();
+  initializeTheorem();
 }
 
   // Scroll to top when changing pages
