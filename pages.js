@@ -1869,8 +1869,9 @@ and return to your starting location.
 
   {
   id: 10,
-  title: "From Experience to Evidence",
-  mode: "zoom",
+  type: "zoom",
+  label: "Reflect & Extend",
+  title: "Putting It All Together",
 
   content: `
     <section class="content-section">
