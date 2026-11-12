@@ -1629,10 +1629,14 @@ and return to your starting location.
 },
   {
     id: 9,
-    type: "Math",
+    type: "learn",
     label: "Math of it all",
     title: "The Math Moment",
     content: `
+    <p>
+  We have compared several graphs and examined their vertex degrees.
+  Can we now identify a mathematical rule that works every time?
+</p>
         <!-- =====================================
          THEOREM REVEAL
          ===================================== -->
