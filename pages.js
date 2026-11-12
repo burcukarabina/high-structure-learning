@@ -502,7 +502,7 @@ const pages = [
   {
   id: 5,
   type: "learn",
-  label: "Learning Moment 3",
+  label: "Learning Moment",
   title: "Learning the Language of Graphs",
 
   content: `
