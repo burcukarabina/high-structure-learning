@@ -1868,12 +1868,185 @@ and return to your starting location.
   },
 
   {
-    id: 10,
-    type: "learn",
-    label: "Learning Moment 4",
-    title: "Beyond the Puzzle",
-    content: `<p>Coming soon: Graph theory and street networks.</p>`
-  },
+  id: 10,
+  title: "From Experience to Evidence",
+  mode: "zoom",
+
+  content: `
+    <section class="content-section">
+
+      <span class="page-label">FINAL REFLECTION</span>
+
+      <h1>From Experience to Evidence</h1>
+
+      <p class="page-intro">
+        Throughout this presentation, you have experienced
+        several instructional strategies designed to support
+        meaningful learning without lowering expectations.
+      </p>
+
+      <!-- =====================================
+           1. RECALL
+           ===================================== -->
+
+      <div class="concept-highlight">
+
+        <span class="activity-eyebrow">RECALL</span>
+
+        <h2>The Testing Effect</h2>
+
+        <p>
+          Actively retrieving information from memory can
+          strengthen long-term retention more effectively
+          than simply reviewing the same material.
+        </p>
+
+        <p>
+          <strong>Let's experience retrieval practice.</strong>
+          Without returning to previous pages, can you
+          recognize the instructional strategies we used?
+        </p>
+
+      </div>
+
+      <!-- =====================================
+           2. APPLY
+           ===================================== -->
+
+      <section class="activity-card">
+
+        <span class="activity-eyebrow">APPLY</span>
+
+        <h2>Match the Teaching Strategy</h2>
+
+        <p>
+          Match each teaching example with the instructional
+          strategy it illustrates.
+        </p>
+
+        <p>
+          Select a card and then select its matching strategy,
+          or drag the card into the appropriate box.
+        </p>
+
+        <div id="strategy-matching" class="strategy-matching">
+
+          <div class="sorting-layout">
+
+            <div class="sorting-column">
+
+              <h3>Teaching Examples</h3>
+
+              <div id="strategy-bank" class="sorting-bank">
+              </div>
+
+            </div>
+
+            <div class="sorting-column">
+
+              <h3>Instructional Strategies</h3>
+
+              <div id="strategy-buckets" class="sorting-buckets">
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="near-transfer-controls">
+
+            <button type="button" id="strategy-check">
+              Check Matches
+            </button>
+
+            <button type="button"
+                    id="strategy-reset"
+                    class="secondary">
+              Try Again
+            </button>
+
+          </div>
+
+          <p id="strategy-feedback"
+             class="near-transfer-feedback"
+             aria-live="polite"></p>
+
+        </div>
+
+      </section>
+
+      <!-- =====================================
+           3. ZOOM OUT
+           ===================================== -->
+
+      <section class="content-section">
+
+        <span class="activity-eyebrow">ZOOM OUT</span>
+
+        <h2>Our Learning Journey</h2>
+
+        <p>
+          Select each card to revisit how a particular
+          strategy appeared in our learning experience.
+        </p>
+
+        <div id="strategy-summary"
+             class="strategy-summary-grid"
+             hidden>
+        </div>
+
+      </section>
+
+      <!-- =====================================
+           4. EXTEND
+           ===================================== -->
+
+      <section id="strategy-extend"
+               class="reflection-card"
+               hidden>
+
+        <span class="activity-eyebrow">EXTEND</span>
+
+        <h2>From Learning to Teaching</h2>
+
+        <p>
+          Which instructional strategy could you incorporate
+          into your own teaching next week?
+        </p>
+
+        <p>
+          <strong>What would that look like in practice?</strong>
+        </p>
+
+      </section>
+
+      <!-- =====================================
+           FINAL TAKEAWAY
+           ===================================== -->
+
+      <div id="strategy-final"
+           class="concept-highlight"
+           hidden>
+
+        <h2>High Expectations + High Structure</h2>
+
+        <p>
+          <strong>High expectations</strong> establish
+          meaningful learning goals and invite students
+          to engage with challenging ideas.
+        </p>
+
+        <p>
+          <strong>High structure</strong> provides the
+          guidance, practice, feedback, and opportunities
+          for reflection that help students reach those goals.
+        </p>
+
+      </div>
+
+    </section>
+  `
+},
 
   {
     id: 11,
