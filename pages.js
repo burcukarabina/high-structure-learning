@@ -1569,6 +1569,13 @@ and return to your starting location.
 
       <div id="contrast-explanations" hidden></div>
 
+       <h2> Reflect: What did you notice?</h2>
+
+      <p>
+        Can we determine whether an Eulerian Trail or Hamiltonian Cycle exists
+        simply by examining the vertex degrees?
+      </p>
+
     </section>
 
 
@@ -1631,29 +1638,6 @@ and return to your starting location.
          ===================================== -->
 
     <section class="content-section">
-
-      <h2>3. Discover: Can We Predict Without Drawing?</h2>
-
-      <p>
-        Recall that the <strong>degree</strong> of a vertex
-        is the number of edges meeting at that vertex.
-      </p>
-
-      <p>
-        An <strong>odd-degree vertex</strong> has an odd
-        number of edges meeting at it.
-      </p>
-
-      <p>
-        A graph is <strong>connected</strong> when every
-        vertex can be reached from every other vertex
-        by following edges.
-      </p>
-
-      <p>
-        Can we determine whether an Eulerian trail exists
-        simply by examining the vertex degrees?
-      </p>
 
       <div class="theorem-reveal-area">
 
