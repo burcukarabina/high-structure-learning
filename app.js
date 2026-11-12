@@ -2319,6 +2319,49 @@ function initializeTheorem() {
     }
 
   });
+   // =========================================
+// RETURN TO FIRST CHALLENGE
+// =========================================
+
+const houseCheck = document.getElementById("house-check");
+const houseFeedback = document.getElementById("house-feedback");
+
+if (houseCheck && houseFeedback) {
+
+  houseCheck.addEventListener("click", () => {
+
+    const selected = document.querySelector(
+      'input[name="house-euler"]:checked'
+    );
+
+    if (!selected) {
+      houseFeedback.textContent =
+        "Please select Yes or No.";
+      return;
+    }
+
+    if (selected.value === "yes") {
+
+      houseFeedback.innerHTML = `
+        <strong>Correct!</strong>
+        The graph has exactly two vertices of odd degree.
+        Therefore, by Euler's Theorem, an Eulerian trail exists.
+      `;
+
+    } else {
+
+      houseFeedback.innerHTML = `
+        <strong>Not quite.</strong>
+        Count the degrees of the five vertices.
+        How many have odd degree?
+        Recall Euler's Theorem and try again.
+      `;
+
+    }
+
+  });
+
+}
 
 }
 
