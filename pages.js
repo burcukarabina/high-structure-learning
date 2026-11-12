@@ -1580,13 +1580,17 @@ and return to your starting location.
 
 
 
-    <!-- =====================================
-         3. ZOOM OUT
-         ===================================== -->
+<!-- =====================================
+     3. ZOOM OUT
+     ===================================== -->
 
-    <section class="content-section">
+<section class="content-section">
 
-      <h2>Zoom Out: Contrasting Cases</h2>
+  <h2>Zoom Out: Contrasting Cases</h2>
+
+  <div class="strategy-reflection">
+
+    <div class="flashcard-scene">
 
       <button
         type="button"
@@ -1595,35 +1599,51 @@ and return to your starting location.
         aria-label="Reveal the learning strategy"
       >
 
-        <span class="flashcard-front">
-          <span class="flashcard-label">REFLECT</span>
+        <span class="flashcard-inner">
 
-          <strong>
-            How did comparing different graphs help
-            you recognize which mathematical properties matter?
-          </strong>
+          <!-- FRONT -->
+          <span class="flashcard-face flashcard-front">
 
-          <span class="flashcard-hint">
-            Select to reveal the learning strategy.
+            <span class="flashcard-label">REFLECT</span>
+
+            <strong class="flashcard-question">
+              How did comparing different graphs help
+              you recognize which mathematical properties matter?
+            </strong>
+
+            <span class="flashcard-hint">
+              Select to reveal the learning strategy.
+            </span>
+
           </span>
-        </span>
 
-        <span class="flashcard-back">
-          <span class="flashcard-label">LEARNING STRATEGY</span>
+          <!-- BACK -->
+          <span class="flashcard-face flashcard-back">
 
-          <strong>Contrasting Cases</strong>
+            <span class="flashcard-label">
+              LEARNING STRATEGY
+            </span>
 
-          <span>
-            Comparing carefully selected examples helps
-            learners distinguish related concepts
-            and identify the structural features
-            that matter.
+            <strong>Contrasting Cases</strong>
+
+            <span>
+              Comparing carefully selected examples helps
+              learners distinguish related concepts
+              and identify the structural features
+              that matter.
+            </span>
+
           </span>
+
         </span>
 
       </button>
 
-    </section>
+    </div>
+
+  </div>
+
+</section>
 
   `
 },
