@@ -2239,10 +2239,10 @@ group.appendChild(label);
   });
 
 
-
+}
 
   // =========================================
-// REVEAL EULER'S THEOREM
+// Page 9 REVEAL EULER'S THEOREM
 // =========================================
 
 const theoremButton = document.getElementById(
@@ -2317,7 +2317,4 @@ theoremButton.addEventListener("click", () => {
   }
 
 });
-
-}
-
 renderPage();
