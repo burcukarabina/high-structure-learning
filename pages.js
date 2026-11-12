@@ -1786,40 +1786,59 @@ and return to your starting location.
 
   </div>
 
-<!-- PAGE 9 — FINAL TAKEAWAY FLASHCARD -->
+<!-- PAGE 9 — FINAL REFLECTION FLASHCARD -->
+
 <div id="house-final-flashcard" hidden>
 
-  <div class="strategy-flashcard"
-       role="button"
-       tabindex="0"
-       aria-pressed="false"
-       aria-label="Reveal the learning strategy">
+  <div class="flashcard-scene">
 
-    <div class="strategy-flashcard-inner">
+    <div class="strategy-flashcard"
+         role="button"
+         tabindex="0"
+         aria-pressed="false"
+         aria-label="Reveal the learning strategy">
 
-      <div class="strategy-flashcard-front">
-        <span class="flashcard-label">REFLECT</span>
-        <h3>High Expectations, High Structure</h3>
-        <p>
-          What does this learning experience illustrate
-          about high expectations and high structure?
-        </p>
-        <span class="flashcard-hint">Click to reveal</span>
-      </div>
+      <div class="flashcard-inner">
 
-      <div class="strategy-flashcard-back">
-        <span class="flashcard-label">KEY TAKEAWAY</span>
-        <p>
-          <strong>High expectations</strong> invite students
-          to tackle meaningful challenges.
-        </p>
-        <p>
-          <strong>High structure</strong> provides the guidance,
-          practice, and feedback needed to succeed.
-        </p>
+        <!-- FRONT -->
+        <div class="flashcard-face flashcard-front">
+
+          <span class="flashcard-label">REFLECT</span>
+
+          <h3>High Expectations, High Structure</h3>
+
+          <p class="flashcard-question">
+            What does this learning experience illustrate
+            about high expectations and high structure?
+          </p>
+
+          <span class="flashcard-hint">
+            Click to reveal
+          </span>
+
+        </div>
+
+        <!-- BACK -->
+        <div class="flashcard-face flashcard-back">
+
+          <span class="flashcard-label">KEY TAKEAWAY</span>
+
+          <p>
+            <strong>High expectations</strong> invite students
+            to tackle meaningful challenges.
+          </p>
+
+          <p>
+            <strong>High structure</strong> provides the guidance,
+            practice, and feedback needed to succeed.
+          </p>
+
+        </div>
+
       </div>
 
     </div>
+
   </div>
 
 </div>
