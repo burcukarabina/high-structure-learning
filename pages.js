@@ -1687,34 +1687,106 @@ and return to your starting location.
 
       </div>
 
-      <div
-        id="contrast-return"
-        class="contrast-return"
-        hidden
-      >
-        <h3>Return to Our Initial Challenge</h3>
+      <div id="contrast-return" class="contrast-return" hidden>
 
-        <p>
-          Remember the network from Page 4?
-        </p>
+  <h3>Return to Our First Challenge</h3>
 
-        <p>
-          It has exactly <strong>two odd-degree vertices:
-          A and G</strong>.
-        </p>
+  <p>
+    Remember the house-shaped graph from our very first challenge?
+    Let's revisit it, now that we know Euler's Theorem.
+  </p>
 
-        <p>
-          Therefore, an Eulerian trail
-          <strong>does exist</strong>.
-          It must start at A and end at G,
-          or start at G and end at A.
-        </p>
+  <div class="house-challenge">
 
-        <p>
-          We now know this without having to
-          find the entire route!
-        </p>
+    <svg
+      viewBox="0 0 300 270"
+      class="house-graph"
+      role="img"
+      aria-label="House-shaped graph with five vertices and six edges."
+    >
+
+      <!-- Edges -->
+      <g stroke="#333" stroke-width="4" fill="none">
+
+        <!-- Roof -->
+        <line x1="150" y1="30" x2="50" y2="110"/>
+        <line x1="150" y1="30" x2="250" y2="110"/>
+
+        <!-- House -->
+        <line x1="50" y1="110" x2="250" y2="110"/>
+        <line x1="50" y1="110" x2="50" y2="230"/>
+        <line x1="250" y1="110" x2="250" y2="230"/>
+        <line x1="50" y1="230" x2="250" y2="230"/>
+
+      </g>
+
+      <!-- Vertices -->
+      <g fill="#f4d35e" stroke="#222" stroke-width="2">
+
+        <circle cx="150" cy="30" r="10"/>
+        <circle cx="50" cy="110" r="10"/>
+        <circle cx="250" cy="110" r="10"/>
+        <circle cx="50" cy="230" r="10"/>
+        <circle cx="250" cy="230" r="10"/>
+
+      </g>
+
+    </svg>
+
+    <div class="challenge-question">
+
+      <h4>Can You Solve It Now?</h4>
+
+      <p>
+        Is it possible to draw this house without lifting your
+        pencil and without tracing any line more than once?
+      </p>
+
+      <p>
+        In other words, <strong>does an Eulerian trail exist?</strong>
+      </p>
+
+      <div class="challenge-options">
+
+        <label>
+          <input
+            type="radio"
+            name="house-euler"
+            value="yes"
+          >
+          Yes
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="house-euler"
+            value="no"
+          >
+          No
+        </label>
+
       </div>
+
+      <button
+        id="house-check"
+        type="button"
+        class="primary-button"
+      >
+        Check Answer
+      </button>
+
+      <div
+        id="house-feedback"
+        class="challenge-feedback"
+        aria-live="polite"
+      ></div>
+
+    </div>
+
+  </div>
+
+</div>
 
     </section>
     `
