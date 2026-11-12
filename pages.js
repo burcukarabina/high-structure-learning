@@ -1629,12 +1629,12 @@ and return to your starting location.
 },
   {
     id: 9,
-    type: "zoom",
-    label: "Zoom Out 3",
-    title: "The Power of Scaffolding",
-    content: `<p>Coming soon: Guided practice, feedback, and fading support.</p>
+    type: "Math",
+    label: "Math of it all",
+    title: "The Math Moment",
+    content: `
         <!-- =====================================
-         3. THEOREM REVEAL
+         THEOREM REVEAL
          ===================================== -->
 
     <section class="content-section">
