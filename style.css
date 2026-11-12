@@ -2057,3 +2057,10 @@ select:focus {
   width: auto;
   cursor: pointer;
 }
+/* =========================================
+   HIDDEN ELEMENTS
+   ========================================= */
+
+[hidden] {
+  display: none !important;
+}
