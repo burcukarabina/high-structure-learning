@@ -152,6 +152,11 @@ function renderPage() {
     initializeTheorem();
   }
 
+   // Page 10: Wrap up
+   if (page.id === 10) {
+  initializeStrategyMatching();
+}
+
   // Scroll to top when changing pages
   window.scrollTo({
     top: 0,
@@ -2370,7 +2375,295 @@ if (finalFlashcard) {
 }
 
 }
+function initializeStrategyMatching() {
 
+  const bank = document.getElementById("strategy-bank");
+  const buckets = document.getElementById("strategy-buckets");
+  const checkButton = document.getElementById("strategy-check");
+  const resetButton = document.getElementById("strategy-reset");
+  const feedback = document.getElementById("strategy-feedback");
+
+  if (!bank || !buckets || !checkButton || !resetButton || !feedback) {
+    return;
+  }
+
+  const strategies = [
+    {
+      id: "struggle",
+      name: "Productive Struggle",
+      example: "Students attempt a challenging problem before being shown a solution.",
+      experience: "We began with a graph-drawing challenge before learning a formal method."
+    },
+    {
+      id: "scaffolding",
+      name: "Scaffolding",
+      example: "An instructor provides guiding questions and gradually reduces support.",
+      experience: "We moved from exploration toward mathematical definitions and structured guidance."
+    },
+    {
+      id: "transfer",
+      name: "Near Transfer",
+      example: "Students apply a familiar concept to a new but closely related problem.",
+      experience: "We applied graph theory concepts to different networks."
+    },
+    {
+      id: "contrasting",
+      name: "Contrasting Cases",
+      example: "Students compare examples to identify important structural differences.",
+      experience: "We compared Eulerian and Hamiltonian problems across different graphs."
+    },
+    {
+      id: "retrieval",
+      name: "Retrieval Practice",
+      example: "Students recall previously learned concepts without consulting their notes.",
+      experience: "We revisited the original graph challenge and recalled Euler's Theorem."
+    },
+    {
+      id: "reflection",
+      name: "Metacognition",
+      example: "Students reflect on which approaches supported their learning and why.",
+      experience: "We used reflection prompts and flashcards to examine our learning."
+    }
+  ];
+
+  let selectedCard = null;
+
+  const shuffle = array =>
+    [...array].sort(() => Math.random() - 0.5);
+
+  function createCard(strategy) {
+
+    const card = document.createElement("button");
+
+    card.type = "button";
+    card.className = "sorting-item";
+    card.dataset.strategy = strategy.id;
+    card.textContent = strategy.example;
+    card.draggable = true;
+
+    card.addEventListener("click", () => {
+
+      document.querySelectorAll(
+        "#strategy-matching .sorting-item"
+      ).forEach(item => item.classList.remove("is-selected"));
+
+      selectedCard = card;
+      card.classList.add("is-selected");
+
+    });
+
+    card.addEventListener("dragstart", event => {
+
+      selectedCard = card;
+
+      event.dataTransfer.setData(
+        "text/plain",
+        strategy.id
+      );
+
+      event.dataTransfer.effectAllowed = "move";
+
+    });
+
+    return card;
+  }
+
+  function createBucket(strategy) {
+
+    const bucket = document.createElement("div");
+    bucket.className = "sorting-bucket";
+    bucket.dataset.strategy = strategy.id;
+
+    const heading = document.createElement("h4");
+    heading.textContent = strategy.name;
+
+    const dropzone = document.createElement("div");
+    dropzone.className = "sorting-dropzone";
+    dropzone.tabIndex = 0;
+    dropzone.setAttribute(
+      "aria-label",
+      `Place a teaching example under ${strategy.name}`
+    );
+
+    dropzone.addEventListener("dragover", event => {
+      event.preventDefault();
+    });
+
+    dropzone.addEventListener("drop", event => {
+
+      event.preventDefault();
+
+      const id = event.dataTransfer.getData("text/plain");
+
+      const card = [...document.querySelectorAll(
+        "#strategy-matching .sorting-item"
+      )].find(item => item.dataset.strategy === id);
+
+      if (card) {
+        moveCard(card, dropzone);
+      }
+
+    });
+
+    dropzone.addEventListener("click", () => {
+
+      if (selectedCard) {
+        moveCard(selectedCard, dropzone);
+      }
+
+    });
+
+    dropzone.addEventListener("keydown", event => {
+
+      if (
+        (event.key === "Enter" || event.key === " ") &&
+        selectedCard
+      ) {
+        event.preventDefault();
+        moveCard(selectedCard, dropzone);
+      }
+
+    });
+
+    bucket.append(heading, dropzone);
+
+    return bucket;
+  }
+
+  function moveCard(card, dropzone) {
+
+    const existing = dropzone.querySelector(".sorting-item");
+
+    if (existing && existing !== card) {
+      bank.appendChild(existing);
+    }
+
+    dropzone.appendChild(card);
+
+    card.classList.remove("is-selected");
+    selectedCard = null;
+
+    feedback.textContent = "";
+
+    document.querySelectorAll(
+      "#strategy-matching .sorting-bucket"
+    ).forEach(bucket => {
+      bucket.classList.remove(
+        "answer-correct",
+        "answer-incorrect"
+      );
+    });
+
+  }
+
+  function renderSummary() {
+
+    const summary = document.getElementById("strategy-summary");
+
+    if (!summary) return;
+
+    summary.innerHTML = "";
+
+    strategies.forEach(strategy => {
+
+      const card = document.createElement("div");
+      card.className = "strategy-summary-card";
+
+      const heading = document.createElement("h3");
+      heading.textContent = strategy.name;
+
+      const description = document.createElement("p");
+      description.textContent = strategy.experience;
+
+      card.append(heading, description);
+      summary.appendChild(card);
+
+    });
+
+    summary.hidden = false;
+
+    document.getElementById("strategy-extend").hidden = false;
+    document.getElementById("strategy-final").hidden = false;
+
+  }
+
+  function reset() {
+
+    bank.innerHTML = "";
+    buckets.innerHTML = "";
+
+    selectedCard = null;
+    feedback.textContent = "";
+
+    shuffle(strategies).forEach(strategy => {
+      bank.appendChild(createCard(strategy));
+    });
+
+    shuffle(strategies).forEach(strategy => {
+      buckets.appendChild(createBucket(strategy));
+    });
+
+    document.getElementById("strategy-summary").hidden = true;
+    document.getElementById("strategy-extend").hidden = true;
+    document.getElementById("strategy-final").hidden = true;
+
+  }
+
+  checkButton.addEventListener("click", () => {
+
+    const placed = [...document.querySelectorAll(
+      "#strategy-matching .sorting-dropzone .sorting-item"
+    )];
+
+    if (placed.length !== strategies.length) {
+
+      feedback.textContent =
+        "Match all six examples before checking.";
+
+      return;
+    }
+
+    let correct = 0;
+
+    document.querySelectorAll(
+      "#strategy-matching .sorting-bucket"
+    ).forEach(bucket => {
+
+      const card = bucket.querySelector(".sorting-item");
+
+      const isCorrect =
+        card &&
+        card.dataset.strategy === bucket.dataset.strategy;
+
+      bucket.classList.toggle("answer-correct", isCorrect);
+      bucket.classList.toggle("answer-incorrect", !isCorrect);
+
+      if (isCorrect) correct++;
+
+    });
+
+    if (correct === strategies.length) {
+
+      feedback.innerHTML =
+        "<strong>Excellent!</strong> All six strategies matched.";
+
+      renderSummary();
+
+    } else {
+
+      feedback.textContent =
+        `${correct} of ${strategies.length} correct. ` +
+        "Review your matches and try again.";
+
+    }
+
+  });
+
+  resetButton.addEventListener("click", reset);
+
+  reset();
+
+}
 
 // =========================================
 // START TEXTBOOK
