@@ -2023,3 +2023,37 @@ select:focus {
 .challenge-feedback:empty {
   display: none;
 }
+/* Page 9 — Compact house challenge */
+
+.house-challenge {
+  max-width: 520px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.house-graph {
+  display: block;
+  width: 100%;
+  max-width: 180px; /* Smaller house */
+  height: auto;
+  margin: 0 auto 16px;
+}
+
+/* Yes / No horizontally */
+
+.challenge-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin: 16px 0;
+}
+
+.challenge-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+  cursor: pointer;
+}
