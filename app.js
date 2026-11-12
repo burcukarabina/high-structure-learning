@@ -140,9 +140,14 @@ if (page.id === 6) {
 if (page.id === 7) {
   initializeDeliveryChallenge();
 }
-// Page 8: Contrasting cases and Euler's theorem
+// Page 8: Contrasting cases
 if (page.id === 8) {
   initializeContrastingCases();
+}
+
+// Page 9: Euler's theorem
+if (page.id === 9) {
+  initializeTheoremReveal();
 }
 
   // Scroll to top when changing pages
