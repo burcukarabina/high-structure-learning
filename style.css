@@ -1975,3 +1975,90 @@ select:focus {
 [hidden] {
   display: none !important;
 }
+
+/* =========================================
+   PAGE 10 — LEARNING STRATEGY SUMMARY
+   ========================================= */
+
+.strategy-matching {
+  margin-top: 1.5rem;
+}
+
+.strategy-matching .sorting-bank {
+  min-height: 420px;
+}
+
+.strategy-matching .sorting-buckets {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.strategy-matching .sorting-bucket {
+  min-width: 0;
+}
+
+.strategy-matching .sorting-dropzone {
+  min-height: 110px;
+}
+
+.strategy-matching .sorting-item {
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.strategy-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, 240px), 1fr)
+  );
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.strategy-summary-card {
+  padding: 1.5rem;
+  background: #fff9e8;
+  border: 2px solid #d4a017;
+  border-radius: 12px;
+}
+
+.strategy-summary-card h3 {
+  margin-top: 0;
+  font-size: 1.15rem;
+}
+
+.strategy-summary-card p {
+  margin-bottom: 0;
+  line-height: 1.55;
+}
+
+#strategy-extend {
+  margin-top: 2rem;
+}
+
+#strategy-final {
+  margin-top: 2rem;
+  border-left-width: 6px;
+}
+
+@media (max-width: 760px) {
+
+  .strategy-matching .sorting-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .strategy-matching .sorting-bank {
+    min-height: 180px;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .strategy-matching .sorting-buckets {
+    grid-template-columns: 1fr;
+  }
+
+}
