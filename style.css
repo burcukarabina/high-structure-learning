@@ -1980,32 +1980,36 @@ select:focus {
    PAGE 10 — LEARNING STRATEGY SUMMARY
    ========================================= */
 
-.strategy-matching {
+#strategy-matching {
   margin-top: 1.5rem;
 }
 
-.strategy-matching .sorting-bank {
+/* Matching activity */
+
+#strategy-matching .sorting-bank {
   min-height: 420px;
 }
 
-.strategy-matching .sorting-buckets {
+#strategy-matching .sorting-buckets {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.75rem;
 }
 
-.strategy-matching .sorting-bucket {
+#strategy-matching .sorting-bucket {
   min-width: 0;
 }
 
-.strategy-matching .sorting-dropzone {
+#strategy-matching .sorting-dropzone {
   min-height: 110px;
 }
 
-.strategy-matching .sorting-item {
+#strategy-matching .sorting-item {
   font-size: 0.9rem;
   line-height: 1.45;
 }
+
+/* Strategy summary cards */
 
 .strategy-summary-grid {
   display: grid;
@@ -2034,6 +2038,8 @@ select:focus {
   line-height: 1.55;
 }
 
+/* Final reflection */
+
 #strategy-extend {
   margin-top: 2rem;
 }
@@ -2043,13 +2049,15 @@ select:focus {
   border-left-width: 6px;
 }
 
+/* Responsive layout */
+
 @media (max-width: 760px) {
 
-  .strategy-matching .sorting-layout {
+  #strategy-matching .sorting-layout {
     grid-template-columns: 1fr;
   }
 
-  .strategy-matching .sorting-bank {
+  #strategy-matching .sorting-bank {
     min-height: 180px;
   }
 
@@ -2057,7 +2065,7 @@ select:focus {
 
 @media (max-width: 480px) {
 
-  .strategy-matching .sorting-buckets {
+  #strategy-matching .sorting-buckets {
     grid-template-columns: 1fr;
   }
 
