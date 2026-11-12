@@ -132,23 +132,25 @@ function renderPage() {
     initializeNetworkPuzzle();
   }
 
-   // Page 6: Near-transfer activities
-if (page.id === 6) {
-  initializeNearTransfer();
-}
-   // Page 7: Hamiltonian cycle delivery challenge
-if (page.id === 7) {
-  initializeDeliveryChallenge();
-}
-// Page 8: Contrasting cases
-if (page.id === 8) {
-  initializeContrastingCases();
-}
+  // Page 6: Near-transfer activities
+  if (page.id === 6) {
+    initializeNearTransfer();
+  }
 
-// Page 9: Euler's theorem
-if (page.id === 9) {
-  initializeTheorem();
-}
+  // Page 7: Hamiltonian cycle delivery challenge
+  if (page.id === 7) {
+    initializeDeliveryChallenge();
+  }
+
+  // Page 8: Contrasting cases
+  if (page.id === 8) {
+    initializeContrastingCases();
+  }
+
+  // Page 9: Euler's theorem
+  if (page.id === 9) {
+    initializeTheorem();
+  }
 
   // Scroll to top when changing pages
   window.scrollTo({
@@ -669,10 +671,6 @@ or restarting with a different strategy.`;
 
 
 // =========================================
-// START TEXTBOOK
-// =========================================
-
-// =========================================
 // PAGE 6 — NEAR TRANSFER
 // =========================================
 
@@ -973,7 +971,7 @@ function initializeNearTransfer() {
   renderMatching();
 
 
-    // =======================================
+  // =======================================
   // ACTIVITY 2: APPLY TO A NEW GRAPH
   // =======================================
 
@@ -1313,6 +1311,8 @@ function initializeNearTransfer() {
 
   loadGraph();
 }
+
+
 // =========================================
 // PAGE 7 — HAMILTONIAN CYCLE CHALLENGE
 // =========================================
@@ -1334,186 +1334,173 @@ function initializeDeliveryChallenge() {
 
 
   // =========================================
-  // DELIVERY NETWORK
+  // DELIVERY NETWORK POOL
   // =========================================
 
-  // =========================================
-// DELIVERY NETWORK POOL
-// =========================================
+  const graphPool = [
 
-const graphPool = [
-
-  // NETWORK 1 — WARM-UP
-  // Starting point: A
-  {
-    start: "A",
-    vertices: {
-      A: [75, 150],
-      B: [160, 55],
-      C: [300, 55],
-      D: [355, 150],
-      E: [300, 260],
-      F: [160, 260]
+    // NETWORK 1 — WARM-UP
+    {
+      start: "A",
+      vertices: {
+        A: [75, 150],
+        B: [160, 55],
+        C: [300, 55],
+        D: [355, 150],
+        E: [300, 260],
+        F: [160, 260]
+      },
+      edges: [
+        ["A","B"], ["B","C"], ["C","D"],
+        ["D","E"], ["E","F"], ["F","A"],
+        ["A","C"], ["B","E"], ["C","E"],
+        ["B","F"]
+      ]
     },
-    edges: [
-      ["A","B"], ["B","C"], ["C","D"],
-      ["D","E"], ["E","F"], ["F","A"],
-      ["A","C"], ["B","E"], ["C","E"],
-      ["B","F"]
-    ]
-  },
 
-  // NETWORK 2 — INTERNAL ROUTES
-  // Starting point: C
-  {
-    start: "C",
-    vertices: {
-      A: [75, 150],
-      B: [175, 55],
-      C: [315, 55],
-      D: [355, 150],
-      E: [315, 255],
-      F: [175, 255]
+    // NETWORK 2 — INTERNAL ROUTES
+    {
+      start: "C",
+      vertices: {
+        A: [75, 150],
+        B: [175, 55],
+        C: [315, 55],
+        D: [355, 150],
+        E: [315, 255],
+        F: [175, 255]
+      },
+      edges: [
+        ["A","B"], ["B","C"], ["C","D"],
+        ["D","E"], ["E","F"], ["A","C"],
+        ["A","D"], ["B","E"], ["C","E"],
+        ["D","F"]
+      ]
     },
-    edges: [
-      ["A","B"], ["B","C"], ["C","D"],
-      ["D","E"], ["E","F"], ["A","C"],
-      ["A","D"], ["B","E"], ["C","E"],
-      ["D","F"]
-    ]
-  },
 
-  // NETWORK 3 — CONNECTED GROUPS
-  // Starting point: B
-  {
-    start: "B",
-    vertices: {
-      A: [85, 150],
-      B: [180, 60],
-      C: [180, 240],
-      D: [310, 60],
-      E: [310, 240],
-      F: [390, 150]
+    // NETWORK 3 — CONNECTED GROUPS
+    {
+      start: "B",
+      vertices: {
+        A: [85, 150],
+        B: [180, 60],
+        C: [180, 240],
+        D: [310, 60],
+        E: [310, 240],
+        F: [390, 150]
+      },
+      edges: [
+        ["A","B"], ["B","C"], ["C","A"],
+        ["D","E"], ["E","F"], ["F","D"],
+        ["B","D"], ["C","E"], ["A","F"]
+      ]
     },
-    edges: [
-      ["A","B"], ["B","C"], ["C","A"],
-      ["D","E"], ["E","F"], ["F","D"],
-      ["B","D"], ["C","E"], ["A","F"]
-    ]
-  },
 
-  // NETWORK 4 — CROSS CONNECTIONS
-  // Starting point: E
-  {
-    start: "E",
-    vertices: {
-      A: [70, 150],
-      B: [170, 55],
-      C: [310, 55],
-      D: [370, 150],
-      E: [310, 255],
-      F: [170, 255]
+    // NETWORK 4 — CROSS CONNECTIONS
+    {
+      start: "E",
+      vertices: {
+        A: [70, 150],
+        B: [170, 55],
+        C: [310, 55],
+        D: [370, 150],
+        E: [310, 255],
+        F: [170, 255]
+      },
+      edges: [
+        ["A","B"], ["B","C"], ["C","D"],
+        ["D","E"], ["E","F"], ["A","C"],
+        ["B","E"], ["C","F"], ["A","E"],
+        ["D","F"]
+      ]
     },
-    edges: [
-      ["A","B"], ["B","C"], ["C","D"],
-      ["D","E"], ["E","F"], ["A","C"],
-      ["B","E"], ["C","F"], ["A","E"],
-      ["D","F"]
-    ]
-  },
 
-  // NETWORK 5 — CONSTRAINED ROUTE
-  // Starting point: F
-  // Exactly one Hamiltonian cycle, ignoring direction.
-  {
-    start: "F",
-    vertices: {
-      A: [80, 80],
-      B: [220, 45],
-      C: [355, 80],
-      D: [355, 235],
-      E: [220, 270],
-      F: [80, 235]
+    // NETWORK 5 — CONSTRAINED ROUTE
+    {
+      start: "F",
+      vertices: {
+        A: [80, 80],
+        B: [220, 45],
+        C: [355, 80],
+        D: [355, 235],
+        E: [220, 270],
+        F: [80, 235]
+      },
+      edges: [
+        ["A","B"], ["B","C"], ["C","D"],
+        ["D","E"], ["E","A"], ["A","F"],
+        ["F","C"], ["B","E"]
+      ]
     },
-    edges: [
-      ["A","B"], ["B","C"], ["C","D"],
-      ["D","E"], ["E","A"], ["A","F"],
-      ["F","C"], ["B","E"]
-    ]
-  },
 
-  // NETWORK 6 — MANY POSSIBILITIES
-  // Starting point: D
-  {
-    start: "D",
-    vertices: {
-      A: [75, 150],
-      B: [170, 55],
-      C: [305, 55],
-      D: [370, 150],
-      E: [305, 255],
-      F: [170, 255]
+    // NETWORK 6 — MANY POSSIBILITIES
+    {
+      start: "D",
+      vertices: {
+        A: [75, 150],
+        B: [170, 55],
+        C: [305, 55],
+        D: [370, 150],
+        E: [305, 255],
+        F: [170, 255]
+      },
+      edges: [
+        ["A","B"], ["B","C"], ["C","D"],
+        ["D","E"], ["E","F"], ["A","D"],
+        ["A","E"], ["B","F"], ["C","F"],
+        ["B","E"], ["D","F"]
+      ]
     },
-    edges: [
-      ["A","B"], ["B","C"], ["C","D"],
-      ["D","E"], ["E","F"], ["A","D"],
-      ["A","E"], ["B","F"], ["C","F"],
-      ["B","E"], ["D","F"]
-    ]
-  },
 
-  // NETWORK 7 — ALTERNATIVE CONNECTIONS
-  // Starting point: B
-  {
-    start: "B",
-    vertices: {
-      A: [75, 150],
-      B: [170, 55],
-      C: [310, 55],
-      D: [370, 150],
-      E: [310, 255],
-      F: [170, 255]
+    // NETWORK 7 — ALTERNATIVE CONNECTIONS
+    {
+      start: "B",
+      vertices: {
+        A: [75, 150],
+        B: [170, 55],
+        C: [310, 55],
+        D: [370, 150],
+        E: [310, 255],
+        F: [170, 255]
+      },
+      edges: [
+        ["B","D"], ["D","F"], ["F","A"],
+        ["A","C"], ["C","E"], ["E","B"],
+        ["A","B"], ["C","D"], ["E","F"]
+      ]
     },
-    edges: [
-      ["B","D"], ["D","F"], ["F","A"],
-      ["A","C"], ["C","E"], ["E","B"],
-      ["A","B"], ["C","D"], ["E","F"]
-    ]
-  },
 
-  // NETWORK 8 — FINAL CHALLENGE
-  // Starting point: F
-  {
-    start: "F",
-    vertices: {
-      A: [70, 155],
-      B: [170, 50],
-      C: [310, 50],
-      D: [370, 155],
-      E: [310, 260],
-      F: [170, 260]
-    },
-    edges: [
-      ["A","B"], ["B","D"], ["D","E"],
-      ["E","C"], ["C","F"], ["F","A"],
-      ["A","C"], ["B","E"], ["D","F"],
-      ["B","C"], ["A","E"]
-    ]
-  }
+    // NETWORK 8 — FINAL CHALLENGE
+    {
+      start: "F",
+      vertices: {
+        A: [70, 155],
+        B: [170, 50],
+        C: [310, 50],
+        D: [370, 155],
+        E: [310, 260],
+        F: [170, 260]
+      },
+      edges: [
+        ["A","B"], ["B","D"], ["D","E"],
+        ["E","C"], ["C","F"], ["F","A"],
+        ["A","C"], ["B","E"], ["D","F"],
+        ["B","C"], ["A","E"]
+      ]
+    }
 
-];
+  ];
 
-let remainingGraphs = [];
-let currentGraph = null;
+  let remainingGraphs = [];
+  let currentGraph = null;
 
-let vertices = {};
-let edges = [];
-let vertexNames = [];
+  let vertices = {};
+  let edges = [];
+  let vertexNames = [];
 
-let route = ["A"];
+  let route = ["A"];
 
-const vertexElements = new Map();
-const edgeElements = [];
+  const vertexElements = new Map();
+  const edgeElements = [];
 
 
   // =========================================
@@ -1545,137 +1532,141 @@ const edgeElements = [];
     );
 
   }
-function drawNetwork() {
-
-  svg.innerHTML = "";
-
-  vertexElements.clear();
-  edgeElements.length = 0;
-
-  // =========================================
-  // DRAW EDGES
-  // =========================================
-
-  edges.forEach(([a, b]) => {
-
-    const [x1, y1] = vertices[a];
-    const [x2, y2] = vertices[b];
-
-    const line = createSVGElement("line", {
-      x1,
-      y1,
-      x2,
-      y2,
-      class: "delivery-edge"
-    });
-
-    svg.appendChild(line);
-
-    edgeElements.push({ a, b, element: line });
-
-  });
 
 
   // =========================================
-  // DRAW VERTICES
+  // DRAW NETWORK
   // =========================================
 
-  vertexNames.forEach(name => {
+  function drawNetwork() {
 
-    const [x, y] = vertices[name];
+    svg.innerHTML = "";
 
-    const group = createSVGElement("g", {
-      class: "delivery-vertex",
-      role: "button",
-      tabindex: "0",
-      "aria-label": `Location ${name}`
+    vertexElements.clear();
+    edgeElements.length = 0;
+
+    edges.forEach(([a, b]) => {
+
+      const [x1, y1] = vertices[a];
+      const [x2, y2] = vertices[b];
+
+      const line = createSVGElement("line", {
+        x1,
+        y1,
+        x2,
+        y2,
+        class: "delivery-edge"
+      });
+
+      svg.appendChild(line);
+
+      edgeElements.push({ a, b, element: line });
+
     });
 
-    const circle = createSVGElement("circle", {
-      cx: x,
-      cy: y,
-      r: 19
-    });
+    vertexNames.forEach(name => {
 
-    const label = createSVGElement("text", {
-      x,
-      y: y + 5,
-      "text-anchor": "middle"
-    });
+      const [x, y] = vertices[name];
 
-    label.textContent = name;
+      const group = createSVGElement("g", {
+        class: "delivery-vertex",
+        role: "button",
+        tabindex: "0",
+        "aria-label": `Location ${name}`
+      });
 
-    group.appendChild(circle);
-    group.appendChild(label);
+      const circle = createSVGElement("circle", {
+        cx: x,
+        cy: y,
+        r: 19
+      });
 
-    svg.appendChild(group);
+      const label = createSVGElement("text", {
+        x,
+        y: y + 5,
+        "text-anchor": "middle"
+      });
 
-    group.addEventListener("click", () => {
-      selectLocation(name);
-    });
+      label.textContent = name;
 
-    group.addEventListener("keydown", event => {
+      group.appendChild(circle);
+      group.appendChild(label);
 
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
+      svg.appendChild(group);
+
+      group.addEventListener("click", () => {
         selectLocation(name);
-      }
+      });
+
+      group.addEventListener("keydown", event => {
+
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          selectLocation(name);
+        }
+
+      });
+
+      vertexElements.set(name, group);
 
     });
 
-    vertexElements.set(name, group);
-
-  });
-}
-   function loadNewNetwork() {
-
-  if (remainingGraphs.length === 0) {
-    remainingGraphs = graphPool.map((_, index) => index);
   }
 
-  // Avoid showing the same network twice in a row.
-  let available = remainingGraphs;
 
-  if (currentGraph && remainingGraphs.length > 1) {
-    const previousIndex = graphPool.indexOf(currentGraph);
+  // =========================================
+  // LOAD NEW NETWORK
+  // =========================================
 
-    available = remainingGraphs.filter(
-      index => index !== previousIndex
+  function loadNewNetwork() {
+
+    if (remainingGraphs.length === 0) {
+      remainingGraphs = graphPool.map((_, index) => index);
+    }
+
+    // Avoid showing the same network twice in a row.
+    let available = remainingGraphs;
+
+    if (currentGraph && remainingGraphs.length > 1) {
+      const previousIndex = graphPool.indexOf(currentGraph);
+
+      available = remainingGraphs.filter(
+        index => index !== previousIndex
+      );
+    }
+
+    const randomIndex = Math.floor(Math.random() * available.length);
+    const selectedIndex = available[randomIndex];
+
+    remainingGraphs = remainingGraphs.filter(
+      index => index !== selectedIndex
     );
+
+    currentGraph = graphPool[selectedIndex];
+
+    vertices = currentGraph.vertices;
+    edges = currentGraph.edges;
+    vertexNames = Object.keys(vertices);
+
+    route = [currentGraph.start];
+
+    drawNetwork();
+
+    const startLabel = document.getElementById("delivery-start");
+
+    if (startLabel) {
+      startLabel.textContent = currentGraph.start;
+    }
+
+    feedback.textContent =
+      `New delivery network! Start at ${currentGraph.start}, ` +
+      "visit every other location exactly once, " +
+      `and return to ${currentGraph.start}.`;
+
+    updateDisplay();
+
   }
 
-  const randomIndex = Math.floor(Math.random() * available.length);
-  const selectedIndex = available[randomIndex];
-
-  remainingGraphs = remainingGraphs.filter(
-    index => index !== selectedIndex
-  );
-
-  currentGraph = graphPool[selectedIndex];
-
-  vertices = currentGraph.vertices;
-  edges = currentGraph.edges;
-  vertexNames = Object.keys(vertices);
-
-  // Start at this network's distribution centre.
-  route = [currentGraph.start];
-
-  drawNetwork();
-
-  // Update the displayed starting location.
-  const startLabel = document.getElementById("delivery-start");
-
-  if (startLabel) {
-    startLabel.textContent = currentGraph.start;
-  }
-
-  feedback.textContent =
-    `New delivery network! Start at ${currentGraph.start}, ` +
-    "visit every other location exactly once, " +
-    `and return to ${currentGraph.start}.`;
-
-  updateDisplay();
-}
 
   // =========================================
   // SELECT LOCATION
@@ -1683,73 +1674,72 @@ function drawNetwork() {
 
   function selectLocation(name) {
 
-  const current = route[route.length - 1];
-  const start = currentGraph.start;
+    const current = route[route.length - 1];
+    const start = currentGraph.start;
 
-  // Stop after completing the cycle.
-  if (
-    route.length === vertexNames.length + 1 &&
-    current === start
-  ) {
-    return;
-  }
+    // Stop after completing the cycle.
+    if (
+      route.length === vertexNames.length + 1 &&
+      current === start
+    ) {
+      return;
+    }
 
-  // Check whether a direct connection exists.
-  if (!connected(current, name)) {
-
-    feedback.textContent =
-      `There is no direct connection from ${current} to ${name}.`;
-
-    return;
-  }
-
-  // Returning to the distribution centre.
-  if (name === start) {
-
-    if (route.length !== vertexNames.length) {
+    if (!connected(current, name)) {
 
       feedback.textContent =
-        `You must visit every other location before returning to ${start}.`;
+        `There is no direct connection from ${current} to ${name}.`;
 
       return;
     }
 
-    route.push(start);
+    if (name === start) {
 
-    feedback.textContent =
-      "Success! You found a Hamiltonian cycle.";
+      if (route.length !== vertexNames.length) {
+
+        feedback.textContent =
+          `You must visit every other location before returning to ${start}.`;
+
+        return;
+      }
+
+      route.push(start);
+
+      feedback.textContent =
+        "Success! You found a Hamiltonian cycle.";
+
+      updateDisplay();
+      return;
+    }
+
+    if (route.includes(name)) {
+
+      feedback.textContent =
+        "You've already visited that location. " +
+        "A Hamiltonian cycle visits each vertex exactly once.";
+
+      return;
+    }
+
+    route.push(name);
+
+    if (route.length === vertexNames.length) {
+
+      feedback.textContent = connected(name, start)
+        ? `All locations visited! Return to ${start} to complete the cycle.`
+        : `All locations visited, but there is no direct connection ` +
+          `to ${start}. Undo a move and try a different route.`;
+
+    } else {
+
+      feedback.textContent =
+        `Now at location ${name}. Choose your next location.`;
+
+    }
 
     updateDisplay();
-    return;
+
   }
-
-  // Prevent repeated locations.
-  if (route.includes(name)) {
-
-    feedback.textContent =
-      "You've already visited that location. " +
-      "A Hamiltonian cycle visits each vertex exactly once.";
-
-    return;
-  }
-
-  route.push(name);
-
-  if (route.length === vertexNames.length) {
-
-    feedback.textContent = connected(name, start)
-      ? `All locations visited! Return to ${start} to complete the cycle.`
-      : `All locations visited, but there is no direct connection ` +
-        `to ${start}. Undo a move and try a different route.`;
-
-  } else {
-
-    feedback.textContent =
-      `Now at location ${name}. Choose your next location.`;
-  }
-
-  updateDisplay();
-}
 
 
   // =========================================
@@ -1831,13 +1821,12 @@ function drawNetwork() {
   // RESET
   // =========================================
 
-resetButton.addEventListener("click", loadNewNetwork);
+  resetButton.addEventListener("click", loadNewNetwork);
 
-
-  // Initialize
- loadNewNetwork();
+  loadNewNetwork();
 
 }
+
 
 // =========================================
 // PAGE 8 — CONTRASTING CASES
@@ -1873,7 +1862,7 @@ function initializeContrastingCases() {
       ],
       explanation:
         "The two triangles share vertex C. " +
-        "Every edge can be used exactly once in an Eulerian circuit. " +
+        "Every edge can be used exactly once in an Eulerian trail. " +
         "However, a Hamiltonian cycle is impossible because " +
         "visiting both triangles would require returning to C."
     },
@@ -1921,29 +1910,30 @@ function initializeContrastingCases() {
         "and visits every vertex exactly once before returning " +
         "to the start. Both properties hold."
     },
-     // GRAPH D: SQUARE WITH AN ADDITIONAL EDGE
-{
-  name: "Graph D",
-  vertices: {
-    A: [45, 45],
-    B: [165, 45],
-    C: [165, 165],
-    D: [45, 165],
-    E: [105, 205]
-  },
-  edges: [
-    ["A", "B"],
-    ["B", "C"],
-    ["C", "D"],
-    ["D", "A"],
-    ["D", "E"]
-  ],
-  explanation:
-    "Exactly two vertices, D and E, have odd degree. " +
-    "An Eulerian trail exists, starting at one of them " +
-    "and ending at the other. A Hamiltonian cycle is " +
-    "impossible because E has only one connection."
-}
+
+    // GRAPH D: SQUARE WITH AN ADDITIONAL EDGE
+    {
+      name: "Graph D",
+      vertices: {
+        A: [45, 45],
+        B: [165, 45],
+        C: [165, 165],
+        D: [45, 165],
+        E: [105, 205]
+      },
+      edges: [
+        ["A", "B"],
+        ["B", "C"],
+        ["C", "D"],
+        ["D", "A"],
+        ["D", "E"]
+      ],
+      explanation:
+        "Exactly two vertices, D and E, have odd degree. " +
+        "An Eulerian trail exists, starting at one of them " +
+        "and ending at the other. A Hamiltonian cycle is " +
+        "impossible because E has only one connection."
+    }
 
   ];
 
@@ -1968,7 +1958,7 @@ function initializeContrastingCases() {
 
   }
 
-  // These three graphs are connected.
+  // All four graphs are connected.
   function hasEulerianTrail(graph) {
 
     const count = oddVertices(graph).length;
@@ -2043,7 +2033,7 @@ function initializeContrastingCases() {
 
   }
 
-  function drawGraph(graph, index) {
+  function drawGraph(graph) {
 
     const svg = makeSVGElement("svg", {
       viewBox: "0 0 210 220",
@@ -2092,7 +2082,7 @@ function initializeContrastingCases() {
       label.textContent = name;
 
       group.appendChild(circle);
-group.appendChild(label);
+      group.appendChild(label);
 
       svg.appendChild(group);
 
@@ -2104,7 +2094,7 @@ group.appendChild(label);
 
 
   // =========================================
-  // RENDER THREE COMPARISON CARDS
+  // RENDER COMPARISON CARDS
   // =========================================
 
   graphs.forEach((graph, index) => {
@@ -2115,7 +2105,7 @@ group.appendChild(label);
     const heading = document.createElement("h3");
     heading.textContent = graph.name;
 
-    const svg = drawGraph(graph, index);
+    const svg = drawGraph(graph);
 
     const questions = document.createElement("div");
     questions.className = "contrast-questions";
@@ -2210,16 +2200,16 @@ group.appendChild(label);
     if (answered < graphs.length * 2) {
 
       feedback.textContent =
-  `You have answered ${answered} of ${graphs.length * 2} questions. ` +
-  "Complete the remaining predictions before checking.";
+        `You have answered ${answered} of ${graphs.length * 2} questions. ` +
+        "Complete the remaining predictions before checking.";
 
       return;
 
     }
 
     feedback.textContent =
-  `${correct} of ${graphs.length * 2} predictions correct. ` +
-  "Compare the explanations below.";
+      `${correct} of ${graphs.length * 2} predictions correct. ` +
+      "Compare the explanations below.";
 
     explanations.innerHTML = "";
 
@@ -2238,87 +2228,100 @@ group.appendChild(label);
 
   });
 
-
 }
 
-  // =========================================
-// Page 9 REVEAL EULER'S THEOREM
+
+// =========================================
+// PAGE 9 — REVEAL EULER'S THEOREM
 // =========================================
 
-const theoremButton = document.getElementById(
-  "contrast-theorem-button"
-);
+function initializeTheorem() {
 
-const theorem = document.getElementById(
-  "contrast-theorem"
-);
+  const theoremButton = document.getElementById(
+    "contrast-theorem-button"
+  );
 
-const returnSection = document.getElementById(
-  "contrast-return"
-);
+  const theorem = document.getElementById(
+    "contrast-theorem"
+  );
 
-const celebration = document.getElementById(
-  "contrast-celebration"
-);
+  const returnSection = document.getElementById(
+    "contrast-return"
+  );
 
-theoremButton.addEventListener("click", () => {
+  const celebration = document.getElementById(
+    "contrast-celebration"
+  );
 
-  theorem.hidden = false;
-  returnSection.hidden = false;
-
-  theoremButton.textContent = "Theorem Revealed";
-  theoremButton.disabled = true;
-
-  // Respect reduced-motion preferences.
-  if (
-    window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches
-  ) {
+  if (!theoremButton || !theorem) {
+    console.warn("Page 9 theorem elements not found.");
     return;
   }
 
-  // Create a short burst of gold particles.
-  const colors = [
-    "#f4d35e",
-    "#d4a017",
-    "#f9e8a4",
-    "#c49a24",
-    "#ffffff"
-  ];
+  theoremButton.addEventListener("click", () => {
 
-  for (let i = 0; i < 28; i++) {
+    theorem.hidden = false;
 
-    const particle = document.createElement("span");
+    if (returnSection) {
+      returnSection.hidden = false;
+    }
 
-    particle.className = "contrast-particle";
+    theoremButton.textContent = "Theorem Revealed";
+    theoremButton.disabled = true;
 
-    particle.style.setProperty(
-      "--angle",
-      `${(i / 28) * 360}deg`
-    );
+    // Respect reduced-motion preferences.
+    if (
+      window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches
+    ) {
+      return;
+    }
 
-    particle.style.setProperty(
-      "--distance",
-      `${70 + Math.random() * 120}px`
-    );
+    if (!celebration) return;
 
-    particle.style.backgroundColor =
-      colors[i % colors.length];
+    // Create a short burst of gold particles.
+    const colors = [
+      "#f4d35e",
+      "#d4a017",
+      "#f9e8a4",
+      "#c49a24",
+      "#ffffff"
+    ];
 
-    celebration.appendChild(particle);
+    for (let i = 0; i < 28; i++) {
 
-    particle.addEventListener(
-      "animationend",
-      () => particle.remove(),
-      { once: true }
-    );
+      const particle = document.createElement("span");
 
-   }
+      particle.className = "contrast-particle";
 
-}); // End of theorem button event listener
+      particle.style.setProperty(
+        "--angle",
+        `${(i / 28) * 360}deg`
+      );
 
-} // End of initializeTheorem()
+      particle.style.setProperty(
+        "--distance",
+        `${70 + Math.random() * 120}px`
+      );
+
+      particle.style.backgroundColor =
+        colors[i % colors.length];
+
+      celebration.appendChild(particle);
+
+      particle.addEventListener(
+        "animationend",
+        () => particle.remove(),
+        { once: true }
+      );
+
+    }
+
+  });
+
+}
+
 
 // =========================================
 // START TEXTBOOK
