@@ -1467,7 +1467,7 @@ and return to your starting location.
 
     <section class="content-section">
 
-      <h2>1. Recall: Two Different Goals</h2>
+      <h2>Recall: Two Different Goals</h2>
 
       <div class="contrast-goals">
 
@@ -1529,7 +1529,7 @@ and return to your starting location.
 
     <section class="content-section">
 
-      <h2>2. Compare: Same Questions, Different Graphs</h2>
+      <h2>Compare: Same Questions, Different Graphs</h2>
 
       <p>
         Examine each graph and make two predictions:
@@ -1572,7 +1572,61 @@ and return to your starting location.
     </section>
 
 
+
     <!-- =====================================
+         3. ZOOM OUT
+         ===================================== -->
+
+    <section class="content-section">
+
+      <h2>Zoom Out: Contrasting Cases</h2>
+
+      <button
+        type="button"
+        class="strategy-flashcard"
+        aria-pressed="false"
+        aria-label="Reveal the learning strategy"
+      >
+
+        <span class="flashcard-front">
+          <span class="flashcard-label">REFLECT</span>
+
+          <strong>
+            How did comparing different graphs help
+            you recognize which mathematical properties matter?
+          </strong>
+
+          <span class="flashcard-hint">
+            Select to reveal the learning strategy.
+          </span>
+        </span>
+
+        <span class="flashcard-back">
+          <span class="flashcard-label">LEARNING STRATEGY</span>
+
+          <strong>Contrasting Cases</strong>
+
+          <span>
+            Comparing carefully selected examples helps
+            learners distinguish related concepts
+            and identify the structural features
+            that matter.
+          </span>
+        </span>
+
+      </button>
+
+    </section>
+
+  `
+},
+  {
+    id: 9,
+    type: "zoom",
+    label: "Zoom Out 3",
+    title: "The Power of Scaffolding",
+    content: `<p>Coming soon: Guided practice, feedback, and fading support.</p>
+        <!-- =====================================
          3. THEOREM REVEAL
          ===================================== -->
 
@@ -1675,61 +1729,7 @@ and return to your starting location.
       </div>
 
     </section>
-
-
-    <!-- =====================================
-         4. ZOOM OUT
-         ===================================== -->
-
-    <section class="content-section">
-
-      <h2>4. Zoom Out: Contrasting Cases</h2>
-
-      <button
-        type="button"
-        class="strategy-flashcard"
-        aria-pressed="false"
-        aria-label="Reveal the learning strategy"
-      >
-
-        <span class="flashcard-front">
-          <span class="flashcard-label">REFLECT</span>
-
-          <strong>
-            How did comparing different graphs help
-            you recognize which mathematical properties matter?
-          </strong>
-
-          <span class="flashcard-hint">
-            Select to reveal the learning strategy.
-          </span>
-        </span>
-
-        <span class="flashcard-back">
-          <span class="flashcard-label">LEARNING STRATEGY</span>
-
-          <strong>Contrasting Cases</strong>
-
-          <span>
-            Comparing carefully selected examples helps
-            learners distinguish related concepts
-            and identify the structural features
-            that matter.
-          </span>
-        </span>
-
-      </button>
-
-    </section>
-
-  `
-},
-  {
-    id: 9,
-    type: "zoom",
-    label: "Zoom Out 3",
-    title: "The Power of Scaffolding",
-    content: `<p>Coming soon: Guided practice, feedback, and fading support.</p>`
+    `
   },
 
   {
