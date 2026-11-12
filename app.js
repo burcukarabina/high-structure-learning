@@ -2314,7 +2314,14 @@ theoremButton.addEventListener("click", () => {
       { once: true }
     );
 
-  }
+   }
 
-});
+}); // End of theorem button event listener
+
+} // End of initializeTheorem()
+
+// =========================================
+// START TEXTBOOK
+// =========================================
+
 renderPage();
