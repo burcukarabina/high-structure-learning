@@ -1787,7 +1787,7 @@ and return to your starting location.
   </div>
 
 <!-- PAGE 9 — FINAL TAKEAWAY FLASHCARD -->
-
+<div id="house-final-flashcard" hidden>
 <div class="strategy-flashcard"
      role="button"
      tabindex="0"
@@ -1825,6 +1825,7 @@ and return to your starting location.
 
   </div>
 
+</div>
 </div>
 </div>
 
