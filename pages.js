@@ -2107,11 +2107,12 @@ and return to your starting location.
           University of Waterloo
         </p>
 
-        <p>
-          Email:
-          <a href="mailto:burcu.karabina@uwaterloo.ca">
-          </a>
-        </p>
+       <p>
+  Email:
+  <a href="mailto:burcu.karabina@uwaterloo.ca">
+    burcu.karabina@uwaterloo.ca
+  </a>
+</p>
       </section>
 
       <section class="ai-disclosure">
