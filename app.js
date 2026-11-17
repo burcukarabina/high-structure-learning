@@ -222,13 +222,18 @@ prevBtn.addEventListener("click", () => {
 
 });
 
-// Next page
+// Next page / Finish presentation
 nextBtn.addEventListener("click", () => {
 
-  if (currentPage < pages.length - 1) {
-    currentPage++;
-    renderPage();
+  // If we are on the final page
+  if (currentPage === pages.length - 1) {
+    handlePresentationFinish();
+    return;
   }
+
+  // Otherwise, continue to the next page
+  currentPage++;
+  renderPage();
 
 });
 
@@ -2659,11 +2664,47 @@ function initializeStrategyMatching() {
 
   });
 
-  resetButton.addEventListener("click", reset);
+   resetButton.addEventListener("click", reset);
 
   reset();
 
 }
+
+
+// =========================================
+// PAGE 11 — FINISH PRESENTATION
+// =========================================
+
+function handlePresentationFinish() {
+
+  const closingMessage = document.getElementById(
+    "presentation-complete"
+  );
+
+  if (!closingMessage) return;
+
+  // First click: reveal the closing message
+  if (closingMessage.hidden) {
+
+    closingMessage.hidden = false;
+
+    nextBtn.textContent = "Start Again";
+
+    closingMessage.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest"
+    });
+
+  } else {
+
+    // Second click: return to Page 1
+    currentPage = 0;
+    renderPage();
+
+  }
+
+}
+
 
 // =========================================
 // START TEXTBOOK
