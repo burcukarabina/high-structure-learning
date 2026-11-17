@@ -2131,7 +2131,18 @@ and return to your starting location.
           by the author.
         </p>
       </section>
+<div id="presentation-complete" class="concept-highlight" hidden>
+  <h2>Thank You for Participating!</h2>
 
+  <p>
+    High expectations set the challenge.
+    High structure provides the support to meet it.
+  </p>
+
+  <p>
+    What is one change you will make to your teaching?
+  </p>
+</div>
     </section>
   `
 }
