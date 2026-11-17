@@ -1926,10 +1926,6 @@ and return to your starting location.
   content: `
     <section class="content-section">
 
-      <span class="page-label">FINAL REFLECTION</span>
-
-      <h1>From Experience to Evidence</h1>
-
       <p class="page-intro">
         Throughout this presentation, you have experienced
         several instructional strategies designed to support
