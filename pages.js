@@ -327,6 +327,60 @@ const pages = [
     </button>
 
   </div>
+  <!-- SECOND TAKEAWAY FLASHCARD -->
+<section class="content-section">
+  <h2>Takeaway 2: Structure Depends on the Learner</h2>
+
+  <div class="strategy-reflection">
+    <div class="flashcard-scene">
+
+      <button
+        type="button"
+        class="strategy-flashcard"
+        aria-pressed="false"
+        aria-label="Reveal the second takeaway"
+      >
+        <span class="flashcard-inner">
+
+          <!-- FRONT -->
+          <span class="flashcard-face flashcard-front">
+            <span class="flashcard-label">REFLECT</span>
+
+            <strong class="flashcard-question">
+              Did everyone need the same amount of guidance
+              to complete this puzzle? Why or why not?
+            </strong>
+
+            <span class="flashcard-hint">
+              Select to reveal the takeaway.
+            </span>
+          </span>
+
+          <!-- BACK -->
+          <span class="flashcard-face flashcard-back">
+            <span class="flashcard-label">KEY TAKEAWAY</span>
+
+            <strong>Structure Is Learner-Dependent</strong>
+
+            <span>
+              Learners with prior experience may need less explicit
+              guidance, while those encountering a problem for the
+              first time may need more.
+            </span>
+
+            <span>
+              <strong>Effective structure adapts to prior knowledge.</strong>
+              Support can become less visible as learners
+              develop expertise.
+            </span>
+          </span>
+
+        </span>
+      </button>
+
+    </div>
+  </div>
+</section>
 
 </section>
     `
