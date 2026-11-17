@@ -2027,8 +2027,6 @@ and return to your starting location.
     </section>
   `
 },
-
-  {
   {
   id: 11,
   type: "zoom",
