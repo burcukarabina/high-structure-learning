@@ -2070,3 +2070,56 @@ select:focus {
   }
 
 }
+/* =========================================
+   PAGE 11 — CLOSING PAGE
+   ========================================= */
+
+.closing-page {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.closing-contact {
+  margin-top: 2rem;
+  padding: 1.75rem;
+  background: #fff9e8;
+  border: 2px solid #d6ac37;
+  border-radius: 14px;
+}
+
+.closing-contact h2 {
+  margin-top: 0;
+}
+
+.closing-contact p {
+  line-height: 1.7;
+}
+
+.closing-contact a {
+  color: #705000;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.ai-disclosure {
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  background: #f7f7f7;
+  border-left: 4px solid #d6ac37;
+  border-radius: 8px;
+}
+
+.ai-disclosure h2 {
+  font-size: 1.1rem;
+  margin-top: 0;
+}
+
+.ai-disclosure p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.ai-disclosure p:last-child {
+  margin-bottom: 0;
+}
