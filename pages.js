@@ -253,7 +253,7 @@ const pages = [
 
       <section class="strategy-reflection">
 
-  <h2>Zoom Out: What Did We Just Learn About Learning?</h2>
+  <h2>Takeaway 1: Interactivity ≠ Learning</h2>
 
   <p>
     Before moving on, consider what made the previous
@@ -2121,18 +2121,6 @@ and return to your starting location.
         <p>
           Email:
           <a href="mailto:burcu.karabina@uwaterloo.ca">
-            YOUR_EMAIL
-          </a>
-        </p>
-
-        <p>
-          Mathematics Learning Resources:
-          <a
-            href="https://burcukarabina.github.io/math-videos/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Explore My Learning Resources
           </a>
         </p>
       </section>
