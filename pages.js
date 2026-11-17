@@ -2082,10 +2082,6 @@ and return to your starting location.
   content: `
     <section class="content-section closing-page">
 
-      <span class="page-label">STAY CONNECTED</span>
-
-      <h1>Thank You!</h1>
-
       <p class="page-intro">
         High expectations challenge learners to think deeply.
         High structure provides the support they need to succeed.
