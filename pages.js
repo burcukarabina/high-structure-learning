@@ -252,7 +252,7 @@ const pages = [
       </div>
  <section class="strategy-reflection">
 
-  <h2>Takeaway 1: Interactivity ≠ Learning</h2>
+  <h2>Zoom Out 1: Interactivity ≠ Learning</h2>
 
   <p>
     Before moving on, consider what made the previous
@@ -327,7 +327,7 @@ const pages = [
 
   </div>
   <!-- SECOND TAKEAWAY FLASHCARD -->
-  <h2>Takeaway 2: Structure Depends on the Learner</h2>
+  <h2>Zoom Out 2: Structure Depends on the Learner</h2>
 
   <div class="strategy-reflection">
     <div class="flashcard-scene">
@@ -350,7 +350,7 @@ const pages = [
             </strong>
 
             <span class="flashcard-hint">
-              Select to reveal the takeaway.
+              Click to flip back.
             </span>
           </span>
 
