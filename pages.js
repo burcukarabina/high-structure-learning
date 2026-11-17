@@ -1871,8 +1871,7 @@ and return to your starting location.
   id: 10,
   type: "zoom",
   label: "Reflect & Extend",
-  title: "Putting It All Together",
-
+  title: "From Experience to Evidence",
   content: `
     <section class="content-section">
 
@@ -2030,9 +2029,11 @@ and return to your starting location.
 },
 
   {
+  {
   id: 11,
+  type: "zoom",
+  label: "Stay Connected",
   title: "Thank You",
-  mode: "zoom",
   content: `
     <section class="content-section closing-page">
 
