@@ -1976,30 +1976,10 @@ and return to your starting location.
 
       </section>
 
-      <!-- =====================================
-           3. ZOOM OUT
-           ===================================== -->
-
-      <section class="content-section">
-
-        <span class="activity-eyebrow">ZOOM OUT</span>
-
-        <h2>Our Learning Journey</h2>
-
-        <p>
-          Select each card to revisit how a particular
-          strategy appeared in our learning experience.
-        </p>
-
-        <div id="strategy-summary"
-             class="strategy-summary-grid"
-             hidden>
-        </div>
-
-      </section>
+    
 
       <!-- =====================================
-           4. EXTEND
+           3. EXTEND
            ===================================== -->
 
       <section id="strategy-extend"
@@ -2050,19 +2030,78 @@ and return to your starting location.
 },
 
   {
-    id: 11,
-    type: "zoom",
-    label: "Zoom Out for 5",
-    title: "Connecting the Ideas",
-    content: `<p>Coming soon: Connecting the learning principles.</p>`
-  },
+  id: 11,
+  title: "Thank You",
+  mode: "zoom",
+  content: `
+    <section class="content-section closing-page">
 
-  {
-    id: 12,
-    type: "zoom",
-    label: "The Big Picture",
-    title: "High Expectations with High Structure",
-    content: `<p>Coming soon: Revisiting our opening reflections.</p>`
-  }
+      <span class="page-label">STAY CONNECTED</span>
 
+      <h1>Thank You!</h1>
+
+      <p class="page-intro">
+        High expectations challenge learners to think deeply.
+        High structure provides the support they need to succeed.
+      </p>
+
+      <div class="concept-highlight">
+        <h2>High Expectations + High Structure</h2>
+        <p>
+          Meaningful learning experiences are not necessarily easier.
+          They are intentionally designed to make challenging
+          learning accessible.
+        </p>
+      </div>
+
+      <section class="closing-contact">
+        <h2>Let's Connect</h2>
+
+        <p><strong>Burcu Karabina</strong></p>
+
+        <p>
+          Associate Professor, Teaching Stream<br>
+          Faculty of Mathematics<br>
+          University of Waterloo
+        </p>
+
+        <p>
+          Email:
+          <a href="mailto:burcu.karabina@uwaterloo.ca">
+            YOUR_EMAIL
+          </a>
+        </p>
+
+        <p>
+          Mathematics Learning Resources:
+          <a
+            href="https://burcukarabina.github.io/math-videos/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Explore My Learning Resources
+          </a>
+        </p>
+      </section>
+
+      <section class="ai-disclosure">
+        <h2>AI Use Disclosure</h2>
+
+        <p>
+          OpenAI's ChatGPT was used to assist with the development
+          of this interactive website, including HTML, CSS,
+          JavaScript, and the refinement of selected instructional
+          content.
+        </p>
+
+        <p>
+          The instructional design, pedagogical decisions,
+          mathematical content, and final review were designed and directed
+          by the author.
+        </p>
+      </section>
+
+    </section>
+  `
+}
 ];
