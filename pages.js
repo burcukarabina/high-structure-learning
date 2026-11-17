@@ -250,8 +250,7 @@ const pages = [
         </p>
 
       </div>
-
-      <section class="strategy-reflection">
+ <section class="strategy-reflection">
 
   <h2>Takeaway 1: Interactivity ≠ Learning</h2>
 
@@ -328,7 +327,6 @@ const pages = [
 
   </div>
   <!-- SECOND TAKEAWAY FLASHCARD -->
-<section class="content-section">
   <h2>Takeaway 2: Structure Depends on the Learner</h2>
 
   <div class="strategy-reflection">
@@ -380,7 +378,6 @@ const pages = [
 
     </div>
   </div>
-</section>
 
 </section>
     `
